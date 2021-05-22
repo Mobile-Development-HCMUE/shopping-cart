@@ -25,9 +25,13 @@ const styles = StyleSheet.create({
         elevation: 9,
     },
     ContainerButton: {
-        borderRadius: 10,
         margin: 10,
         elevation: 5,
+        borderRadius: 10,
+    },
+    Info: {
+        margin: 10,
+        alignItems: "center",
     },
 });
 

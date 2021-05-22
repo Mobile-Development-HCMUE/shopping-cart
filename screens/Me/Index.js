@@ -1,10 +1,17 @@
 // In App.js in a new project
 
 import * as React from "react";
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { View, SafeAreaView, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Button, Icon, Avatar, Image } from "react-native-elements";
+import {
+    Button,
+    Icon,
+    Avatar,
+    Image,
+    Text,
+    Divider,
+} from "react-native-elements";
 
 import SettingScreen from "./Setting/Index.js";
 import RightButton from "../../components/RightButton/Index";
@@ -13,13 +20,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Title } from "react-native-paper";
 import styles from "./Style";
 const Stack = createStackNavigator();
-
+// a5e1ad;
 const MeScreen = ({ navigation }) => {
     return (
-        <LinearGradient
-            style={styles.container}
-            colors={["#a5e1ad", "#a9f1df"]}
-        >
+        <LinearGradient style={styles.container} colors={["#a9f1df", "#fff"]}>
             <View style={styles.Body}>
                 <View style={styles.Cart}>
                     <Avatar
@@ -35,24 +39,51 @@ const MeScreen = ({ navigation }) => {
                     />
                     <View style={{ flexDirection: "row" }}>
                         <Button
-                            title="Chỉnh sửa"
-                            ViewComponent={LinearGradient} // Don't forget this!
-                            linearGradientProps={{
-                                colors: ["red", "#ff7b54"],
-                                start: { x: 0, y: 0.5 },
-                                end: { x: 1, y: 0.5 },
+                            title="CHỈNH SỬA"
+                            containerStyle={styles.ContainerButton}
+                            buttonStyle={{
+                                backgroundColor: "#ff7b54",
+                                borderRadius: 10,
+                                width: 110,
                             }}
-                            buttonStyle={styles.ContainerButton}
                         />
                         <Button
-                            title="Nhắn tin"
+                            title="NHẮN TIN"
                             containerStyle={styles.ContainerButton}
                             buttonStyle={{
                                 backgroundColor: "#11cdef",
                                 borderRadius: 10,
+                                width: 110,
                             }}
                         />
                     </View>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                        }}
+                    >
+                        <View style={styles.Info}>
+                            <Text h4>10</Text>
+                            <Text>Đơn hàng</Text>
+                        </View>
+                        <View style={styles.Info}>
+                            <Text h4>13</Text>
+                            <Text>Đang theo dõi</Text>
+                        </View>
+                        <View style={styles.Info}>
+                            <Text h4>20</Text>
+                            <Text>Theo dõi</Text>
+                        </View>
+                    </View>
+                    <Text h3 style={{ margin: 10 }}>
+                        Nguyễn Văn Phong
+                    </Text>
+                    <View
+                        style={{
+                            borderBottomColor: "black",
+                            borderBottomWidth: 4,
+                        }}
+                    />
                 </View>
             </View>
         </LinearGradient>
