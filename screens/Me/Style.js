@@ -15,15 +15,11 @@ const styles = StyleSheet.create({
         minWidth: "80%",
         alignItems: "center",
         borderRadius: 4,
-        elevation: 23,
+        elevation: 10,
         marginTop: 100,
+        marginBottom: 50,
     },
     Body: { alignItems: "center" },
-    Avatar: {
-        marginTop: -30,
-        shadowColor: "#000",
-        elevation: 9,
-    },
     ContainerButton: {
         margin: 10,
         elevation: 5,

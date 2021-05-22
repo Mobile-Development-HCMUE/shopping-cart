@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon, Ionicons } from "react-native-vector-icons/Ionicons";
-import MainScreen from "./screens/Index";
+import MainScreen from "./screens/index";
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 

@@ -5,9 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Icon } from "react-native-elements";
-import HomeScreen from "./Home/Index.js";
-import NotifyScreen from "./Notify/Index.js";
-import MeScreen from "./Me/Index.js";
+import HomeScreen from "./Home/index.js";
+import NotifyScreen from "./Notify/index.js";
+import MeScreen from "./Me/index.js";
 
 const Drawer = createDrawerNavigator();
 const Tab = createMaterialBottomTabNavigator();
