@@ -9,25 +9,30 @@ const styles = StyleSheet.create({
     rightbutton: {
         flexDirection: "row",
     },
-    Cart: {
+    Card: {
         backgroundColor: "#fff",
-        flex: 1,
         minWidth: "80%",
         alignItems: "center",
         borderRadius: 4,
-        elevation: 10,
+        // elevation: 10,
         marginTop: 100,
-        marginBottom: 50,
+        marginBottom: 10,
     },
     Body: { alignItems: "center" },
-    ContainerButton: {
+    Button: {
         margin: 10,
-        elevation: 5,
-        borderRadius: 10,
+        minWidth: 100,
     },
     Info: {
         margin: 10,
         alignItems: "center",
+    },
+    Setting: {
+        marginBottom: 10,
+        minWidth: "80%",
+        borderRadius: 4,
+        backgroundColor: "#fff",
+        padding: 5,
     },
 });
 
