@@ -12,11 +12,7 @@ const NotifyScreen = () => {
 };
 
 const Notify = ({ navigation }) => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={NotifyScreen}></Stack.Screen>
-        </Stack.Navigator>
-    );
+    return <NotifyScreen />;
 };
 
 const styles = StyleSheet.create({

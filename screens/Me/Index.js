@@ -10,42 +10,18 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Icon, Image, Divider, ListItem, Card } from "react-native-elements";
+import { Icon, Image } from "react-native-elements";
 import { Text, Button } from "@ui-kitten/components";
 
 import SettingScreen from "./Setting/index.js";
-import RightButton from "../../components/RightButton";
+
 import Avatar from "../../components/Avatar";
+import List from "../../components/ListOptions/index";
 import { LinearGradient } from "expo-linear-gradient";
 import { Title } from "react-native-paper";
 import styles from "./style";
+import { ListData1, ListData2 } from "./data.js";
 const Stack = createStackNavigator();
-// a5e1ad;
-const list = [
-    {
-        title: "Đơn mua",
-        icon: "archive-outline",
-        type: "ionicon",
-        color: "#ffc947",
-    },
-    {
-        title: "Đơn nạp thẻ và dịch vụ",
-        icon: "phone-portrait-outline",
-        type: "ionicon",
-        color: "#4aa96c",
-    },
-    { title: "Mua lại", icon: "" },
-    { title: "Đã thích", icon: "" },
-    { title: "Đánh giá của tôi", icon: "" },
-    { title: "Ví", icon: "" },
-];
-
-const listHelp = [
-    {
-        title: "Thiết lập tài khoản",
-    },
-    { title: "Trung tâm trợ giúp" },
-];
 
 const MeScreen = ({ navigation }) => {
     return (
@@ -97,49 +73,13 @@ const MeScreen = ({ navigation }) => {
                         <Text category="h3" style={{ margin: 10 }}>
                             Nguyễn Văn Phong
                         </Text>
-                        <Divider
-                            style={{
-                                backgroundColor: "blue",
-                                height: 1,
-                                borderBottomColor: "black",
-                                borderBottomWidth: 1,
-                            }}
-                        />
                         <Text style={{ margin: 10 }}>Intro</Text>
                     </View>
                     <View style={styles.Setting}>
-                        {list.map((item, i) => (
-                            <ListItem containerStyle={{}} key={i} bottomDivider>
-                                <Icon
-                                    name={item.icon}
-                                    type={item.type}
-                                    color={item.color}
-                                />
-                                <ListItem.Content>
-                                    <ListItem.Title>
-                                        {item.title}
-                                    </ListItem.Title>
-                                </ListItem.Content>
-                                <ListItem.Chevron />
-                            </ListItem>
-                        ))}
+                        <List listData={ListData1} />
                     </View>
                     <View style={styles.Setting}>
-                        {listHelp.map((item, i) => (
-                            <ListItem containerStyle={{}} key={i} bottomDivider>
-                                <Icon
-                                    name={item.icon}
-                                    type={item.type}
-                                    color={item.color}
-                                />
-                                <ListItem.Content>
-                                    <ListItem.Title>
-                                        {item.title}
-                                    </ListItem.Title>
-                                </ListItem.Content>
-                                <ListItem.Chevron />
-                            </ListItem>
-                        ))}
+                        <List listData={ListData2} />
                     </View>
                 </View>
             </LinearGradient>
@@ -148,31 +88,7 @@ const MeScreen = ({ navigation }) => {
 };
 
 const Me = ({ navigation }) => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Me"
-                component={MeScreen}
-                options={{
-                    headerRight: ({ color }) => <RightButton color={color} />,
-                }}
-            ></Stack.Screen>
-            <Stack.Screen
-                name="Setting"
-                component={SettingScreen}
-                options={{
-                    title: "Cài đặt",
-                    headerBackImage: ({ size }) => (
-                        <Icon
-                            name="arrow-back-circle-outline"
-                            type="ionicon"
-                            size={size}
-                        />
-                    ),
-                }}
-            ></Stack.Screen>
-        </Stack.Navigator>
-    );
+    return <MeScreen />;
 };
 
 export default Me;

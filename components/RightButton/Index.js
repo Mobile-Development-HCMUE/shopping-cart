@@ -16,6 +16,7 @@ const RightButton = ({ color }) => {
                             name="settings-outline"
                             type="ionicon"
                             size={24}
+                            color="#000"
                         ></Icon>
                     </View>
                 }
@@ -29,6 +30,7 @@ const RightButton = ({ color }) => {
                             name="cart-outline"
                             type="ionicon"
                             size={24}
+                            color="#000"
                         ></Icon>
                         <Badge
                             status="success"

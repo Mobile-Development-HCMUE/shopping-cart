@@ -12,11 +12,7 @@ const HomeScreen = () => {
 };
 
 const Home = ({ navigation }) => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
-        </Stack.Navigator>
-    );
+    return <HomeScreen />;
 };
 
 const styles = StyleSheet.create({
