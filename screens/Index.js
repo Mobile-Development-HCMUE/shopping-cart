@@ -8,6 +8,7 @@ import {
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon } from "react-native-elements";
+import { LinearGradient } from "expo-linear-gradient";
 import HomeScreen from "./Home/index.js";
 import NotifyScreen from "./Notify/index.js";
 import MeScreen from "./Me/";
@@ -32,7 +33,7 @@ const RootTabScreen = ({ navigation, route }) => {
             tabBarOptions={{
                 activeTintColor: "#fff",
             }}
-            barStyle={{ backgroundColor: "#2E8364" }}
+            barStyle={{ backgroundColor: "#6155a6" }}
         >
             <Tab.Screen
                 name="Home"
@@ -96,21 +97,21 @@ const getHeaderTitle = (route, navigation) => {
     }
 };
 
-const getRightButton = (route, color) => {
-    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
-    switch (routeName) {
-        case "Home":
-            return <RightButton color={color} />;
-        case "Notify":
-            return <RightButton color={color} />;
-        case "Me":
-            return <RightButton color={color} />;
-    }
-};
-
 const RootStackScreen = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerBackground: () => (
+                    <LinearGradient
+                        colors={["#7579e7", "#9ab3f5"]}
+                        style={{ flex: 1 }}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                    />
+                ),
+                headerTitleStyle: { color: "#fff" },
+            }}
+        >
             <Stack.Screen
                 name="HomeTab"
                 component={RootTabScreen}

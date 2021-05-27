@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Button, Icon, Badge } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
-const RightButton = ({ color }) => {
+const RightButton = () => {
     const navigation = useNavigation();
     return (
         <View style={styles.rightbutton}>

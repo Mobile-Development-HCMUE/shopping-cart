@@ -31,7 +31,7 @@ const MeScreen = ({ navigation }) => {
         >
             <LinearGradient
                 style={styles.container}
-                colors={["#a9f1df", "#fff"]}
+                colors={["#D3c0f9", "#fff"]}
             >
                 <View style={styles.Body}>
                     <View style={styles.Card}>
