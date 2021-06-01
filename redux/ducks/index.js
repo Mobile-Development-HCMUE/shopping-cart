@@ -1,21 +1,19 @@
 import { combineReducers } from "redux";
 
-const initialState = {
-    theme: {
-        tab: "",
-        headerRight: "",
-        headerLeft: "",
-        profile: "",
+export const themeOptions = {
+    default: {
+        TAB: "#6155a6",
+        TAB_ACTIVE: "#fff",
+        HEADER_RIGHT: "#9ab3f5",
+        HEADER_LEFT: "#7579e7",
+        TOP_PROFILE: "#D3c0f9",
+        BOTTOM_PROFILE: "#fff",
+        HEADER_TITLE: "#fff",
     },
 };
 
-const themeOptions = {
-    default: {
-        tab: "",
-        headerRight: "",
-        headerLeft: "",
-        profile: "",
-    },
+const initialState = {
+    theme: { ...themeOptions.default },
 };
 
 export const change_theme = (titleTheme) => ({

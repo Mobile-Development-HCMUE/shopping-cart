@@ -21,9 +21,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Title } from "react-native-paper";
 import styles from "./style";
 import { ListData1, ListData2 } from "./data.js";
+import { useSelector } from "react-redux";
 const Stack = createStackNavigator();
 
 const MeScreen = ({ navigation }) => {
+    const topProfileColor = useSelector(
+        (state) => state.theme.theme.TOP_PROFILE
+    );
+    const bottomProfileColor = useSelector(
+        (state) => state.theme.theme.BOTTOM_PROFILE
+    );
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -31,7 +38,7 @@ const MeScreen = ({ navigation }) => {
         >
             <LinearGradient
                 style={styles.container}
-                colors={["#D3c0f9", "#fff"]}
+                colors={[topProfileColor, bottomProfileColor]}
             >
                 <View style={styles.Body}>
                     <View style={styles.Card}>

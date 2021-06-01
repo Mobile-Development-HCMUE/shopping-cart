@@ -9,6 +9,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
+import { useSelector, useDispatch } from "react-redux";
 import HomeScreen from "./Home/index.js";
 import NotifyScreen from "./Notify/index.js";
 import MeScreen from "./Me/";
@@ -27,13 +28,15 @@ const RootTabScreen = ({ navigation, route }) => {
         });
     }, [navigation, route]);
 
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+    const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
     return (
         <Tab.Navigator
             initialRouteName="Home"
             tabBarOptions={{
-                activeTintColor: "#fff",
+                activeTintColor: tabActiveColor,
             }}
-            barStyle={{ backgroundColor: "#6155a6" }}
+            barStyle={{ backgroundColor: backgroundColor }}
         >
             <Tab.Screen
                 name="Home"
@@ -98,18 +101,27 @@ const getHeaderTitle = (route, navigation) => {
 };
 
 const RootStackScreen = () => {
+    const leftHeaderColor = useSelector(
+        (state) => state.theme.theme.HEADER_LEFT
+    );
+    const rightHeaderColor = useSelector(
+        (state) => state.theme.theme.HEADER_RIGHT
+    );
+    const headerTitleColor = useSelector(
+        (state) => state.theme.theme.HEADER_TITLE
+    );
     return (
         <Stack.Navigator
             screenOptions={{
                 headerBackground: () => (
                     <LinearGradient
-                        colors={["#7579e7", "#9ab3f5"]}
+                        colors={[leftHeaderColor, rightHeaderColor]}
                         style={{ flex: 1 }}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 0 }}
                     />
                 ),
-                headerTitleStyle: { color: "#fff" },
+                headerTitleStyle: { color: headerTitleColor },
             }}
         >
             <Stack.Screen
