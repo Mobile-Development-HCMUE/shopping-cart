@@ -41,6 +41,10 @@ const ListData1 = [
 const ListData2 = [
     {
         title: "Thiết lập tài khoản",
+        icon: "aperture-outline",
+        type: "ionicon",
+        color: "#6155a6",
+        link: "Setting",
     },
     {
         title: "Trung tâm trợ giúp",
