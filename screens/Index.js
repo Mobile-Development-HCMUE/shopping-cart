@@ -10,12 +10,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
-import HomeScreen from "./Home/index.js";
-import NotifyScreen from "./Notify/index.js";
-import MeScreen from "./Me/";
-import SettingScreen from "./Me/Setting/";
-import ThietLapTaiKhoanScreen from "./Me/ThietLapTaiKhoan";
-import RightButton from "../components/RightButton/";
+import HomeScreen from "./Home";
+import NotifyScreen from "./Notify";
+import MeScreen from "./Me";
+import SettingScreen from "./Me/Setting";
+import RightButton from "../components/RightButton";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -137,20 +136,6 @@ const RootStackScreen = () => {
                 component={SettingScreen}
                 options={{
                     title: "Cài đặt",
-                    headerBackImage: ({ size }) => (
-                        <Icon
-                            name="arrow-back-circle-outline"
-                            type="ionicon"
-                            size={size}
-                        />
-                    ),
-                }}
-            />
-            <Stack.Screen
-                name = "ThietLapTaiKhoan"
-                component={ThietLapTaiKhoanScreen}
-                options={{
-                    title: "Thiết lập tài khoản",
                     headerBackImage: ({ size }) => (
                         <Icon
                             name="arrow-back-circle-outline"

@@ -7,17 +7,21 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 const Stack = createStackNavigator();
 
-const ThietLapTaiKhoanScreen = () => {
+const SettingScreen = () => {
     return (
-        <View style={styles.Setting}>
-            <List>
-                {
-
-                }
-            </List>
-        </View>
+        <SafeAreaView>
+            <View style={styles.Setting}></View>
+        </SafeAreaView>
     );
 };
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+});
 
-export default ThietLapTaiKhoanScreen;
+export default SettingScreen;
