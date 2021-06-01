@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import List from "../../../components/ListOptions/index";
-import { StyleSheet, Text, View, SafeAreaView, Card} from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView} from "react-native";
+import { Button, Card } from 'react-native-elements';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -12,20 +13,30 @@ const Stack = createStackNavigator();
 const SettingScreen = () => {
     return (
         <SafeAreaView>
-            <View>
-                <Text style={{margin: 8}}>Tài khoản</Text>
-                <View style={styles.Setting}>
-                    <List listData={ListData3}/>
-                </View>
-                <Text style={{margin: 8}}>Cài đặt</Text>
-                <View style={styles.Setting}>
-                    <List listData={ListData4}/>
-                </View>
-                <Text style={{margin: 8}}>Hỗ trợ</Text>
-                <View style={styles.Setting}>
-                    <List listData={ListData5}/>
-                </View>
-            </View>
+            <ScrollView>
+                <Card>
+                    <Card.Title>Tài khoản</Card.Title>
+                    <Card style={styles.Setting}>
+                        <List listData={ListData3}/>
+                    </Card>
+                </Card>
+                <Card>
+                    <Card.Title style={{margin: 8}}>Cài đặt</Card.Title>
+                    <Card style={styles.Setting}>
+                        <List listData={ListData4}/>
+                    </Card>
+                </Card>
+                <Card>
+                    <Card.Title style={{margin: 8}}>Hỗ trợ</Card.Title>
+                    <Card style={styles.Setting}>
+                        <List listData={ListData5}/>
+                    </Card>
+                </Card>
+                    <Button
+                        title="ĐĂNG XUẤT"
+                        style={{}}
+                    />
+            </ScrollView>
         </SafeAreaView>
     );
 };
