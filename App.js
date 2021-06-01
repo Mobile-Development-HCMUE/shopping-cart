@@ -4,10 +4,9 @@ import { StyleSheet, View, SafeAreaView } from "react-native";
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
 import MainScreen from "./screens";
-import { Provider } from "react-redux";
 import { createStore } from "redux";
-
-import reducers from "./redux/reducers";
+import { Provider } from "react-redux";
+import reducers from "./redux/ducks";
 const store = createStore(reducers);
 
 export default function App() {
