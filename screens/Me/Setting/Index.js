@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import List from "../../../components/ListOptions/index";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Card} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/Ionicons";
-import {ListData3, ListData4} from "./data.js";
+import {ListData3, ListData4, ListData5} from "./data.js";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +20,10 @@ const SettingScreen = () => {
                 <Text style={{margin: 8}}>Cài đặt</Text>
                 <View style={styles.Setting}>
                     <List listData={ListData4}/>
+                </View>
+                <Text style={{margin: 8}}>Hỗ trợ</Text>
+                <View style={styles.Setting}>
+                    <List listData={ListData5}/>
                 </View>
             </View>
         </SafeAreaView>
