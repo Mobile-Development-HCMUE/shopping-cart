@@ -14,19 +14,19 @@ const SettingScreen = () => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <Card>
+                <Card containerStyle={{flex: 1,borderRadius: 10}}>
                     <Card.Title>Tài khoản</Card.Title>
-                    <Card style={styles.Setting}>
+                    <Card>
                         <List listData={ListData3}/>
                     </Card>
                 </Card>
-                <Card>
+                <Card containerStyle={{flex: 1,borderRadius: 10}}>
                     <Card.Title style={{margin: 8}}>Cài đặt</Card.Title>
                     <Card style={styles.Setting}>
                         <List listData={ListData4}/>
                     </Card>
                 </Card>
-                <Card>
+                <Card containerStyle={{flex: 1,borderRadius: 10}}>
                     <Card.Title style={{margin: 8}}>Hỗ trợ</Card.Title>
                     <Card style={styles.Setting}>
                         <List listData={ListData5}/>
@@ -34,7 +34,7 @@ const SettingScreen = () => {
                 </Card>
                     <Button
                         title="ĐĂNG XUẤT"
-                        style={{}}
+                        backgroundColor='#6155a6'
                     />
             </ScrollView>
         </SafeAreaView>
@@ -44,7 +44,7 @@ const SettingScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#6155a6",
         alignItems: "center",
         justifyContent: "center",
     },

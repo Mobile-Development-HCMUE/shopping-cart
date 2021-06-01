@@ -43,13 +43,13 @@ const ListData4 = [
 const ListData5 = [
     {
         title: "Trung tâm hỗ trợ",
-        icon: "notifications-outline",
+        icon: "help-circle-outline",
         type: "ionicon",
         color: "#6155a6",
     },
     {
         title: "Giới thiệu",
-        icon: "code-working-outline",
+        icon:"alert-circle-outline",
         type: "ionicon",
         color: "#6155a6",
     },
