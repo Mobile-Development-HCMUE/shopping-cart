@@ -14,6 +14,7 @@ import HomeScreen from "./Home/index.js";
 import NotifyScreen from "./Notify/index.js";
 import MeScreen from "./Me/";
 import SettingScreen from "./Me/Setting/";
+import ThietLapTaiKhoanScreen from "./Me/ThietLapTaiKhoan";
 import RightButton from "../components/RightButton/";
 
 const Tab = createMaterialBottomTabNavigator();
@@ -136,6 +137,20 @@ const RootStackScreen = () => {
                 component={SettingScreen}
                 options={{
                     title: "Cài đặt",
+                    headerBackImage: ({ size }) => (
+                        <Icon
+                            name="arrow-back-circle-outline"
+                            type="ionicon"
+                            size={size}
+                        />
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name = "ThietLapTaiKhoan"
+                component={ThietLapTaiKhoanScreen}
+                options={{
+                    title: "Thiết lập tài khoản",
                     headerBackImage: ({ size }) => (
                         <Icon
                             name="arrow-back-circle-outline"
