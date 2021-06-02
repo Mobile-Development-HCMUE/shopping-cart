@@ -14,12 +14,30 @@ const SettingScreen = () => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <Card containerStyle={{flex: 1,borderRadius: 10}}>
+                <Card containerStyle={{borderRadius: 10, flexDirection: "row",justifyContent: "center" }}>
                     <Card.Title>Tài khoản</Card.Title>
-                    <Card>
-                        <List listData={ListData3}/>
+                    <View styles={{justifyContent: "center"}}>
+                        <Card containerStyle={{borderRadius: 32, width: 50, height: 50, justifyContent: "center", alignItems: "center"}} >
+                            <Icon 
+                                justifyContent= 'center'
+                                name= 'person-circle-outline'
+                                type= 'ionicon'
+                                color= '#6155a6'
+                            />
+                        </Card> 
+                        <Text>Hồ sơ của tôi</Text>
+                    </View>
+                    <View styles={{justifyContent: "center"}}>
+                        <Card containerStyle={{borderRadius: 32, width: 50, height: 50, justifyContent: "center", alignItems: "center"}} >
+                            <Icon 
+                                name= 'location-outline'
+                                type= 'ionicon'
+                                color= '#6155a6'
+                            />
+                        </Card>
+                        <Text style={{justifyContent: "center"}}>Địa chỉ</Text>
+                    </View>
                     </Card>
-                </Card>
                 <Card containerStyle={{flex: 1,borderRadius: 10}}>
                     <Card.Title style={{margin: 8}}>Cài đặt</Card.Title>
                     <Card style={styles.Setting}>
@@ -34,7 +52,6 @@ const SettingScreen = () => {
                 </Card>
                     <Button
                         title="ĐĂNG XUẤT"
-                        backgroundColor='#6155a6'
                     />
             </ScrollView>
         </SafeAreaView>
@@ -47,6 +64,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#6155a6",
         alignItems: "center",
         justifyContent: "center",
+        flexDirection: "row",
     },
 });
 
