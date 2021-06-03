@@ -24,22 +24,47 @@ export const themeColorButtonSetting = {
             COLOR3: "#FFF6FA",
         },
         {
+            COLOR1: "#7AC1EE",
+            COLOR2: "#E1F3FE",
+            COLOR3: "#F6FBFE",
+        },
+        {
             COLOR1: "#ff4669",
             COLOR2: "#FFE3EF",
             COLOR3: "#FFF6FA",
         },
         {
-            COLOR1: "#",
-            COLOR2: "#",
-            COLOR3: "#",
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
         },
         {
-            COLOR1: "#",
-            COLOR2: "#",
-            COLOR3: "#",
-        }
-    ]
-}
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
+        },
+        {
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
+        },
+        {
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
+        },
+        {
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
+        },
+        {
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
+        },
+    ],
+};
 
 const initialState = {
     theme: { ...themeOptions.default, ...themeColorButtonSetting.light },
