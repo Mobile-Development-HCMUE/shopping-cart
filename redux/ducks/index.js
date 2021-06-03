@@ -16,8 +16,33 @@ export const themeOptions = {
     },
 };
 
+export const themeColorButtonSetting = {
+    light: [
+        {
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
+        },
+        {
+            COLOR1: "#ff4669",
+            COLOR2: "#FFE3EF",
+            COLOR3: "#FFF6FA",
+        },
+        {
+            COLOR1: "#",
+            COLOR2: "#",
+            COLOR3: "#",
+        },
+        {
+            COLOR1: "#",
+            COLOR2: "#",
+            COLOR3: "#",
+        }
+    ]
+}
+
 const initialState = {
-    theme: { ...themeOptions.default },
+    theme: { ...themeOptions.default, ...themeColorButtonSetting.light },
 };
 
 export const change_theme = (titleTheme) => ({
