@@ -5,7 +5,7 @@ import { Card } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Button from "../../../components/ColorButton";
+import Button from "components/ColorButton";
 
 const Stack = createStackNavigator();
 

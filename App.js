@@ -7,7 +7,7 @@ import MainScreen from "./screens";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import reducers from "./redux/ducks";
+import reducers from "reduxs";
 const store = createStore(reducers, applyMiddleware(thunk));
 
 export default function App() {
