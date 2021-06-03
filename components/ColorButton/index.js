@@ -5,11 +5,15 @@ import { View, StyleSheet } from "react-native";
 import { Button, Icon, Badge } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
-const ColorButton = ({ color }) => {
+const ColorButton = ({ color, style }) => {
     return (
         <Button
             containerStyle={styles.containerStyle}
-            buttonStyle={[styles.buttonStyle, { backgroundColor: color }]}
+            buttonStyle={[
+                styles.buttonStyle,
+                { backgroundColor: color },
+                style,
+            ]}
             onPress={() => console.log("work")}
         />
     );

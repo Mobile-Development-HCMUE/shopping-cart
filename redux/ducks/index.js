@@ -10,6 +10,9 @@ export const themeOptions = {
         BOTTOM_PROFILE: "#fff",
         HEADER_TITLE: "#fff",
     },
+    green: {
+        TAB: "#2E8364",
+    },
 };
 
 const initialState = {
