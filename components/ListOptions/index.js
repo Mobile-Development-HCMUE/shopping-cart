@@ -8,7 +8,13 @@ const List = ({ listData }) => {
     return (
         <View>
             {listData.map((item, i) => (
-                <ListItem containerStyle={{}} key={i} bottomDivider onPress={() => {navigation.navigate(item.link)}} >
+                <ListItem
+                    containerStyle={{}}
+                    key={i}
+                    onPress={() => {
+                        navigation.navigate(item.link);
+                    }}
+                >
                     <Icon
                         name={item.icon}
                         type={item.type}

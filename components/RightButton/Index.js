@@ -40,7 +40,7 @@ const RightButton = () => {
                     </View>
                 }
                 buttonStyle={styles.styleButton}
-                onPress={() => navigation.navigate("Setting")}
+                onPress={() => navigation.navigate("Theme")}
             />
         </View>
     );
