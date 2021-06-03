@@ -111,6 +111,9 @@ const RootStackScreen = () => {
     const headerTitleColor = useSelector(
         (state) => state.theme.theme.HEADER_TITLE
     );
+    const backButtonColor = useSelector(
+        (state) => state.theme.theme.BACK_BUTTON
+    );
     return (
         <Stack.Navigator
             screenOptions={{
@@ -123,6 +126,14 @@ const RootStackScreen = () => {
                     />
                 ),
                 headerTitleStyle: { color: headerTitleColor },
+                headerBackImage: ({ size }) => (
+                    <Icon
+                        name="arrow-back-circle-outline"
+                        type="ionicon"
+                        size={size}
+                        color={backButtonColor}
+                    />
+                ),
             }}
         >
             <Stack.Screen
@@ -137,13 +148,6 @@ const RootStackScreen = () => {
                 component={SettingScreen}
                 options={{
                     title: "Cài đặt",
-                    headerBackImage: ({ size }) => (
-                        <Icon
-                            name="arrow-back-circle-outline"
-                            type="ionicon"
-                            size={size}
-                        />
-                    ),
                 }}
             />
             <Stack.Screen
@@ -151,13 +155,6 @@ const RootStackScreen = () => {
                 component={ThemeScreen}
                 options={{
                     title: "Theme",
-                    headerBackImage: ({ size }) => (
-                        <Icon
-                            name="arrow-back-circle-outline"
-                            type="ionicon"
-                            size={size}
-                        />
-                    ),
                 }}
             />
         </Stack.Navigator>

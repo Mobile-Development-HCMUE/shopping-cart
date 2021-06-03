@@ -9,6 +9,7 @@ export const themeOptions = {
         TOP_PROFILE: "#D3c0f9",
         BOTTOM_PROFILE: "#fff",
         HEADER_TITLE: "#fff",
+        BACK_BUTTON: "#fff",
     },
     green: {
         TAB: "#2E8364",
@@ -21,7 +22,7 @@ const initialState = {
 
 export const change_theme = (titleTheme) => ({
     type: CHANGE_THEME,
-    theme: themeReducer[titleTheme],
+    theme: themeOptions[titleTheme],
 });
 
 export const themeReducer = (state = initialState, action) => {
