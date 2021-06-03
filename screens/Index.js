@@ -14,6 +14,7 @@ import HomeScreen from "./Home";
 import NotifyScreen from "./Notify";
 import MeScreen from "./Me";
 import SettingScreen from "./Me/Setting";
+import ThemeScreen from "./Me/Theme";
 import RightButton from "../components/RightButton";
 
 const Tab = createMaterialBottomTabNavigator();
@@ -136,6 +137,20 @@ const RootStackScreen = () => {
                 component={SettingScreen}
                 options={{
                     title: "Cài đặt",
+                    headerBackImage: ({ size }) => (
+                        <Icon
+                            name="arrow-back-circle-outline"
+                            type="ionicon"
+                            size={size}
+                        />
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="Theme"
+                component={ThemeScreen}
+                options={{
+                    title: "Theme",
                     headerBackImage: ({ size }) => (
                         <Icon
                             name="arrow-back-circle-outline"
