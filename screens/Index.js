@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import {
     NavigationContainer,
     getFocusedRouteNameFromRoute,
 } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Icon } from "react-native-elements";
+import { Icon, Text } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
 import HomeScreen from "./Home";
@@ -31,8 +31,14 @@ const RootTabScreen = ({ navigation, route }) => {
     React.useLayoutEffect(() => {
         const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
         navigation.setOptions({
-            headerRight: (props) =>
-                routeName === "Me" ? <RightButton /> : null,
+            headerRight: (props) => {
+                switch (routeName) {
+                    case "Me":
+                        return <RightButton />;
+                    default:
+                        return;
+                }
+            },
         });
     }, [navigation, route]);
 
