@@ -24,14 +24,9 @@ export const themeColorButtonSetting = {
       COLOR3: "#F6FBFE",
     },
     {
-      COLOR1: "#35d6d3",
+      COLOR1: "#36d6d4",
       COLOR2: "#E4F7F6",
       COLOR3: "#F6FCFC",
-    },
-    {
-      COLOR1: "#b739d3",
-      COLOR2: "#FFFFFF",
-      COLOR3: "#FAFAFA",
     },
     {
       COLOR1: "#ff4669",
@@ -45,9 +40,9 @@ export const themeColorButtonSetting = {
       COLOR3: "#fffaf7",
     },
     {
-      COLOR1: "#A178EE",
-      COLOR2: "#F1EBFD",
-      COLOR3: "#FAF9FE",
+      COLOR1: "#b739d3",
+      COLOR2: "#fae5ff",
+      COLOR3: "#fcf7fc",
     },
     {
       COLOR1: "#4badea",
@@ -55,8 +50,13 @@ export const themeColorButtonSetting = {
       COLOR3: "#F6FBFE",
     },
     {
-      COLOR1: "#889CF0",
-      COLOR2: "#E6EAFB",
+      COLOR1: "#A178EE",
+      COLOR2: "#F1EBFD",
+      COLOR3: "#FAF9FE",
+    },
+    {
+      COLOR1: "#6882ed",
+      COLOR2: "#d9e0ff",
       COLOR3: "#F7F8FD",
     },
     {

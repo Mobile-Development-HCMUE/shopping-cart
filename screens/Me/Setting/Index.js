@@ -5,25 +5,24 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "@ui-kitten/components";
 import ListData from "./data.js";
 import { useSelector } from "react-redux";
-import { themeColorButtonSetting } from "reduxs";
+import { useNavigation } from "@react-navigation/native";
 
 const SettingScreen = () => {
+  const navigation = useNavigation();
   const buttonLogoutColor = useSelector((state) => state.theme.theme.TAB);
-  const leftHeaderColor = useSelector((state) => state.theme.theme.HEADER_LEFT);
-  const rightHeaderColor = useSelector(
+  const leftBackgroundButton = useSelector(
+    (state) => state.theme.theme.HEADER_LEFT
+  );
+  const rightBackgroundButton = useSelector(
     (state) => state.theme.theme.HEADER_RIGHT
   );
+  let count = 0;
   ListData.map((item, i) => {
     item.content.map((items, j) => {
-      items.COLOR1 = useSelector(
-        (state) => state.theme.theme[i * 3 + j].COLOR1
-      );
-      items.COLOR2 = useSelector(
-        (state) => state.theme.theme[i * 3 + j].COLOR2
-      );
-      items.COLOR3 = useSelector(
-        (state) => state.theme.theme[i * 3 + j].COLOR3
-      );
+      items.COLOR1 = useSelector((state) => state.theme.theme[count].COLOR1);
+      items.COLOR2 = useSelector((state) => state.theme.theme[count].COLOR2);
+      items.COLOR3 = useSelector((state) => state.theme.theme[count].COLOR3);
+      count++;
     });
   });
   return (
@@ -42,6 +41,7 @@ const SettingScreen = () => {
             containerStyle={{
               borderRadius: 10,
               justifyContent: "center",
+              elevation: 7,
             }}
           >
             <Card.Title>{item.title}</Card.Title>
@@ -64,6 +64,11 @@ const SettingScreen = () => {
                     }}
                   >
                     <Button
+                      onPress={() => {
+                        if (typeof jtem.link === "undefined") {
+                          console.log("Null");
+                        } else navigation.navigate(jtem.link);
+                      }}
                       buttonStyle={[
                         styles.button,
                         {
@@ -99,24 +104,24 @@ const SettingScreen = () => {
         containerStyle={{
           flex: 1,
           justifyContent: "flex-end",
+          marginBottom: 10,
+          marginLeft: 80,
+          marginRight: 80,
+          borderRadius: 20,
+          minHeight: 40,
         }}
         buttonStyle={{
           backgroundColor: buttonLogoutColor,
-          borderRadius: 0,
-          minHeight: 50,
-          borderRadius: 8,
+          minHeight: 40,
+          borderRadius: 20,
         }}
         title="ĐĂNG XUẤT"
         ViewComponent={LinearGradient}
         linearGradientProps={{
-          headerBackground: () => (
-            <LinearGradient
-              colors={[leftHeaderColor, rightHeaderColor]}
-              style={{ flex: 1 }}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-            />
-          ),
+          colors: [leftBackgroundButton, rightBackgroundButton],
+          style: { flex: 1 },
+          start: { x: 0, y: 0 },
+          end: { x: 1, y: 0 },
         }}
       />
     </ScrollView>
@@ -145,7 +150,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    maxHeight: 50,
+    maxHeight: 55,
     minWidth: 80,
   },
 });
