@@ -13,9 +13,39 @@ const AddressScreen = () => {
           flexDirection: "column",
         }}
       >
-        <Card containerStyle={styles.card}></Card>
-        <Card containerStyle={styles.card}></Card>
-        <Card containerStyle={styles.card}></Card>
+        <Card containerStyle={styles.card}>
+          <Card.Title style={{ marginTop: 1, marginBottom: 70 }}>
+            Địa chỉ 1
+          </Card.Title>
+          <Button
+            type="outline"
+            containerStyle={styles.buttoncontainer}
+            buttonStyle={styles.buttonstyles}
+            title="Chỉnh sửa"
+          />
+        </Card>
+        <Card containerStyle={styles.card}>
+          <Card.Title style={{ marginTop: 1, marginBottom: 70 }}>
+            Địa chỉ 2
+          </Card.Title>
+          <Button
+            type="outline"
+            containerStyle={styles.buttoncontainer}
+            buttonStyle={styles.buttonstyles}
+            title="Chỉnh sửa"
+          />
+        </Card>
+        <Card containerStyle={styles.card}>
+          <Card.Title style={{ marginTop: 1, marginBottom: 70 }}>
+            Địa chỉ 3
+          </Card.Title>
+          <Button
+            type="outline"
+            containerStyle={styles.buttoncontainer}
+            buttonStyle={styles.buttonstyles}
+            title="Chỉnh sửa"
+          />
+        </Card>
         <Button
           containerStyle={styles.container}
           buttonStyle={styles.Style}
@@ -47,8 +77,20 @@ const styles = StyleSheet.create({
   },
   Style: {
     backgroundColor: "#fd3a69",
-    minHeight: 40,
+    minHeight: 50,
     borderRadius: 20,
+  },
+  buttoncontainer: {
+    justifyContent: "flex-end",
+    //marginBottom: 1,
+    marginLeft: 100,
+    marginRight: 100,
+    borderRadius: 10,
+    minHeight: 40,
+  },
+  buttonstyles: {
+    borderRadius: 10,
+    minHeight: 30,
   },
 });
 
