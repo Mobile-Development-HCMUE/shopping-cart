@@ -4,6 +4,7 @@ const ListData1 = [
     icon: "archive-outline",
     type: "ionicon",
     color: "#FFCC33",
+    link: "Order",
   },
   {
     title: "Đơn nạp thẻ và dịch vụ",
