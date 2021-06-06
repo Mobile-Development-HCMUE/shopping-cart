@@ -19,6 +19,7 @@ const List = ({ listData }) => {
           <ListItem.Content>
             <ListItem.Title>{item.title}</ListItem.Title>
           </ListItem.Content>
+          <ListItem.Chevron></ListItem.Chevron>
         </ListItem>
       ))}
     </View>
