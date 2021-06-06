@@ -6,15 +6,16 @@ import {
     DrawerItemList,
     DrawerItem,
 } from "@react-navigation/drawer";
-
-import AsyncStorage from "@react-native-community/async-storage";
-
+import { useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const CustomSidebarMenu = (props) => {
+    // const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+    // const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
     return (
         <View style={stylesSidebar.sideMenuContainer}>
             <View style={stylesSidebar.profileHeader}>
                 <View style={stylesSidebar.profileHeaderPicCircle}>
-                    <Text style={{ fontSize: 25, color: "#307ecc" }}>
+                    <Text style={{ fontSize: 25, color: "#307e" }}>
                         {"About React".charAt(0)}
                     </Text>
                 </View>
@@ -63,13 +64,13 @@ const stylesSidebar = StyleSheet.create({
     sideMenuContainer: {
         width: "100%",
         height: "100%",
-        backgroundColor: "#307ecc",
+        backgroundColor: "#307e",
         paddingTop: 40,
         color: "white",
     },
     profileHeader: {
         flexDirection: "row",
-        backgroundColor: "#307ecc",
+        backgroundColor: "#307e",
         padding: 15,
         textAlign: "center",
     },
