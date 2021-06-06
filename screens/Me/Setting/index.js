@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { Button, Card, Icon, Overlay } from "react-native-elements";
+import { Button, Card, Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "@ui-kitten/components";
 import ListData from "./data.js";
@@ -16,11 +16,6 @@ const SettingScreen = () => {
   const rightBackgroundButton = useSelector(
     (state) => state.theme.theme.HEADER_RIGHT
   );
-  const [visible, setVisible] = useState(false);
-
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
   let count = 0;
   ListData.map((item, i) => {
     item.content.map((items, j) => {
@@ -106,9 +101,20 @@ const SettingScreen = () => {
         );
       })}
       <Button
-        onPress={toggleOverlay}
-        containerStyle={styles.ButtonContainerStyles}
-        buttonStyle={styles.ButtonStyles}
+        containerStyle={{
+          flex: 1,
+          justifyContent: "flex-end",
+          marginBottom: 10,
+          marginLeft: 80,
+          marginRight: 80,
+          borderRadius: 20,
+          minHeight: 40,
+        }}
+        buttonStyle={{
+          backgroundColor: buttonLogoutColor,
+          minHeight: 40,
+          borderRadius: 20,
+        }}
         title="ĐĂNG XUẤT"
         ViewComponent={LinearGradient}
         linearGradientProps={{
@@ -118,22 +124,6 @@ const SettingScreen = () => {
           end: { x: 1, y: 0 },
         }}
       />
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text style={{ fontWeight: "bold" }}>
-          Bạn có chắc chắn muốn đăng xuất?
-        </Text>
-        <Button
-          containerStyle={styles.container1}
-          buttonStyle={styles.styles1}
-          title="Có"
-        ></Button>
-        <Button
-          containerStyle={styles.container1}
-          buttonStyle={styles.styles1}
-          type="outline"
-          title="Không"
-        ></Button>
-      </Overlay>
     </ScrollView>
   );
 };
@@ -163,28 +153,6 @@ const styles = StyleSheet.create({
     maxHeight: 55,
     minWidth: 80,
   },
-  ButtonContainerStyles: {
-    flex: 1,
-    justifyContent: "flex-end",
-    marginBottom: 10,
-    marginLeft: 80,
-    marginRight: 80,
-    borderRadius: 20,
-    minHeight: 40,
-  },
-  ButtonStyles: {
-    minHeight: 40,
-    borderRadius: 20,
-  },
-  container1: {
-    justifyContent: "space-between",
-    marginBottom: 10,
-    marginLeft: 50,
-    marginRight: 50,
-    marginTop: 8,
-    borderRadius: 8,
-  },
-  styles1: { borderRadius: 8 },
 });
 
 export default SettingScreen;
