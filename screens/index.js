@@ -23,6 +23,7 @@ import StNotifyScreen from "./Me/Setting-Notify";
 import PrivacyScreen from "./Me/Privacy";
 import LanguageScreen from "./Me/Language";
 import IntroduceScreen from "./Me/Introduce";
+import OrderScreen from "./Me/Oder";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -202,7 +203,7 @@ const RootStackScreen = () => {
       />
       <Stack.Screen
         name="Order"
-        component={IntroduceScreen}
+        component={OrderScreen}
         options={{
           title: "Đơn hàng",
         }}
