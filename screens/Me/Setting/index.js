@@ -119,7 +119,9 @@ const SettingScreen = () => {
         }}
       />
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text>Bạn có chắc chắn muốn đăng xuất?</Text>
+        <Text style={{ fontWeight: "bold" }}>
+          Bạn có chắc chắn muốn đăng xuất?
+        </Text>
         <Button
           containerStyle={styles.container1}
           buttonStyle={styles.styles1}
