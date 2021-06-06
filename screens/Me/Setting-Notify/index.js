@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { Button, Card, Icon } from "react-native-elements";
+import { Button, Card, Icon, Switch } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
-import { List } from "../../../components/ListOptions/index.js";
 
 const StNotifyScreen = () => {
   return (
@@ -10,13 +9,15 @@ const StNotifyScreen = () => {
       <ScrollView>
         <View style={styles.Setting}>
           <Card containerStyle={styles.card}>
-            <View style={styles.containerButton}></View>
+            <Text>Thông báo</Text>
+            <Card.Divider></Card.Divider>
+            <Text>Email thông báo</Text>
+            <Card.Divider></Card.Divider>
+            <Text>Cập nhật đơn hàng</Text>
+            <Card.Divider></Card.Divider>
+            <Text>Thông tin Shop</Text>
+            <Card.Divider></Card.Divider>
           </Card>
-          <View>
-            <View style={styles.Setting}>
-              {/* <List listData={ListData3}></List> */}
-            </View>
-          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -24,10 +25,7 @@ const StNotifyScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  card: {
-    height: 200,
-    borderRadius: 16,
-  },
+  card: {},
 });
 
 export default StNotifyScreen;

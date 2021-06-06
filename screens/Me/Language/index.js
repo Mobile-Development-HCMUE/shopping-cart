@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { Button, Card, Icon } from "react-native-elements";
+import { Button, Card, Icon, ListItem } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
 import { List } from "../../../components/ListOptions/index.js";
 
@@ -9,25 +9,19 @@ const LanguageScreen = () => {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.Setting}>
-          <Card containerStyle={styles.card}>
-            <View style={styles.containerButton}></View>
-          </Card>
-          <View>
-            <View style={styles.Setting}>
-              {/* <List listData={ListData3}></List> */}
-            </View>
-          </View>
+          <ListItem>
+            <Icon name="language" type="ionicon"></Icon>
+            <ListItem.Content>
+              <ListItem.Title>Tiếng Việt</ListItem.Title>
+            </ListItem.Content>
+            <ListItem.Chevron></ListItem.Chevron>
+          </ListItem>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  card: {
-    height: 200,
-    borderRadius: 16,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default LanguageScreen;

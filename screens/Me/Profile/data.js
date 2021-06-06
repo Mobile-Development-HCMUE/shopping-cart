@@ -3,21 +3,39 @@ const ListData3 = [
     title: "Tên",
     icon: "people-circle-outline",
     type: "ionicon",
-    color: "#6155a6",
+    color: "#e84545",
   },
   {
     title: "Mật khẩu",
-    icon: "code-working-outline",
+    icon: "code-working",
     type: "ionicon",
-    color: "#6155a6",
+    color: "#af0069",
   },
 ];
 const ListData4 = [
   {
-    title: "Giới tính",
-    icon: "aperture-outline",
+    title: "Số điện thoại",
+    icon: "call-outline",
     type: "ionicon",
-    color: "#6155a6",
+    color: "#0061a8",
+  },
+  {
+    title: "Email",
+    icon: "mail-outline",
+    type: "ionicon",
+    color: "#e84545",
+  },
+  {
+    title: "Ngày sinh",
+    icon: "today-outline",
+    type: "ionicon",
+    color: "#0061a8",
+  },
+  {
+    title: "Giới tính",
+    icon: "body-outline",
+    type: "ionicon",
+    color: "#af0069",
   },
 ];
 export { ListData3, ListData4 };
