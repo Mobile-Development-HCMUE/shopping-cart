@@ -1,9 +1,6 @@
 import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { Button, Card, Icon } from "react-native-elements";
-import { Text } from "@ui-kitten/components";
-import { List } from "../../../components/ListOptions/index.js";
-
 const AddressScreen = () => {
   return (
     <SafeAreaView>

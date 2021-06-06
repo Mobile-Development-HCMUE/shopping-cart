@@ -8,6 +8,5 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Main = () => {
     return <RootTabScreen />;
-};
 
 export default Main;
