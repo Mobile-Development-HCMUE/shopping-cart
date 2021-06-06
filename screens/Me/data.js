@@ -50,6 +50,7 @@ const ListData2 = [
     icon: "help-circle-outline",
     type: "ionicon",
     color: "#FF3333",
+    link: "Help",
   },
 ];
 
