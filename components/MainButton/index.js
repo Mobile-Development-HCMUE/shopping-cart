@@ -9,7 +9,6 @@ const MainButton = ({ styleContainer, styleButton, title, onPress }) => {
         <Button
             containerStyle={[
                 {
-                    flex: 1,
                     // justifyContent: "flex-end",
                     // marginBottom: 10,
                     // marginLeft: 80,
