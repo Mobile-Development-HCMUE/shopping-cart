@@ -4,28 +4,49 @@ import {
   BottomNavigation,
   BottomNavigationTab,
   Icon,
+  Layout,
+  Tab,
+  TabView,
+  Text,
 } from "@ui-kitten/components";
-import { View, Text } from "react-native";
-const useBottomNavigationState = (initialState = 0) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(initialState);
-  return { selectedIndex, onSelect: setSelectedIndex };
-};
+import { View } from "react-native";
 
 const OrderScreen = () => {
-  const topState = useBottomNavigationState();
-  const bottomState = useBottomNavigationState();
-
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
   return (
-    <BottomNavigation style={styles.bottomNavigation} {...bottomState}>
-      <BottomNavigationTab title="Chờ xác nhận"></BottomNavigationTab>
-      <BottomNavigationTab title="Đang giao" />
-      <BottomNavigationTab title="Đã giao" />
-      <BottomNavigationTab title="Đã hủy" />
-    </BottomNavigation>
+    <TabView
+      selectedIndex={selectedIndex}
+      onSelect={(index) => setSelectedIndex(index)}
+    >
+      <Tab title="Chờ xác nhận">
+        <Layout style={styles.tabContainer} level="1">
+          <Text category="h6">Chưa có đơn hàng</Text>
+        </Layout>
+      </Tab>
+      <Tab title="Đang giao">
+        <Layout style={styles.tabContainer}>
+          <Text category="h6">Chưa có đơn hàng</Text>
+        </Layout>
+      </Tab>
+      <Tab title="Đã giao">
+        <Layout style={styles.tabContainer}>
+          <Text category="h6">Chưa có đơn hàng</Text>
+        </Layout>
+      </Tab>
+      <Tab title="Đã hủy">
+        <Layout style={styles.tabContainer}>
+          <Text category="h6">Chưa có đơn hàng</Text>
+        </Layout>
+      </Tab>
+    </TabView>
   );
 };
 
 const styles = StyleSheet.create({
-  bottomNavigation: {},
+  tabContainer: {
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 export default OrderScreen;

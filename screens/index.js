@@ -7,5 +7,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
 
 const Main = () => {
-    return <RootTabScreen />;
+  return <RootTabScreen />;
+};
 export default Main;
