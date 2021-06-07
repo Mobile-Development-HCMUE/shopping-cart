@@ -8,12 +8,12 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    Text,
+    Platform,
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Input, Icon } from "@ui-kitten/components";
-// import { Text } from "react-native-elements";
+import { Text } from "react-native-elements";
 import Button from "components/MainButton";
 import Loader from "../../Loader";
 
@@ -42,25 +42,14 @@ const LoginScreen = ({ navigation }) => {
         </TouchableWithoutFeedback>
     );
 
-    const renderCaption = () => {
-        return (
-            <View style={styles.captionContainer}>
-                {AlertIcon(styles.captionIcon)}
-                <Text style={styles.captionText}>
-                    Should contain at least 8 symbols
-                </Text>
-            </View>
-        );
-    };
-
     const handleSubmitPress = () => {
         setErrortext("");
         if (!userEmail.value) {
-            alert("Please fill Email");
+            alert("Vui lòng nhập Email");
             return;
         }
         if (!userPassword) {
-            alert("Please fill Password");
+            alert("Vui lòng nhập mật khẩu");
             return;
         }
         setLoading(true);
@@ -97,9 +86,11 @@ const LoginScreen = ({ navigation }) => {
                 setLoading(false);
                 // If server response message same as Data Matched
                 // console.log(data[0]);
-                if (statusCode === 200 && data[0].password == userPassword) {
-                    AsyncStorage.setItem("user_id", data[0].email);
-                    navigation.replace("DrawerNavigationRoutes");
+                if (statusCode === 200 && typeof data[0] != "undefined") {
+                    if (data[0].password == userPassword) {
+                        AsyncStorage.setItem("user_id", data[0].email);
+                        navigation.replace("DrawerNavigationRoutes");
+                    }
                 } else {
                     setErrortext("Vui lòng kiểm tra lại tài khoản mật khẩu!");
                     console.log("Please check your email id or password");
@@ -124,32 +115,25 @@ const LoginScreen = ({ navigation }) => {
                 }}
             >
                 <View>
-                    <KeyboardAvoidingView enabled>
-                        <View style={{ alignItems: "center" }}>
-                            <Image
-                                source={require("assets/aboutreact.png")}
-                                style={{
-                                    width: "50%",
-                                    height: 200,
-                                    resizeMode: "contain",
-                                }}
-                            />
-                        </View>
+                    <View style={{ alignItems: "center" }}>
+                        <Image
+                            source={require("assets/aboutreact.png")}
+                            style={{
+                                width: "50%",
+                                height: 200,
+                                resizeMode: "contain",
+                            }}
+                        />
+                    </View>
+                    <KeyboardAvoidingView
+                        enabled
+                        behavior={Platform.OS == "ios" ? "padding" : "height"}
+                    >
                         <View style={styles.SectionStyle}>
                             <Input
                                 style={styles.inputStyle}
                                 status="primary"
-                                placeholder="Enter Email" //dummy@abc.com
-                                // placeholderTextColor="#8b9cb5"
-                                // autoCapitalize="none"
-                                // keyboardType="email-address"
-                                // returnKeyType="next"
-                                // onSubmitEditing={() =>
-                                //     passwordInputRef.current &&
-                                //     passwordInputRef.current.focus()
-                                // }
-                                // underlineColorAndroid="#f000"
-                                // blurOnSubmit={false}
+                                placeholder="Nhập Email"
                                 {...userEmail}
                             />
                         </View>
@@ -157,7 +141,7 @@ const LoginScreen = ({ navigation }) => {
                             <Input
                                 style={styles.inputStyle}
                                 status="primary"
-                                placeholder="Enter Password" //12345
+                                placeholder="Nhập mật khẩu" //12345
                                 //caption={renderCaption}
                                 accessoryRight={renderIcon}
                                 secureTextEntry={secureTextEntry}
@@ -173,22 +157,17 @@ const LoginScreen = ({ navigation }) => {
                         ) : null}
                         <Button
                             styleContainer={styles.styleContainer}
+                            styleButton={styles.styleButton}
                             title="ĐĂNG NHẬP"
                             onPress={handleSubmitPress}
                         />
-                        {/* <TouchableOpacity
-                            style={styles.styleButton}
-                            activeOpacity={0.5}
-                            onPress={handleSubmitPress}
-                        >
-                            <Text style={styles.buttonTextStyle}>LOGIN</Text>
-                        </TouchableOpacity> */}
                         <Text
                             style={styles.registerTextStyle}
                             onPress={() => {
                                 console.log("Click register");
                                 navigation.navigate("RegisterScreen");
                             }}
+                            keyboardShouldPersistTaps="handled"
                         >
                             Chưa có tài khoản? Đăng ký
                         </Text>
@@ -209,7 +188,7 @@ const styles = StyleSheet.create({
     },
     SectionStyle: {
         flexDirection: "row",
-        height: 40,
+        height: 30,
         marginTop: 20,
         marginLeft: 35,
         marginRight: 35,
@@ -222,7 +201,9 @@ const styles = StyleSheet.create({
         marginRight: 35,
         marginTop: 20,
         marginBottom: 25,
+        height: 40,
     },
+    styleButton: {},
     buttonTextStyle: {
         color: "#000",
         paddingVertical: 10,

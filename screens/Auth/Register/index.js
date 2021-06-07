@@ -3,60 +3,61 @@ import {
     StyleSheet,
     TextInput,
     View,
-    Text,
     Image,
     KeyboardAvoidingView,
     Keyboard,
     TouchableOpacity,
+    TouchableWithoutFeedback,
     ScrollView,
 } from "react-native";
+import Button from "components/MainButton";
+import { Text } from "react-native-elements";
+import { useSelector, useDispatch } from "react-redux";
+import { Input, Icon } from "@ui-kitten/components";
 
 import Loader from "../../Loader";
 
+const useInputState = (initialValue = "") => {
+    const [value, setValue] = React.useState(initialValue);
+    return { value, onChangeText: setValue };
+};
+
 const RegisterScreen = (props) => {
-    const [userName, setUserName] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-    const [userAge, setUserAge] = useState("");
-    const [userAddress, setUserAddress] = useState("");
-    const [userPassword, setUserPassword] = useState("");
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+    const userName = useInputState();
+    const userEmail = useInputState();
+    const [userPassword, setUserPassword] = React.useState("");
+    const [secureTextEntry, setSecureTextEntry] = React.useState(true);
     const [loading, setLoading] = useState(false);
     const [errortext, setErrortext] = useState("");
     const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
 
-    const emailInputRef = createRef();
-    const ageInputRef = createRef();
-    const addressInputRef = createRef();
-    const passwordInputRef = createRef();
+    const [reUserPassword, setReUserPassword] = React.useState("");
+    const [reSecureTextEntry, setReSecureTextEntry] = React.useState(true);
 
     const handleSubmitButton = () => {
         setErrortext("");
-        if (!userName) {
-            alert("Please fill Name");
+        if (!userName.value) {
+            alert("Vui lòng điền tên");
             return;
         }
-        if (!userEmail) {
-            alert("Please fill Email");
-            return;
-        }
-        if (!userAge) {
-            alert("Please fill Age");
-            return;
-        }
-        if (!userAddress) {
-            alert("Please fill Address");
+        if (!userEmail.value) {
+            alert("Vui lòng đièn Email");
             return;
         }
         if (!userPassword) {
-            alert("Please fill Password");
+            alert("Vui lòng nhập mật khẩu");
+            return;
+        }
+        if (!reUserPassword) {
+            alert("Vui lòng nhập lại mật khẩu");
             return;
         }
         //Show Loader
         setLoading(true);
         var dataToSend = {
-            name: userName,
-            email: userEmail,
-            age: userAge,
-            address: userAddress,
+            name: userName.value,
+            email: userEmail.value,
             password: userPassword,
         };
         var formBody = [];
@@ -67,7 +68,7 @@ const RegisterScreen = (props) => {
         }
         formBody = formBody.join("&");
 
-        fetch("http://localhost:3000/api/user/register", {
+        fetch("https://60bbaca242e1d00017620f70.mockapi.io/user", {
             method: "POST",
             body: formBody,
             headers: {
@@ -76,19 +77,23 @@ const RegisterScreen = (props) => {
                     "application/x-www-form-urlencoded;charset=UTF-8",
             },
         })
-            .then((response) => response.json())
-            .then((responseJson) => {
+            .then((response) => {
+                const statusCode = response.status;
+                const data = response.json();
+                return Promise.all([statusCode, data]);
+            })
+            .then(([statusCode, data]) => {
                 //Hide Loader
                 setLoading(false);
-                console.log(responseJson);
+                console.log(data);
                 // If server response message same as Data Matched
-                if (responseJson.status === "success") {
+                if (statusCode === 201) {
                     setIsRegistraionSuccess(true);
-                    console.log(
-                        "Registration Successful. Please Login to proceed"
-                    );
+                    console.log("Đăng ký thành công! Vui lòng đăng nhập.");
                 } else {
-                    setErrortext(responseJson.msg);
+                    setErrortext(
+                        "Đăng ký không thành công! Không biết lỗi tại sao"
+                    );
                 }
             })
             .catch((error) => {
@@ -102,7 +107,7 @@ const RegisterScreen = (props) => {
             <View
                 style={{
                     flex: 1,
-                    backgroundColor: "#307ecc",
+                    backgroundColor: backgroundColor,
                     justifyContent: "center",
                 }}
             >
@@ -128,7 +133,7 @@ const RegisterScreen = (props) => {
         );
     }
     return (
-        <View style={{ flex: 1, backgroundColor: "#307ecc" }}>
+        <View style={{ flex: 1, backgroundColor: "#fff" }}>
             <Loader loading={loading} />
             <ScrollView
                 keyboardShouldPersistTaps="handled"
@@ -142,110 +147,93 @@ const RegisterScreen = (props) => {
                         source={require("assets/aboutreact.png")}
                         style={{
                             width: "50%",
-                            height: 100,
+                            height: 200,
                             resizeMode: "contain",
-                            margin: 30,
                         }}
                     />
                 </View>
-                <KeyboardAvoidingView enabled>
+                <KeyboardAvoidingView
+                    enabled
+                    behavior={Platform.OS == "ios" ? "padding" : "height"}
+                >
                     <View style={styles.SectionStyle}>
-                        <TextInput
+                        <Input
                             style={styles.inputStyle}
-                            onChangeText={(UserName) => setUserName(UserName)}
-                            underlineColorAndroid="#f000"
-                            placeholder="Enter Name"
-                            placeholderTextColor="#8b9cb5"
-                            autoCapitalize="sentences"
-                            returnKeyType="next"
-                            onSubmitEditing={() =>
-                                emailInputRef.current &&
-                                emailInputRef.current.focus()
-                            }
-                            blurOnSubmit={false}
+                            status="primary"
+                            placeholder="Nhập tên"
+                            {...userName}
                         />
                     </View>
                     <View style={styles.SectionStyle}>
-                        <TextInput
+                        <Input
                             style={styles.inputStyle}
-                            onChangeText={(UserEmail) =>
-                                setUserEmail(UserEmail)
-                            }
-                            underlineColorAndroid="#f000"
-                            placeholder="Enter Email"
-                            placeholderTextColor="#8b9cb5"
-                            keyboardType="email-address"
-                            ref={emailInputRef}
-                            returnKeyType="next"
-                            onSubmitEditing={() =>
-                                passwordInputRef.current &&
-                                passwordInputRef.current.focus()
-                            }
-                            blurOnSubmit={false}
+                            status="primary"
+                            placeholder="Nhập email"
+                            {...userEmail}
                         />
                     </View>
                     <View style={styles.SectionStyle}>
-                        <TextInput
+                        <Input
                             style={styles.inputStyle}
-                            onChangeText={(UserPassword) =>
-                                setUserPassword(UserPassword)
+                            status="primary"
+                            placeholder="Nhập mật khẩu"
+                            //caption={renderCaption}
+                            accessoryRight={(props) => (
+                                <TouchableWithoutFeedback
+                                    onPress={() =>
+                                        setSecureTextEntry(!secureTextEntry)
+                                    }
+                                >
+                                    <Icon
+                                        {...props}
+                                        name={
+                                            secureTextEntry ? "eye-off" : "eye"
+                                        }
+                                    />
+                                </TouchableWithoutFeedback>
+                            )}
+                            secureTextEntry={secureTextEntry}
+                            onChangeText={(nextValue) =>
+                                setUserPassword(nextValue)
                             }
-                            underlineColorAndroid="#f000"
-                            placeholder="Enter Password"
-                            placeholderTextColor="#8b9cb5"
-                            ref={passwordInputRef}
-                            returnKeyType="next"
-                            secureTextEntry={true}
-                            onSubmitEditing={() =>
-                                ageInputRef.current &&
-                                ageInputRef.current.focus()
-                            }
-                            blurOnSubmit={false}
                         />
                     </View>
                     <View style={styles.SectionStyle}>
-                        <TextInput
+                        <Input
                             style={styles.inputStyle}
-                            onChangeText={(UserAge) => setUserAge(UserAge)}
-                            underlineColorAndroid="#f000"
-                            placeholder="Enter Age"
-                            placeholderTextColor="#8b9cb5"
-                            keyboardType="numeric"
-                            ref={ageInputRef}
-                            returnKeyType="next"
-                            onSubmitEditing={() =>
-                                addressInputRef.current &&
-                                addressInputRef.current.focus()
+                            status="primary"
+                            placeholder="Nhập lại mật khẩu"
+                            accessoryRight={(props) => (
+                                <TouchableWithoutFeedback
+                                    onPress={() =>
+                                        setReSecureTextEntry(!reSecureTextEntry)
+                                    }
+                                >
+                                    <Icon
+                                        {...props}
+                                        name={
+                                            reSecureTextEntry
+                                                ? "eye-off"
+                                                : "eye"
+                                        }
+                                    />
+                                </TouchableWithoutFeedback>
+                            )}
+                            secureTextEntry={reSecureTextEntry}
+                            onChangeText={(nextValue) =>
+                                setReUserPassword(nextValue)
                             }
-                            blurOnSubmit={false}
-                        />
-                    </View>
-                    <View style={styles.SectionStyle}>
-                        <TextInput
-                            style={styles.inputStyle}
-                            onChangeText={(UserAddress) =>
-                                setUserAddress(UserAddress)
-                            }
-                            underlineColorAndroid="#f000"
-                            placeholder="Enter Address"
-                            placeholderTextColor="#8b9cb5"
-                            autoCapitalize="sentences"
-                            ref={addressInputRef}
-                            returnKeyType="next"
-                            onSubmitEditing={Keyboard.dismiss}
-                            blurOnSubmit={false}
                         />
                     </View>
                     {errortext != "" ? (
                         <Text style={styles.errorTextStyle}>{errortext}</Text>
                     ) : null}
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        activeOpacity={0.5}
+                    <Button
+                        styleContainer={styles.styleContainer}
+                        styleButton={styles.styleButton}
+                        title="ĐĂNG KÍ"
                         onPress={handleSubmitButton}
-                    >
-                        <Text style={styles.buttonTextStyle}>REGISTER</Text>
-                    </TouchableOpacity>
+                    />
                 </KeyboardAvoidingView>
             </ScrollView>
         </View>
@@ -256,25 +244,22 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
     SectionStyle: {
         flexDirection: "row",
-        height: 40,
+        height: 30,
         marginTop: 20,
         marginLeft: 35,
         marginRight: 35,
         margin: 10,
     },
-    buttonStyle: {
-        backgroundColor: "#7DE24E",
-        borderWidth: 0,
-        color: "#FFFFFF",
-        borderColor: "#7DE24E",
-        height: 40,
-        alignItems: "center",
-        borderRadius: 30,
+    styleContainer: {
+        borderRadius: 20,
+        minHeight: 40,
         marginLeft: 35,
         marginRight: 35,
         marginTop: 20,
-        marginBottom: 20,
+        marginBottom: 25,
+        height: 40,
     },
+    styleButton: {},
     buttonTextStyle: {
         color: "#FFFFFF",
         paddingVertical: 10,
@@ -282,12 +267,7 @@ const styles = StyleSheet.create({
     },
     inputStyle: {
         flex: 1,
-        color: "white",
-        paddingLeft: 15,
-        paddingRight: 15,
-        borderWidth: 1,
-        borderRadius: 30,
-        borderColor: "#dadae8",
+        margin: 2,
     },
     errorTextStyle: {
         color: "red",
