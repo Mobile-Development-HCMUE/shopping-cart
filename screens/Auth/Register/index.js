@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useRef } from "react";
 import {
     StyleSheet,
     TextInput,
@@ -10,16 +10,20 @@ import {
     TouchableWithoutFeedback,
     ScrollView,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ButtonMain from "components/MainButton";
 import { Text } from "react-native-elements";
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Icon, Button } from "@ui-kitten/components";
-
+import { firebase } from "../../../firebase/config";
 import Loader from "../../Loader";
 
 const useInputState = (initialValue = "") => {
     const [value, setValue] = React.useState(initialValue);
-    return { value, onChangeText: setValue };
+    return {
+        value,
+        onChangeText: setValue,
+    };
 };
 
 const RegisterScreen = (props) => {
@@ -53,53 +57,44 @@ const RegisterScreen = (props) => {
             alert("Vui lòng nhập lại mật khẩu");
             return;
         }
-        //Show Loader
-        setLoading(true);
-        var dataToSend = {
-            name: userName.value,
-            email: userEmail.value,
-            password: userPassword,
-        };
-        var formBody = [];
-        for (var key in dataToSend) {
-            var encodedKey = encodeURIComponent(key);
-            var encodedValue = encodeURIComponent(dataToSend[key]);
-            formBody.push(encodedKey + "=" + encodedValue);
+        if (userPassword != reUserPassword) {
+            alert("Mật khẩu nhập lại không giống");
+            return;
         }
-        formBody = formBody.join("&");
-
-        fetch("https://60bbaca242e1d00017620f70.mockapi.io/user", {
-            method: "POST",
-            body: formBody,
-            headers: {
-                //Header Defination
-                "Content-Type":
-                    "application/x-www-form-urlencoded;charset=UTF-8",
-            },
-        })
+        userName.onChangeText(userName.value.trim());
+        userEmail.onChangeText(userEmail.value.trim());
+        setLoading(true);
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(userEmail.value, userPassword)
             .then((response) => {
-                const statusCode = response.status;
-                const data = response.json();
-                return Promise.all([statusCode, data]);
-            })
-            .then(([statusCode, data]) => {
-                //Hide Loader
-                setLoading(false);
-                console.log(data);
-                // If server response message same as Data Matched
-                if (statusCode === 201) {
-                    setIsRegistraionSuccess(true);
-                    console.log("Đăng ký thành công! Vui lòng đăng nhập.");
-                } else {
-                    setErrortext(
-                        "Đăng ký không thành công! Không biết lỗi tại sao"
-                    );
-                }
+                const uid = response.user.uid;
+                const email = userEmail.value;
+                const name = userName.value;
+                const data = {
+                    id: uid,
+                    email,
+                    name,
+                };
+                const usersRef = firebase.firestore().collection("users");
+                usersRef
+                    .doc(uid)
+                    .set(data)
+                    .then(() => {
+                        setLoading(false);
+                        setIsRegistraionSuccess(true);
+                    })
+                    .catch((error) => {
+                        setLoading(false);
+                        console.log(Object.keys(error));
+                        setErrortext(error.message);
+                    });
             })
             .catch((error) => {
                 //Hide Loader
                 setLoading(false);
-                console.error(error);
+                console.log(Object.keys(error));
+                setErrortext(error.message);
             });
     };
     if (isRegistraionSuccess) {
@@ -122,7 +117,10 @@ const RegisterScreen = (props) => {
                 />
                 <Text style={styles.successTextStyle}>Đăng kí thành công!</Text>
                 <Button
-                    onPress={() => props.navigation.navigate("LoginScreen")}
+                    onPress={() => {
+                        // AsyncStorage.setItem("user_id", data[0].email);
+                        props.navigation.replace("DrawerNavigationRoutes");
+                    }}
                     style={styles.button}
                     // appearance="outline"
                     status="success"
@@ -194,7 +192,7 @@ const RegisterScreen = (props) => {
                             )}
                             secureTextEntry={secureTextEntry}
                             onChangeText={(nextValue) =>
-                                setUserPassword(nextValue)
+                                setUserPassword(nextValue.trim())
                             }
                         />
                     </View>
@@ -221,7 +219,7 @@ const RegisterScreen = (props) => {
                             )}
                             secureTextEntry={reSecureTextEntry}
                             onChangeText={(nextValue) =>
-                                setReUserPassword(nextValue)
+                                setReUserPassword(nextValue.trim())
                             }
                         />
                     </View>

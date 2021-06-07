@@ -16,6 +16,7 @@ import { Input, Icon } from "@ui-kitten/components";
 import { Text } from "react-native-elements";
 import Button from "components/MainButton";
 import Loader from "../../Loader";
+import { firebase } from "../../../firebase/config";
 
 const useInputState = (initialValue = "") => {
     const [value, setValue] = React.useState(initialValue);
@@ -52,54 +53,38 @@ const LoginScreen = ({ navigation }) => {
             alert("Vui lòng nhập mật khẩu");
             return;
         }
+        userEmail.onChangeText(userEmail.value.trim());
         setLoading(true);
-        let dataToSend = { email: userEmail.value, password: userPassword };
-        let formBody = [];
-        for (let key in dataToSend) {
-            let encodedKey = encodeURIComponent(key);
-            let encodedValue = encodeURIComponent(dataToSend[key]);
-            formBody.push(encodedKey + "=" + encodedValue);
-        }
-        formBody = formBody.join("&");
-
-        fetch(
-            "https://60bbaca242e1d00017620f70.mockapi.io/user?" +
-                new URLSearchParams({
-                    email: userEmail.value,
-                }),
-            {
-                method: "GET",
-                headers: {
-                    //Header Defination
-                    "Content-Type":
-                        "application/x-www-form-urlencoded;charset=UTF-8",
-                },
-            }
-        )
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(userEmail.value, userPassword)
             .then((response) => {
-                const statusCode = response.status;
-                const data = response.json();
-                return Promise.all([statusCode, data]);
-            })
-            .then(([statusCode, data]) => {
-                //Hide Loader
-                setLoading(false);
-                // If server response message same as Data Matched
-                // console.log(data[0]);
-                if (statusCode === 200 && typeof data[0] != "undefined") {
-                    if (data[0].password == userPassword) {
-                        AsyncStorage.setItem("user_id", data[0].email);
-                        navigation.replace("DrawerNavigationRoutes");
-                    }
-                } else {
-                    setErrortext("Vui lòng kiểm tra lại tài khoản mật khẩu!");
-                    console.log("Please check your email id or password");
-                }
+                const uid = response.user.uid;
+                const usersRef = firebase.firestore().collection("users");
+                usersRef
+                    .doc(uid)
+                    .get()
+                    .then((firestoreDocument) => {
+                        if (!firestoreDocument.exists) {
+                            setErrortext(
+                                "Vui lòng kiểm tra lại tài khoản mật khẩu!"
+                            );
+                            return;
+                        }
+                        setLoading(false);
+                        const user = firestoreDocument.data();
+                        navigation.replace("DrawerNavigationRoutes", {
+                            user,
+                        });
+                    })
+                    .catch((error) => {
+                        setLoading(false);
+                        setErrortext(error.message);
+                    });
             })
             .catch((error) => {
-                //Hide Loader
                 setLoading(false);
-                console.error(error);
+                setErrortext(error.message);
             });
     };
 
@@ -222,6 +207,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     errorTextStyle: {
+        marginTop: 5,
         color: "red",
         textAlign: "center",
         fontSize: 14,
