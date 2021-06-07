@@ -6,9 +6,9 @@ import { Button, Icon, Badge } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { change_theme } from "reduxs";
-const ColorButton = ({ color, style, tittle }) => {
+const ColorButton = ({ color, style, title }) => {
     const dispatch = useDispatch();
-    const backgroundColor = useSelector((state) => state);
+    const backgroundColor = useSelector((state) => state.theme.TAB);
     return (
         <Button
             containerStyle={styles.containerStyle}
@@ -18,8 +18,9 @@ const ColorButton = ({ color, style, tittle }) => {
                 style,
             ]}
             onPress={() => {
-                console.log(backgroundColor, tittle);
-                change_theme(tittle);
+                console.log(backgroundColor, title, "before");
+                dispatch(change_theme(title));
+                console.log(backgroundColor, title, "after");
             }}
         />
     );

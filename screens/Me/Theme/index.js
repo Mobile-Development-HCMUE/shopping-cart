@@ -16,7 +16,7 @@ const ThemeScreen = () => {
                         {Object.keys(themeOptions).map((item, i) => {
                             return (
                                 <Button
-                                    tittle={item}
+                                    title={item}
                                     key={i}
                                     color={themeOptions[item].TAB}
                                     style={styles.buttonStyle}

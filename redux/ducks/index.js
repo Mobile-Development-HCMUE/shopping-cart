@@ -13,6 +13,13 @@ export const themeOptions = {
     },
     green: {
         TAB: "#2E8364",
+        TAB_ACTIVE: "#fff",
+        HEADER_RIGHT: "#9ab3f5",
+        HEADER_LEFT: "#7579e7",
+        TOP_PROFILE: "#D3c0f9",
+        BOTTOM_PROFILE: "#fff",
+        HEADER_TITLE: "#fff",
+        BACK_BUTTON: "#fff",
     },
 };
 
@@ -75,12 +82,13 @@ export const CHANGE_THEME = "CHANGE_THEME";
 
 export const change_theme = (titleTheme) => ({
     type: CHANGE_THEME,
-    theme: { ...themeOptions.titleTheme, ...themeColorButtonSetting.light },
+    theme: { ...themeOptions[titleTheme], ...themeColorButtonSetting.light },
 });
 
 export const themeReducer = (state = initialState.theme, action) => {
     switch (action.type) {
         case CHANGE_THEME:
+            console.log(action.theme.TAB, "success");
             return { ...state, theme: action.theme };
         default:
             return state;

@@ -14,9 +14,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
 import reducers from "reduxs";
-const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(reducers);
 import Auth from "./screens/Auth";
 import SplashScreen from "./screens/SplashScreen";
 import DrawerNavigationRoutes from "./screens/DrawerScreens";
