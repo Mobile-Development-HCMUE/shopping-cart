@@ -10,10 +10,10 @@ import {
     TouchableWithoutFeedback,
     ScrollView,
 } from "react-native";
-import Button from "components/MainButton";
+import ButtonMain from "components/MainButton";
 import { Text } from "react-native-elements";
 import { useSelector, useDispatch } from "react-redux";
-import { Input, Icon } from "@ui-kitten/components";
+import { Input, Icon, Button } from "@ui-kitten/components";
 
 import Loader from "../../Loader";
 
@@ -109,6 +109,7 @@ const RegisterScreen = (props) => {
                     flex: 1,
                     backgroundColor: backgroundColor,
                     justifyContent: "center",
+                    alignContent: "center",
                 }}
             >
                 <Image
@@ -122,13 +123,14 @@ const RegisterScreen = (props) => {
                 <Text style={styles.successTextStyle}>
                     Registration Successful
                 </Text>
-                <TouchableOpacity
-                    style={styles.buttonStyle}
-                    activeOpacity={0.5}
+                <Button
                     onPress={() => props.navigation.navigate("LoginScreen")}
+                    style={styles.button}
+                    appearance="outline"
+                    status="danger"
                 >
-                    <Text style={styles.buttonTextStyle}>Login Now</Text>
-                </TouchableOpacity>
+                    ĐĂNG NHẬP NGAY
+                </Button>
             </View>
         );
     }
@@ -228,7 +230,7 @@ const RegisterScreen = (props) => {
                     {errortext != "" ? (
                         <Text style={styles.errorTextStyle}>{errortext}</Text>
                     ) : null}
-                    <Button
+                    <ButtonMain
                         styleContainer={styles.styleContainer}
                         styleButton={styles.styleButton}
                         title="ĐĂNG KÍ"
@@ -279,5 +281,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         padding: 30,
+    },
+    button: {
+        margin: 20,
     },
 });
