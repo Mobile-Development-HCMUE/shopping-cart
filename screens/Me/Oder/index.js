@@ -26,8 +26,6 @@ const OrderScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  bottomNavigation: {
-    marginVertical: 8,
-  },
+  bottomNavigation: {},
 });
 export default OrderScreen;
