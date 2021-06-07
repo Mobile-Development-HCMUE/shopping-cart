@@ -24,6 +24,11 @@ import HomeScreen from "../Home";
 import NotifyScreen from "../Notify";
 import MeScreen from "../Me";
 import OrderScreen from "../Me/Oder/index";
+import LikedScreen from "../Me/Liked";
+import MoneyScreen from "../Me/Money";
+import ReViewScreen from "../Me/Product-Reviews";
+import RepurchaseScreen from "../Me/Repurchase";
+import ServiceScreen from "../Me/Service";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 const Stack = createStackNavigator();
@@ -224,6 +229,41 @@ const homeScreenStack = ({ navigation }) => {
                 component={OrderScreen}
                 options={{
                     title: "Đơn mua",
+                }}
+            />
+            <Stack.Screen
+                name="Liked"
+                component={LikedScreen}
+                options={{
+                    title: "Đã thích",
+                }}
+            />
+            <Stack.Screen
+                name="Money"
+                component={MoneyScreen}
+                options={{
+                    title: "Ví",
+                }}
+            />
+            <Stack.Screen
+                name="Product-Reviews"
+                component={ReViewScreen}
+                options={{
+                    title: "Đánh giá của tôi",
+                }}
+            />
+            <Stack.Screen
+                name="Repurchase"
+                component={RepurchaseScreen}
+                options={{
+                    title: "Mua lại",
+                }}
+            />
+            <Stack.Screen
+                name="Service"
+                component={ServiceScreen}
+                options={{
+                    title: "Đơn thẻ và dịch vụ",
                 }}
             />
         </Stack.Navigator>

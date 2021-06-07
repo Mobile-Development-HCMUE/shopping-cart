@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { change_theme } from "reduxs";
 const ColorButton = ({ color, style, tittle }) => {
     const dispatch = useDispatch();
-    const backgroundColor = useSelector((state) => state.theme.TAB);
+    const backgroundColor = useSelector((state) => state);
     return (
         <Button
             containerStyle={styles.containerStyle}

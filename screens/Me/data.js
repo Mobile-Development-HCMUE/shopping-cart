@@ -11,30 +11,35 @@ const ListData1 = [
     icon: "phone-portrait-outline",
     type: "ionicon",
     color: "#4aa96c",
+    link: "Service",
   },
   {
     title: "Mua lại",
     icon: "arrow-undo-outline",
     type: "ionicon",
     color: "#6155a6",
+    link: "Repurchase",
   },
   {
     title: "Đã thích",
     icon: "heart-outline",
     type: "ionicon",
     color: "#EE0000",
+    link: "Liked",
   },
   {
     title: "Đánh giá của tôi",
     icon: "star-outline",
     type: "ionicon",
     color: "#FFCC33",
+    link: "Product-Reviews",
   },
   {
     title: "Ví",
     icon: "card-outline",
     type: "ionicon",
     color: "#6155a6",
+    link: "Money",
   },
 ];
 
