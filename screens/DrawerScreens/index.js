@@ -29,7 +29,6 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const getHeaderTitle = (route, navigation) => {
-    console.log(route);
     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
     switch (routeName) {
         case "Home":
@@ -43,19 +42,19 @@ const getHeaderTitle = (route, navigation) => {
 
 const Tab = createMaterialBottomTabNavigator();
 const HomeTab = ({ navigation, route }) => {
-    // React.useLayoutEffect(() => {
-    //     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
-    //     navigation.setOptions({
-    //         headerRight: (props) => {
-    //             switch (routeName) {
-    //                 case "Me":
-    //                     return <RightButton />;
-    //                 default:
-    //                     return;
-    //             }
-    //         },
-    //     });
-    // }, [navigation, route]);
+    React.useLayoutEffect(() => {
+        const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
+        navigation.setOptions({
+            headerRight: (props) => {
+                switch (routeName) {
+                    case "Me":
+                        return <RightButton />;
+                    default:
+                        return;
+                }
+            },
+        });
+    }, [navigation, route]);
 
     const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
