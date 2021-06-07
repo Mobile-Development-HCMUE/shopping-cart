@@ -4,8 +4,11 @@ import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Icon, Badge } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-
-const ColorButton = ({ color, style }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { change_theme } from "reduxs";
+const ColorButton = ({ color, style, tittle }) => {
+    const dispatch = useDispatch();
+    const backgroundColor = useSelector((state) => state.theme.TAB);
     return (
         <Button
             containerStyle={styles.containerStyle}
@@ -14,7 +17,10 @@ const ColorButton = ({ color, style }) => {
                 { backgroundColor: color },
                 style,
             ]}
-            onPress={() => console.log("work")}
+            onPress={() => {
+                console.log(backgroundColor, tittle);
+                change_theme(tittle);
+            }}
         />
     );
 };

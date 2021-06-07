@@ -25,11 +25,9 @@ import { useSelector } from "react-redux";
 const Stack = createStackNavigator();
 
 const MeScreen = ({ navigation }) => {
-    const topProfileColor = useSelector(
-        (state) => state.theme.theme.TOP_PROFILE
-    );
+    const topProfileColor = useSelector((state) => state.theme.TOP_PROFILE);
     const bottomProfileColor = useSelector(
-        (state) => state.theme.theme.BOTTOM_PROFILE
+        (state) => state.theme.BOTTOM_PROFILE
     );
     return (
         <ScrollView

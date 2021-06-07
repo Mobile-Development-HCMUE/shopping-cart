@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 const SplashScreen = ({ navigation }) => {
     //State for ActivityIndicator animation
     const [animating, setAnimating] = useState(true);
-    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+    const backgroundColor = useSelector((state) => state.theme.TAB);
     useEffect(() => {
         setTimeout(() => {
             setAnimating(false);
