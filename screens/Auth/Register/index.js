@@ -120,14 +120,12 @@ const RegisterScreen = (props) => {
                         alignSelf: "center",
                     }}
                 />
-                <Text style={styles.successTextStyle}>
-                    Registration Successful
-                </Text>
+                <Text style={styles.successTextStyle}>Đăng kí thành công!</Text>
                 <Button
                     onPress={() => props.navigation.navigate("LoginScreen")}
                     style={styles.button}
-                    appearance="outline"
-                    status="danger"
+                    // appearance="outline"
+                    status="success"
                 >
                     ĐĂNG NHẬP NGAY
                 </Button>
