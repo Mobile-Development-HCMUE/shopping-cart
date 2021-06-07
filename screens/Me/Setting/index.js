@@ -122,22 +122,10 @@ const SettingScreen = () => {
         <Text style={{ fontWeight: "bold" }}>
           Bạn có chắc chắn muốn đăng xuất?
         </Text>
-        {/* <Button
-          containerStyle={styles.container1}
-          buttonStyle={styles.styles1}
-          title="Có"
-        ></Button>
-        <Button
-          containerStyle={styles.container1}
-          buttonStyle={styles.styles1}
-          type="outline"
-          title="Không"
-        ></Button> */}
         <Layout style={styles.container2} level="1">
           <Buttonn style={styles.button2} appearance="filled">
             CÓ
           </Buttonn>
-
           <Buttonn style={styles.button2} appearance="outline">
             KHÔNG
           </Buttonn>
