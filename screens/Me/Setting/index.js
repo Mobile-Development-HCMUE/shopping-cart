@@ -6,7 +6,6 @@ import { Text } from "@ui-kitten/components";
 import ListData from "./data.js";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-// import FormOvelay from "components/FormQuestion";
 
 const SettingScreen = () => {
   const navigation = useNavigation();
@@ -102,9 +101,20 @@ const SettingScreen = () => {
         );
       })}
       <Button
-        // onPress={to}
-        containerStyle={styles.container1}
-        buttonStyle={styles.style1}
+        containerStyle={{
+          flex: 1,
+          justifyContent: "flex-end",
+          marginBottom: 10,
+          marginLeft: 80,
+          marginRight: 80,
+          borderRadius: 20,
+          minHeight: 40,
+        }}
+        buttonStyle={{
+          backgroundColor: buttonLogoutColor,
+          minHeight: 40,
+          borderRadius: 20,
+        }}
         title="ĐĂNG XUẤT"
         ViewComponent={LinearGradient}
         linearGradientProps={{
@@ -113,9 +123,7 @@ const SettingScreen = () => {
           start: { x: 0, y: 0 },
           end: { x: 1, y: 0 },
         }}
-      >
-        {/* <FormOvelay text="Bạn có chắc chắn muốn đăng xuất không?"/> */}
-      </Button>
+      />
     </ScrollView>
   );
 };
@@ -144,19 +152,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     maxHeight: 55,
     minWidth: 80,
-  },
-  container1: {
-    flex: 1,
-    justifyContent: "flex-end",
-    marginBottom: 10,
-    marginLeft: 80,
-    marginRight: 80,
-    borderRadius: 20,
-    minHeight: 40,
-  },
-  style1: {
-    minHeight: 40,
-    borderRadius: 20,
   },
 });
 
