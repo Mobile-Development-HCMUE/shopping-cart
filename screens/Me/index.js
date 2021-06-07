@@ -22,13 +22,57 @@ import { Title } from "react-native-paper";
 import styles from "./style";
 import { ListData1, ListData2 } from "./data.js";
 import { useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
 const MeScreen = ({ navigation }) => {
+    const [userID, setUserID] = React.useState("");
+    const [userName, setUserName] = React.useState("");
+    const [userAvatarUrl, setUserAvatarUrl] = React.useState("");
     const topProfileColor = useSelector((state) => state.theme.TOP_PROFILE);
     const bottomProfileColor = useSelector(
         (state) => state.theme.BOTTOM_PROFILE
     );
+    async function getUserID() {
+        const ID = await AsyncStorage.getItem("user_id")
+        setUserID(ID);
+    }
+    getUserID();
+    // console.log(userID);
+
+    fetch(
+        "https://60bbaca242e1d00017620f70.mockapi.io/user?" +
+            new URLSearchParams({
+                email: userID,
+            }),
+        {
+            method: "GET",
+            headers: {
+                //Header Defination
+                "Content-Type":
+                    "application/x-www-form-urlencoded;charset=UTF-8",
+            },
+        }
+    )
+        .then((response) => {
+            const statusCode = response.status;
+            const data = response.json();
+            return Promise.all([statusCode, data]);
+        })
+        .then(([statusCode, data]) => {
+            // If server response message same as Data Matched
+            // console.log(data[0]);
+            if (statusCode === 200 && typeof data[0] != "undefined") {
+                setUserName(data[0].name);
+                setUserAvatarUrl(data[0].avatar);
+            } else {
+                console.log("Fail to get user data");
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -40,7 +84,7 @@ const MeScreen = ({ navigation }) => {
             >
                 <View style={styles.Body}>
                     <View style={styles.Card}>
-                        <Avatar src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.6435-9/136064155_167450921803187_6870146644278943650_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=QgXcIlZMH-wAX8I6HBB&_nc_ht=scontent.fsgn5-5.fna&oh=1df37565cbc5984183f0d2ba642726ee&oe=60CE536E" />
+                        <Avatar src={userAvatarUrl} />
                         <View style={{ flexDirection: "row" }}>
                             <Button
                                 style={styles.Button}
@@ -76,7 +120,7 @@ const MeScreen = ({ navigation }) => {
                             </View>
                         </View>
                         <Text category="h3" style={{ margin: 10 }}>
-                            Nguyễn Văn Phong
+                            {userName}
                         </Text>
                         <Text style={{ margin: 10 }}>Intro</Text>
                     </View>
