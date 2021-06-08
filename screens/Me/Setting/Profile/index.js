@@ -19,16 +19,13 @@ const ProfileScreen = () => {
     const [visible, setVisible] = useState(false);
     const [transferred, setTransferred] = useState(0);
     const user = React.useContext(UserContext);
-    const getLinkAvatar = async () => {
-        const ref = firebase.storage().ref(user.id);
-        const url = await ref.getDownloadURL();
-        setAvatar(url);
-    };
     const [avatar, setAvatar] = useState(null);
     console.log(avatar);
     useEffect(() => {
         (async () => {
-            getLinkAvatar();
+            const ref = firebase.storage().ref(user.id);
+            const url = await ref.getDownloadURL();
+            setAvatar(url);
         })();
         (async () => {
             if (Platform.OS !== "web") {
