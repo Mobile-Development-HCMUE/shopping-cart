@@ -17,7 +17,7 @@ import {
 } from "@ui-kitten/components";
 const AlertIcon = (props) => <Icon {...props} name="alert-circle-outline" />;
 
-const PassScreen = () => {
+const PhoneScreen = () => {
   const [value, setValue] = React.useState("");
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
@@ -27,14 +27,14 @@ const PassScreen = () => {
 
   const renderIcon = (props) => (
     <TouchableWithoutFeedback onPress={toggleSecureEntry}>
-      <Icon {...props} name={secureTextEntry ? "eye-off" : "eye"} />
+      <Icon {...props} name={"phone-call-outline"} />
     </TouchableWithoutFeedback>
   );
   const renderCaption = () => {
     return (
       <View style={styles.captionContainer}>
         {AlertIcon(styles.captionIcon)}
-        <Text style={styles.captionText}>Vui lòng nhập ít nhất 6 kí tự</Text>
+        <Text style={styles.captionText}>Vui lòng nhập đúng số điện thoại</Text>
       </View>
     );
   };
@@ -56,7 +56,7 @@ const PassScreen = () => {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontWeight: "bold" }}>Mật khẩu</Text>
+            <Text style={{ fontWeight: "bold" }}>Số điện thoại</Text>
           </View>
           <View
             style={{
@@ -75,8 +75,8 @@ const PassScreen = () => {
                 borderRadius: 20,
               }}
               value={value}
-              label="Mật khẩu"
-              placeholder="Nhập mật khẩu"
+              label="Số điện thoại"
+              placeholder="Nhập số điện thoại"
               caption={renderCaption}
               accessoryRight={renderIcon}
               secureTextEntry={secureTextEntry}
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PassScreen;
+export default PhoneScreen;

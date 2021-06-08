@@ -31,6 +31,7 @@ import RepurchaseScreen from "../Me/Repurchase";
 import ServiceScreen from "../Me/Service";
 import TenScreen from "../Me/Setting/Profile/Ten";
 import PassScreen from "../Me/Setting/Profile/MatKhau";
+import PhoneScreen from "../Me/Setting/Profile/NumberPhone";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 
@@ -267,6 +268,13 @@ const homeScreenStack = ({ navigation, route }) => {
         component={PassScreen}
         options={{
           title: "Mật khẩu", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="PhoneScreen"
+        component={PhoneScreen}
+        options={{
+          title: "Số điện thoại", //Set Header Title
         }}
       />
     </Stack.Navigator>
