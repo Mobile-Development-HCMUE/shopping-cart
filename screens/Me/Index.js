@@ -23,6 +23,8 @@ import styles from "./style";
 import { ListData1, ListData2 } from "./data.js";
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { UserContext } from "contexts";
+import { firebase } from "firebase/config";
 const Stack = createStackNavigator();
 
 const MeScreen = ({ navigation }) => {
@@ -33,45 +35,31 @@ const MeScreen = ({ navigation }) => {
     const bottomProfileColor = useSelector(
         (state) => state.theme.BOTTOM_PROFILE
     );
-    async function getUserID() {
-        const ID = await AsyncStorage.getItem("user_id")
-        setUserID(ID);
-    }
-    getUserID();
-    // console.log(userID);
-
-    fetch(
-        "https://60bbaca242e1d00017620f70.mockapi.io/user?" +
-            new URLSearchParams({
-                email: userID,
-            }),
-        {
-            method: "GET",
-            headers: {
-                //Header Defination
-                "Content-Type":
-                    "application/x-www-form-urlencoded;charset=UTF-8",
-            },
-        }
-    )
-        .then((response) => {
-            const statusCode = response.status;
-            const data = response.json();
-            return Promise.all([statusCode, data]);
-        })
-        .then(([statusCode, data]) => {
-            // If server response message same as Data Matched
-            // console.log(data[0]);
-            if (statusCode === 200 && typeof data[0] != "undefined") {
-                setUserName(data[0].name);
-                setUserAvatarUrl(data[0].avatar);
-            } else {
-                console.log("Fail to get user data");
-            }
+    const network = React.useContext(UserContext);
+    console.log(network);
+    const user = firebase.firestore().collection("user");
+    user.where("id", "==", network.id)
+        .get()
+        .then((query) => {
+            query.forEach((doc) => {
+                console.log(doc.id, doc.data);
+            });
         })
         .catch((error) => {
             console.error(error);
         });
+    React.useEffect(() => {
+        user.where("id", "==", network.id)
+            .get()
+            .then((query) => {
+                query.forEach((doc) => {
+                    console.log("success", doc.id, doc.data);
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    });
 
     return (
         <ScrollView

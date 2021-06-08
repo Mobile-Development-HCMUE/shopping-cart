@@ -30,6 +30,7 @@ import ReViewScreen from "../Me/Product-Reviews";
 import RepurchaseScreen from "../Me/Repurchase";
 import ServiceScreen from "../Me/Service";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { UserContext } from "contexts";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -61,7 +62,8 @@ const HomeTab = ({ navigation, route }) => {
             },
         });
     }, [navigation, route]);
-
+    const userId = route.params;
+    // console.log(userId);
     const backgroundColor = useSelector((state) => state.theme.TAB);
     const tabActiveColor = useSelector((state) => state.theme.TAB_ACTIVE);
     return (
@@ -122,7 +124,7 @@ const HomeTab = ({ navigation, route }) => {
     );
 };
 
-const homeScreenStack = ({ navigation }) => {
+const homeScreenStack = ({ navigation, route }) => {
     const backgroundColor = useSelector((state) => state.theme.TAB);
     const headerTitleColor = useSelector((state) => state.theme.HEADER_TITLE);
     const leftHeaderColor = useSelector((state) => state.theme.HEADER_LEFT);
@@ -308,29 +310,31 @@ const settingScreenStack = ({ navigation }) => {
 
 const DrawerNavigatorRoutes = (props) => {
     return (
-        <Drawer.Navigator
-            drawerContentOptions={{
-                activeTintColor: "#cee1f2",
-                color: "#cee1f2",
-                itemStyle: { marginVertical: 5, color: "white" },
-                labelStyle: {
-                    color: "#d8d8d8",
-                },
-            }}
-            screenOptions={{ headerShown: false }}
-            drawerContent={CustomSidebarMenu}
-        >
-            <Drawer.Screen
-                name="homeScreenStack"
-                options={{ drawerLabel: "Home Screen" }}
-                component={homeScreenStack}
-            />
-            <Drawer.Screen
-                name="settingScreenStack"
-                options={{ drawerLabel: "Setting Screen" }}
-                component={settingScreenStack}
-            />
-        </Drawer.Navigator>
+        <UserContext.Provider value={props.route.params}>
+            <Drawer.Navigator
+                drawerContentOptions={{
+                    activeTintColor: "#cee1f2",
+                    color: "#cee1f2",
+                    itemStyle: { marginVertical: 5, color: "white" },
+                    labelStyle: {
+                        color: "#d8d8d8",
+                    },
+                }}
+                screenOptions={{ headerShown: false }}
+                drawerContent={CustomSidebarMenu}
+            >
+                <Drawer.Screen
+                    name="homeScreenStack"
+                    options={{ drawerLabel: "Home Screen" }}
+                    component={homeScreenStack}
+                />
+                <Drawer.Screen
+                    name="settingScreenStack"
+                    options={{ drawerLabel: "Setting Screen" }}
+                    component={settingScreenStack}
+                />
+            </Drawer.Navigator>
+        </UserContext.Provider>
     );
 };
 

@@ -63,7 +63,6 @@ const SplashScreen = ({ navigation }) => {
                     .then((document) => {
                         const userData = document.data();
                         setUser(userData);
-                        console.log(userData);
                         navigation.replace("DrawerNavigationRoutes", userData);
                     })
                     .catch((error) => {
