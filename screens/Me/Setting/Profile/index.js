@@ -17,8 +17,16 @@ const ProfileScreen = () => {
     const buttonLogoutColor = useSelector((state) => state.theme.TAB);
     const [image, setImage] = useState(null);
     const [visible, setVisible] = useState(false);
-    const userID = React.useContext(UserContext);
+    const [transferred, setTransferred] = useState(0);
+    const user = React.useContext(UserContext);
+    const [avatar, setAvatar] = useState(null);
+    // console.log(avatar);
     useEffect(() => {
+        (async () => {
+            const ref = firebase.storage().ref(user.id);
+            const url = await ref.getDownloadURL();
+            setAvatar(url);
+        })();
         (async () => {
             if (Platform.OS !== "web") {
                 const { status } =
@@ -44,6 +52,33 @@ const ProfileScreen = () => {
 
         if (!result.cancelled) {
             setImage(result.uri);
+        }
+    };
+    const uploadImageAsync = async (uri) => {
+        // const ref = firebase.storage().ref().child(uuid.v4());
+
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        var ref = firebase.storage().ref().child(user.id);
+        const snapshot = await ref.put(blob);
+        const remoteUri = await snapshot.ref.getDownloadURL();
+        // when we're done sending it, close and release the blob
+        blob.close();
+
+        // return the result, eg. remote URI to the image
+        return remoteUri;
+    };
+    const uploadImage = async () => {
+        try {
+            setLoading(true);
+            const res = await uploadImageAsync(image);
+            console.log(res);
+            setLoading(false);
+            setVisible(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+            setVisible(false);
         }
     };
     return (
@@ -89,7 +124,11 @@ const ProfileScreen = () => {
                         <ButtonKitten
                             appearance="outline"
                             status="success"
-                            onPress={() => setVisible(false)}
+                            onPress={() => {
+                                setLoading(false);
+                                uploadImage();
+                                setVisible(false);
+                            }}
                             style={styles.button}
                         >
                             TẢI LÊN
@@ -105,7 +144,7 @@ const ProfileScreen = () => {
                             justifyContent: "center",
                         }}
                     >
-                        <Avatar src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.6435-9/136064155_167450921803187_6870146644278943650_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=QgXcIlZMH-wAX8I6HBB&_nc_ht=scontent.fsgn5-5.fna&oh=1df37565cbc5984183f0d2ba642726ee&oe=60CE536E"></Avatar>
+                        <Avatar src={avatar}></Avatar>
                         <Button
                             onPress={() => {
                                 setVisible(true);
