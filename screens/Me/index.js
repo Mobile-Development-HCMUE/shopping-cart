@@ -46,7 +46,7 @@ const MeScreen = ({ navigation }) => {
                     const res = doc.data();
                     setUserName(res.name);
                     setUserAvatarUrl(res.avatar);
-                    console.log("success", res);
+                    // console.log("success", res);
                 });
             })
             .catch((error) => {
