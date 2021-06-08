@@ -16,7 +16,7 @@ import { Text } from "react-native-elements";
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Icon, Button } from "@ui-kitten/components";
 import { firebase } from "../../../firebase/config";
-import Loader from "../../Loader";
+import Loader from "components/Loader";
 
 const useInputState = (initialValue = "") => {
     const [value, setValue] = React.useState(initialValue);

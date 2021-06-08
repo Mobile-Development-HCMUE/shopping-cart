@@ -10,12 +10,13 @@ import { Text, Button as ButtonKitten } from "@ui-kitten/components";
 import { UserContext } from "contexts";
 import { firebase } from "../../../../firebase/config";
 import * as ImagePicker from "expo-image-picker";
+import Loader from "components/Loader";
 
 const ProfileScreen = () => {
     const buttonLogoutColor = useSelector((state) => state.theme.TAB);
     const [image, setImage] = useState(null);
     const [visible, setVisible] = useState(false);
-
+    const userID = React.useContext(UserContext);
     useEffect(() => {
         (async () => {
             if (Platform.OS !== "web") {
@@ -38,7 +39,7 @@ const ProfileScreen = () => {
             quality: 1,
         });
 
-        console.log(result);
+        // console.log(result);
 
         if (!result.cancelled) {
             setImage(result.uri);
@@ -46,6 +47,7 @@ const ProfileScreen = () => {
     };
     return (
         <SafeAreaView>
+            <Loader loading={loading} />
             <View style={styles.Setting}>
                 <Overlay
                     visible={visible}
@@ -78,7 +80,7 @@ const ProfileScreen = () => {
                         <ButtonKitten
                             appearance="outline"
                             status="warning"
-                            onPress={pickImage()}
+                            onPress={() => pickImage()}
                             style={styles.button}
                         >
                             CHỌN LẠI

@@ -15,7 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Input, Icon } from "@ui-kitten/components";
 import { Text } from "react-native-elements";
 import Button from "components/MainButton";
-import Loader from "../../Loader";
+import Loader from "components/Loader";
 import { firebase } from "../../../firebase/config";
 
 const useInputState = (initialValue = "") => {
