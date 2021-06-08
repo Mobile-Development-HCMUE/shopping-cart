@@ -37,7 +37,7 @@ const ListProduct = ({ ListData }) => {
               source={{ uri: item.avatar }}
               resizeMode="cover"
             ></Image>
-            <View style={{ height: "20%", width: "110%" }}>
+            <View style={{ height: "22%", width: "110%" }}>
               <Text>{item.name}</Text>
             </View>
 

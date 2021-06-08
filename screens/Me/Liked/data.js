@@ -1,4 +1,4 @@
-const users = [
+const data = [
   {
     name: "Đầm dự tiệc trẻ trung sang trọng",
     avatar: "https://cf.shopee.vn/file/5588fd79cd9758b46ad49f78893209c6",
@@ -15,4 +15,4 @@ const users = [
     number: "3.4k",
   },
 ];
-export default users;
+export default data;

@@ -1,24 +1,24 @@
 import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { Button, Card, Icon } from "react-native-elements";
+import { Button, Card, Icon, Image } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
+import ListProduct from "components/ListProduct";
+import users from "./data";
 
 const RepurchaseScreen = () => {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Card containerStyle={styles.card}>
-          <Card.Title></Card.Title>
-          <View style={styles.containerButton}></View>
-        </Card>
-      </ScrollView>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ListProduct ListData={users} />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
+  card: {},
+  container: {
+    flexDirection: "row",
     borderRadius: 16,
+    justifyContent: "space-between",
   },
 });
 
