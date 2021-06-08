@@ -36,11 +36,11 @@ const MeScreen = ({ navigation }) => {
         (state) => state.theme.BOTTOM_PROFILE
     );
     const network = React.useContext(UserContext);
-    console.log(network);
+    setUserID(network.id);
     const user = firebase.firestore().collection("users");
 
     React.useEffect(() => {
-        user.where("id", "==", network.id)
+        user.where("id", "==", userID)
             .get()
             .then((query) => {
                 query.forEach((doc) => {
