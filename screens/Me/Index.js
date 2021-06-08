@@ -37,23 +37,17 @@ const MeScreen = ({ navigation }) => {
     );
     const network = React.useContext(UserContext);
     console.log(network);
-    const user = firebase.firestore().collection("user");
-    user.where("id", "==", network.id)
-        .get()
-        .then((query) => {
-            query.forEach((doc) => {
-                console.log(doc.id, doc.data);
-            });
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    const user = firebase.firestore().collection("users");
+
     React.useEffect(() => {
         user.where("id", "==", network.id)
             .get()
             .then((query) => {
                 query.forEach((doc) => {
-                    console.log("success", doc.id, doc.data);
+                    const res = doc.data();
+                    setUserName(res.name);
+                    setUserAvatarUrl(res.avatar);
+                    console.log("success", res);
                 });
             })
             .catch((error) => {
