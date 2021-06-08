@@ -45,7 +45,7 @@ const ProfileScreen = () => {
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [3, 3],
-            quality: 1,
+            quality: 0.25,
         });
 
         // console.log(result);
@@ -72,7 +72,8 @@ const ProfileScreen = () => {
         try {
             setLoading(true);
             const res = await uploadImageAsync(image);
-            console.log(res);
+            console.log(avatar != res ? "true" : "false");
+            setAvatar(res);
             setLoading(false);
             setVisible(false);
         } catch (error) {
