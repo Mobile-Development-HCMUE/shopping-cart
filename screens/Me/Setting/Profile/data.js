@@ -4,12 +4,14 @@ const ListData3 = [
     icon: "people-circle-outline",
     type: "ionicon",
     color: "#e84545",
+    link: "TenScreen",
   },
   {
     title: "Mật khẩu",
     icon: "code-working",
     type: "ionicon",
     color: "#af0069",
+    link: "PassScreen",
   },
 ];
 const ListData4 = [
