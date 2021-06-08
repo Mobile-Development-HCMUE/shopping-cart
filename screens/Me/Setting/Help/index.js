@@ -11,8 +11,6 @@ const HelpScreen = () => {
       <ScrollView>
         <Card>
           <Card.Title>Câu hỏi thường gặp</Card.Title>
-        </Card>
-        <Card>
           <View>
             <List listData={cauhoi}></List>
           </View>
