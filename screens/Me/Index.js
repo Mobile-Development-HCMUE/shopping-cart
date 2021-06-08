@@ -24,7 +24,7 @@ import { ListData1, ListData2 } from "./data.js";
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserContext } from "contexts";
-import { firebase } from "firebase/config";
+import { firebase } from "../../firebase/config";
 const Stack = createStackNavigator();
 
 const MeScreen = ({ navigation }) => {
