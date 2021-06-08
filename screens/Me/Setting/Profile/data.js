@@ -4,12 +4,14 @@ const ListData3 = [
     icon: "people-circle-outline",
     type: "ionicon",
     color: "#e84545",
+    link: "TenScreen",
   },
   {
     title: "Mật khẩu",
     icon: "code-working",
     type: "ionicon",
     color: "#af0069",
+    link: "PassScreen",
   },
 ];
 const ListData4 = [
@@ -18,24 +20,28 @@ const ListData4 = [
     icon: "call-outline",
     type: "ionicon",
     color: "#0061a8",
+    link: "PhoneScreen",
   },
   {
     title: "Email",
     icon: "mail-outline",
     type: "ionicon",
     color: "#e84545",
+    link: "EmailScreen",
   },
   {
     title: "Ngày sinh",
     icon: "today-outline",
     type: "ionicon",
     color: "#0061a8",
+    link: "DateScreen",
   },
   {
     title: "Giới tính",
     icon: "body-outline",
     type: "ionicon",
     color: "#af0069",
+    link: "GioiTinhScreen",
   },
 ];
 export { ListData3, ListData4 };
