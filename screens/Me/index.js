@@ -30,22 +30,27 @@ const Stack = createStackNavigator();
 const MeScreen = ({ navigation }) => {
     const [userID, setUserID] = React.useState("");
     const [userName, setUserName] = React.useState("");
-    const [userAvatarUrl, setUserAvatarUrl] = React.useState("");
     const topProfileColor = useSelector((state) => state.theme.TOP_PROFILE);
     const bottomProfileColor = useSelector(
         (state) => state.theme.BOTTOM_PROFILE
     );
-    const network = React.useContext(UserContext);
-    const user = firebase.firestore().collection("users");
+    const [avatar, setAvatar] = React.useState(null);
+    const user = React.useContext(UserContext);
+    const users = firebase.firestore().collection("users");
 
     React.useEffect(() => {
-        user.where("id", "==", network.id)
+        (async () => {
+            const ref = firebase.storage().ref(user.id);
+            const url = await ref.getDownloadURL();
+            setAvatar(url);
+        })();
+        users
+            .where("id", "==", user.id)
             .get()
             .then((query) => {
                 query.forEach((doc) => {
                     const res = doc.data();
                     setUserName(res.name);
-                    setUserAvatarUrl(res.avatar);
                     // console.log("success", res);
                 });
             })
@@ -65,7 +70,7 @@ const MeScreen = ({ navigation }) => {
             >
                 <View style={styles.Body}>
                     <View style={styles.Card}>
-                        <Avatar src={userAvatarUrl} />
+                        <Avatar src={avatar} />
                         <View style={{ flexDirection: "row" }}>
                             <Button
                                 style={styles.Button}

@@ -20,7 +20,7 @@ const ProfileScreen = () => {
     const [transferred, setTransferred] = useState(0);
     const user = React.useContext(UserContext);
     const [avatar, setAvatar] = useState(null);
-    console.log(avatar);
+    // console.log(avatar);
     useEffect(() => {
         (async () => {
             const ref = firebase.storage().ref(user.id);
