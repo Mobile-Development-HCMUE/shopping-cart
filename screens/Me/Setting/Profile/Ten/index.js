@@ -14,51 +14,42 @@ const TenScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Layout
-          style={{
-            marginTop: 5,
-            justifyContent: "space-between",
-            alignContent: "center",
-          }}
-          level="1"
-        >
-          <Card style={styles.card} status="primary">
-            <View
+        <Card style={styles.card} status="primary">
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontWeight: "bold" }}>Tên</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexDirection: "row",
+              alignContent: "center",
+            }}
+          >
+            <Input
               style={{
-                flex: 1,
-                alignItems: "center",
+                marginBottom: 10,
+                marginTop: 10,
+                width: "63%",
+                borderRadius: 20,
               }}
-            >
-              <Text style={{ fontWeight: "bold" }}>Tên</Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-                alignContent: "center",
-              }}
-            >
-              <Input
-                style={{
-                  marginBottom: 10,
-                  marginTop: 10,
-                  width: "63%",
-                  borderRadius: 20,
-                }}
-                placeholder="Place your Text"
-                value={value}
-                onChangeText={(nextValue) => setValue(nextValue)}
-              />
-              <Button
-                containerStyle={styles.container1}
-                buttonStyle={styles.Style}
-                title="Lưu"
-              />
-            </View>
-          </Card>
-        </Layout>
+              placeholder="Nhập tên của bạn"
+              value={value}
+              onChangeText={(nextValue) => setValue(nextValue)}
+            />
+            <Button
+              containerStyle={styles.container1}
+              buttonStyle={styles.Style}
+              title="Lưu"
+            />
+          </View>
+        </Card>
       </ScrollView>
     </SafeAreaView>
   );

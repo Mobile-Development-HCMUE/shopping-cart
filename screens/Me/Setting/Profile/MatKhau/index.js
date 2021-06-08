@@ -1,64 +1,94 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from "react-native";
+import { Button } from "react-native-elements";
 import {
   Text,
   Card,
   Layout,
   Input,
+  Icon,
   Button as button,
 } from "@ui-kitten/components";
+const AlertIcon = (props) => <Icon {...props} name="alert-circle-outline" />;
 
 const PassScreen = () => {
   const [value, setValue] = React.useState("");
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+  const renderIcon = (props) => (
+    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+      <Icon {...props} name={secureTextEntry ? "eye-off" : "eye"} />
+    </TouchableWithoutFeedback>
+  );
+  const renderCaption = () => {
+    return (
+      <View style={styles.captionContainer}>
+        {AlertIcon(styles.captionIcon)}
+        <Text style={styles.captionText}>Vui lòng nhập ít nhất 6 kí tự</Text>
+      </View>
+    );
+  };
   return (
     <SafeAreaView>
       <ScrollView>
-        <Layout
-          style={{
-            marginTop: 5,
-            justifyContent: "space-between",
-            alignContent: "center",
-          }}
-          level="1"
+        <Card
+          style={
+            (styles.card,
+            {
+              borderRadius: 20,
+            })
+          }
+          status="primary"
         >
-          <Card style={styles.card} status="primary">
-            <View
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontWeight: "bold" }}>Mật khẩu</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexDirection: "row",
+              alignContent: "center",
+            }}
+          >
+            <Input
               style={{
-                flex: 1,
-                alignItems: "center",
+                marginBottom: 10,
+                marginTop: 10,
+                width: "63%",
+                borderRadius: 20,
               }}
-            >
-              <Text style={{ fontWeight: "bold" }}>Tên</Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-                alignContent: "center",
-              }}
-            >
-              <Input
-                style={{
-                  marginBottom: 10,
-                  marginTop: 10,
-                  width: "63%",
-                  borderRadius: 20,
-                }}
-                placeholder="Place your Text"
-                value={value}
-                onChangeText={(nextValue) => setValue(nextValue)}
-              />
-              <Button
-                containerStyle={styles.container1}
-                buttonStyle={styles.Style}
-                title="Lưu"
-              />
-            </View>
-          </Card>
-        </Layout>
+              value={value}
+              label="Mật khẩu"
+              placeholder="Nhập mật khẩu của bạn"
+              caption={renderCaption}
+              accessoryRight={renderIcon}
+              secureTextEntry={secureTextEntry}
+              onChangeText={(nextValue) => setValue(nextValue)}
+            />
+            <Button
+              containerStyle={styles.container1}
+              buttonStyle={styles.Style}
+              title="Lưu"
+            />
+          </View>
+        </Card>
       </ScrollView>
     </SafeAreaView>
   );
@@ -80,6 +110,21 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: 30,
     width: 100,
+  },
+  captionContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  captionIcon: {
+    width: 10,
+    height: 10,
+    marginRight: 5,
+  },
+  captionText: {
+    fontSize: 12,
+    fontWeight: "400",
+    color: "#8F9BB3",
   },
 });
 
