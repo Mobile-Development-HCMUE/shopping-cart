@@ -36,7 +36,6 @@ const MeScreen = ({ navigation }) => {
         (state) => state.theme.BOTTOM_PROFILE
     );
     const network = React.useContext(UserContext);
-    console.log(network);
     const user = firebase.firestore().collection("users");
 
     React.useEffect(() => {
