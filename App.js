@@ -20,12 +20,27 @@ const store = createStore(reducers);
 import Auth from "./screens/Auth";
 import SplashScreen from "./screens/SplashScreen";
 import DrawerNavigationRoutes from "./screens/DrawerScreens";
-
+import { useDispatch } from "react-redux";
+import { change_theme } from "./redux/ducks/";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
-export default function App() {
+const App0 = () => {
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+        AsyncStorage.getItem("@theme")
+            .then((value) => {
+                value = value == null ? "default" : value;
+                value = value.replace(/[^a-zA-Z ]/g, "");
+                console.log(value);
+                dispatch(change_theme(value));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
     return (
-        <Provider store={store}>
+        <>
             <IconRegistry icons={EvaIconsPack} />
             <ApplicationProvider {...eva} theme={eva.light}>
                 <NavigationContainer>
@@ -53,6 +68,14 @@ export default function App() {
                     </Stack.Navigator>
                 </NavigationContainer>
             </ApplicationProvider>
+        </>
+    );
+};
+
+export default function App() {
+    return (
+        <Provider store={store}>
+            <App0 />
         </Provider>
     );
 }
