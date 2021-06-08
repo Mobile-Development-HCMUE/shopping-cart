@@ -19,7 +19,17 @@ const ProfileScreen = () => {
     const [visible, setVisible] = useState(false);
     const [transferred, setTransferred] = useState(0);
     const user = React.useContext(UserContext);
+    const getLinkAvatar = async () => {
+        const ref = firebase.storage().ref(user.id);
+        const url = await ref.getDownloadURL();
+        setAvatar(url);
+    };
+    const [avatar, setAvatar] = useState(null);
+    console.log(avatar);
     useEffect(() => {
+        (async () => {
+            getLinkAvatar();
+        })();
         (async () => {
             if (Platform.OS !== "web") {
                 const { status } =
@@ -137,7 +147,7 @@ const ProfileScreen = () => {
                             justifyContent: "center",
                         }}
                     >
-                        <Avatar src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.6435-9/136064155_167450921803187_6870146644278943650_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=QgXcIlZMH-wAX8I6HBB&_nc_ht=scontent.fsgn5-5.fna&oh=1df37565cbc5984183f0d2ba642726ee&oe=60CE536E"></Avatar>
+                        <Avatar src={avatar}></Avatar>
                         <Button
                             onPress={() => {
                                 setVisible(true);
