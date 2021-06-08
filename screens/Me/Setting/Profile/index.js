@@ -17,7 +17,8 @@ const ProfileScreen = () => {
     const buttonLogoutColor = useSelector((state) => state.theme.TAB);
     const [image, setImage] = useState(null);
     const [visible, setVisible] = useState(false);
-    const userID = React.useContext(UserContext);
+    const [transferred, setTransferred] = useState(0);
+    const user = React.useContext(UserContext);
     useEffect(() => {
         (async () => {
             if (Platform.OS !== "web") {
@@ -44,6 +45,33 @@ const ProfileScreen = () => {
 
         if (!result.cancelled) {
             setImage(result.uri);
+        }
+    };
+    const uploadImageAsync = async (uri) => {
+        // const ref = firebase.storage().ref().child(uuid.v4());
+
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        var ref = firebase.storage().ref().child(user.id);
+        const snapshot = await ref.put(blob);
+        const remoteUri = await snapshot.ref.getDownloadURL();
+        // when we're done sending it, close and release the blob
+        blob.close();
+
+        // return the result, eg. remote URI to the image
+        return remoteUri;
+    };
+    const uploadImage = async () => {
+        try {
+            setLoading(true);
+            const res = await uploadImageAsync(image);
+            console.log(res);
+            setLoading(false);
+            setVisible(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+            setVisible(false);
         }
     };
     return (
@@ -89,7 +117,11 @@ const ProfileScreen = () => {
                         <ButtonKitten
                             appearance="outline"
                             status="success"
-                            onPress={() => setVisible(false)}
+                            onPress={() => {
+                                setLoading(false);
+                                uploadImage();
+                                setVisible(false);
+                            }}
                             style={styles.button}
                         >
                             TẢI LÊN
