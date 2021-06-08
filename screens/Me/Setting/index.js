@@ -117,7 +117,7 @@ const SettingScreen = () => {
             })}
 
             <Button
-                onPress={toggleOverlay}
+                // onPress={toggleOverlay}
                 containerStyle={styles.ButtonContainerStyles}
                 buttonStyle={styles.ButtonStyles}
                 title="ĐĂNG XUẤT"
@@ -129,7 +129,7 @@ const SettingScreen = () => {
                     end: { x: 1, y: 0 },
                 }}
             />
-            <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+            {/* <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
                 <Text style={{ fontWeight: "bold" }}>
                     Bạn có chắc chắn muốn đăng xuất?
                 </Text>
@@ -141,7 +141,7 @@ const SettingScreen = () => {
                         KHÔNG
                     </Buttonn>
                 </Layout>
-            </Overlay>
+            </Overlay> */}
         </ScrollView>
     );
 };
