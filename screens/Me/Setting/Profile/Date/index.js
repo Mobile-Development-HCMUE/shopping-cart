@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -34,6 +34,7 @@ const DateScreen = () => {
   const minMaxPickerState = useDatepickerState();
   const filterPickerState = useDatepickerState();
   const boundingPickerState = useDatepickerState();
+  const [date, setDate] = useState(new Date());
 
   const renderIcon = (props) => (
     <TouchableWithoutFeedback onPress={toggleSecureEntry}>

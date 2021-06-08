@@ -34,6 +34,7 @@ import PassScreen from "../Me/Setting/Profile/MatKhau";
 import PhoneScreen from "../Me/Setting/Profile/NumberPhone";
 import EmailScreen from "../Me/Setting/Profile/Email";
 import DateScreen from "../Me/Setting/Profile/Date";
+import GioiTinhScreen from "../Me/Setting/Profile/GioiTinh";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 
@@ -291,6 +292,13 @@ const homeScreenStack = ({ navigation, route }) => {
         component={DateScreen}
         options={{
           title: "Ngày sinh", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="GioiTinhScreen"
+        component={GioiTinhScreen}
+        options={{
+          title: "Giới tính", //Set Header Title
         }}
       />
     </Stack.Navigator>

@@ -41,6 +41,7 @@ const ListData4 = [
     icon: "body-outline",
     type: "ionicon",
     color: "#af0069",
+    link: "GioiTinhScreen",
   },
 ];
 export { ListData3, ListData4 };
