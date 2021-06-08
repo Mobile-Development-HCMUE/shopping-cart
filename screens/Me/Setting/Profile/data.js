@@ -34,6 +34,7 @@ const ListData4 = [
     icon: "today-outline",
     type: "ionicon",
     color: "#0061a8",
+    link: "DateScreen",
   },
   {
     title: "Giới tính",

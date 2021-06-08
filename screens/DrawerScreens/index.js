@@ -33,6 +33,7 @@ import TenScreen from "../Me/Setting/Profile/Ten";
 import PassScreen from "../Me/Setting/Profile/MatKhau";
 import PhoneScreen from "../Me/Setting/Profile/NumberPhone";
 import EmailScreen from "../Me/Setting/Profile/Email";
+import DateScreen from "../Me/Setting/Profile/Date";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 
@@ -283,6 +284,13 @@ const homeScreenStack = ({ navigation, route }) => {
         component={EmailScreen}
         options={{
           title: "Email", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="DateScreen"
+        component={DateScreen}
+        options={{
+          title: "Ngày sinh", //Set Header Title
         }}
       />
     </Stack.Navigator>
