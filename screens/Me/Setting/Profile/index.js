@@ -14,7 +14,7 @@ import Loader from "components/Loader";
 
 const ProfileScreen = () => {
     const [loading, setLoading] = useState(false);
-    const buttonLogoutColor = useSelector((state) => state.theme.TAB);
+    const buttonLogoutColor = useSelector((state) => state.theme.theme.TAB);
     const [image, setImage] = useState(null);
     const [visible, setVisible] = useState(false);
     const [transferred, setTransferred] = useState(0);

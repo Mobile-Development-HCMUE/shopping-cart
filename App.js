@@ -11,11 +11,11 @@ import {
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createStore, applyMiddleware } from "redux";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 // import thunk from "redux-thunk";
-import reducers from "reduxs";
+import { reducers } from "./redux/ducks";
 const store = createStore(reducers);
 import Auth from "./screens/Auth";
 import SplashScreen from "./screens/SplashScreen";

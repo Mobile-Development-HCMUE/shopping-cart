@@ -85,16 +85,15 @@ export const change_theme = (titleTheme) => ({
     theme: { ...themeOptions[titleTheme], ...themeColorButtonSetting.light },
 });
 
-export const themeReducer = (state = initialState.theme, action) => {
+export const themeReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_THEME:
-            console.log(action.theme.TAB, "success");
             return { ...state, theme: action.theme };
         default:
             return state;
     }
 };
 
-export default combineReducers({
+export const reducers = combineReducers({
     theme: themeReducer,
 });

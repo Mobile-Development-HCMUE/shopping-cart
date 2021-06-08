@@ -27,7 +27,7 @@ const useInputState = (initialValue = "") => {
 };
 
 const RegisterScreen = (props) => {
-    const backgroundColor = useSelector((state) => state.theme.TAB);
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     const userName = useInputState();
     const userEmail = useInputState();
     const [userPassword, setUserPassword] = React.useState("");

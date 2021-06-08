@@ -9,8 +9,8 @@ import {
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const CustomSidebarMenu = (props) => {
-    // const backgroundColor = useSelector((state) => state.theme.theme.TAB);
-    // const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
+    // const backgroundColor = useSelector((state) => state.theme.theme.theme.TAB);
+    // const tabActiveColor = useSelector((state) => state.theme.theme.theme.TAB_ACTIVE);
     return (
         <View style={stylesSidebar.sideMenuContainer}>
             <View style={stylesSidebar.profileHeader}>
