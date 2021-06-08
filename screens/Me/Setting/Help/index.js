@@ -9,7 +9,7 @@ const HelpScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Card>
+        <Card containerStyle={styles.card}>
           <Card.Title>Câu hỏi thường gặp</Card.Title>
           <View>
             <List listData={cauhoi}></List>
@@ -22,8 +22,8 @@ const HelpScreen = () => {
 
 const styles = StyleSheet.create({
   card: {
-    height: 200,
-    borderRadius: 16,
+    borderRadius: 8,
+    marginBottom: 14,
   },
 });
 
