@@ -32,6 +32,7 @@ import ServiceScreen from "../Me/Service";
 import TenScreen from "../Me/Setting/Profile/Ten";
 import PassScreen from "../Me/Setting/Profile/MatKhau";
 import PhoneScreen from "../Me/Setting/Profile/NumberPhone";
+import EmailScreen from "../Me/Setting/Profile/Email";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 
@@ -275,6 +276,13 @@ const homeScreenStack = ({ navigation, route }) => {
         component={PhoneScreen}
         options={{
           title: "Số điện thoại", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="EmailScreen"
+        component={EmailScreen}
+        options={{
+          title: "Email", //Set Header Title
         }}
       />
     </Stack.Navigator>

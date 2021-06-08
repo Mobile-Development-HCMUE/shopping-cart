@@ -27,6 +27,7 @@ const ListData4 = [
     icon: "mail-outline",
     type: "ionicon",
     color: "#e84545",
+    link: "EmailScreen",
   },
   {
     title: "Ngày sinh",
