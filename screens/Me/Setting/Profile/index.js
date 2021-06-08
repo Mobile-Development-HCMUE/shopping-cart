@@ -23,7 +23,7 @@ const ProfileScreen = () => {
     // console.log(avatar);
     useEffect(() => {
         (async () => {
-            const ref = firebase.storage().ref(user.id);
+            const ref = firebase.storage().ref("avatar/" + user.id);
             const url = await ref.getDownloadURL();
             setAvatar(url);
         })();
@@ -59,7 +59,10 @@ const ProfileScreen = () => {
 
         const response = await fetch(uri);
         const blob = await response.blob();
-        var ref = firebase.storage().ref().child(user.id);
+        var ref = firebase
+            .storage()
+            .ref()
+            .child("avatar/" + user.id);
         const snapshot = await ref.put(blob);
         const remoteUri = await snapshot.ref.getDownloadURL();
         // when we're done sending it, close and release the blob

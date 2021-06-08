@@ -40,7 +40,7 @@ const MeScreen = ({ navigation }) => {
 
     React.useEffect(() => {
         (async () => {
-            const ref = firebase.storage().ref(user.id);
+            const ref = firebase.storage().ref("avatar/" + user.id);
             const url = await ref.getDownloadURL();
             setAvatar(url);
         })();
