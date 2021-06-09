@@ -6,6 +6,8 @@
     "license": "MIT",
     "dependencies": {
         "faker": "^5.5.3",
-        "firebase": "^8.6.5"
+        "firebase": "^8.6.5",
+        "node-fetch": "^2.6.1",
+        "puppeteer-core": "^10.0.0"
     }
 }
