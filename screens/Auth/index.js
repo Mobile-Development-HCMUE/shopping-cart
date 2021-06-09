@@ -11,11 +11,19 @@ import { LinearGradient } from "expo-linear-gradient";
 const Stack = createStackNavigator();
 
 const Auth = () => {
-    const backgroundColor = useSelector((state) => state.theme.TAB);
-    const headerTitleColor = useSelector((state) => state.theme.HEADER_TITLE);
-    const leftHeaderColor = useSelector((state) => state.theme.HEADER_LEFT);
-    const rightHeaderColor = useSelector((state) => state.theme.HEADER_RIGHT);
-    const backButtonColor = useSelector((state) => state.theme.BACK_BUTTON);
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+    const headerTitleColor = useSelector(
+        (state) => state.theme.theme.HEADER_TITLE
+    );
+    const leftHeaderColor = useSelector(
+        (state) => state.theme.theme.HEADER_LEFT
+    );
+    const rightHeaderColor = useSelector(
+        (state) => state.theme.theme.HEADER_RIGHT
+    );
+    const backButtonColor = useSelector(
+        (state) => state.theme.theme.BACK_BUTTON
+    );
     return (
         <Stack.Navigator
             initialRouteName="LoginScreen"
@@ -48,7 +56,7 @@ const Auth = () => {
                 name="RegisterScreen"
                 component={RegisterScreen}
                 options={{
-                    title: "Register", //Set Header Title
+                    title: "Đăng kí", //Set Header Title
                     headerTintColor: "#fff", //Set Header text color
                     headerTitleStyle: {
                         fontWeight: "bold", //Set Header text style

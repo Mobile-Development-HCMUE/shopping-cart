@@ -27,7 +27,7 @@ const useInputState = (initialValue = "") => {
 };
 
 const RegisterScreen = (props) => {
-    const backgroundColor = useSelector((state) => state.theme.TAB);
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     const userName = useInputState();
     const userEmail = useInputState();
     const [userPassword, setUserPassword] = React.useState("");
@@ -42,23 +42,23 @@ const RegisterScreen = (props) => {
     const handleSubmitButton = () => {
         setErrortext("");
         if (!userName.value) {
-            alert("Vui lòng điền tên");
+            alert("Cảnh báo", "Vui lòng điền tên");
             return;
         }
         if (!userEmail.value) {
-            alert("Vui lòng đièn Email");
+            alert("Cảnh báo", "Vui lòng đièn Email");
             return;
         }
         if (!userPassword) {
-            alert("Vui lòng nhập mật khẩu");
+            alert("Cảnh báo", "Vui lòng nhập mật khẩu");
             return;
         }
         if (!reUserPassword) {
-            alert("Vui lòng nhập lại mật khẩu");
+            alert("Cảnh báo", "Vui lòng nhập lại mật khẩu");
             return;
         }
         if (userPassword != reUserPassword) {
-            alert("Mật khẩu nhập lại không giống");
+            alert("Cảnh báo", "Mật khẩu nhập lại không giống");
             return;
         }
         userName.onChangeText(userName.value.trim());

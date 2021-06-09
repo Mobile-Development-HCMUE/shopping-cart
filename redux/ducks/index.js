@@ -10,16 +10,22 @@ export const themeOptions = {
         BOTTOM_PROFILE: "#fff",
         HEADER_TITLE: "#fff",
         BACK_BUTTON: "#fff",
+        DRAWER: "#307e",
+        DRAWER_PROFILE: "#307e",
+        TEXT_DRAWER_OPTION: "#d8d8d8",
     },
     green: {
         TAB: "#2E8364",
         TAB_ACTIVE: "#fff",
-        HEADER_RIGHT: "#9ab3f5",
-        HEADER_LEFT: "#7579e7",
+        HEADER_RIGHT: "#d9f9f9",
+        HEADER_LEFT: "#36d6d4",
         TOP_PROFILE: "#D3c0f9",
         BOTTOM_PROFILE: "#fff",
         HEADER_TITLE: "#fff",
         BACK_BUTTON: "#fff",
+        DRAWER: "#5e8b7e",
+        DRAWER_PROFILE: "#39a6a3",
+        TEXT_DRAWER_OPTION: "#d8d8d8",
     },
 };
 
@@ -85,16 +91,15 @@ export const change_theme = (titleTheme) => ({
     theme: { ...themeOptions[titleTheme], ...themeColorButtonSetting.light },
 });
 
-export const themeReducer = (state = initialState.theme, action) => {
+export const themeReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_THEME:
-            console.log(action.theme.TAB, "success");
             return { ...state, theme: action.theme };
         default:
             return state;
     }
 };
 
-export default combineReducers({
+export const reducers = combineReducers({
     theme: themeReducer,
 });

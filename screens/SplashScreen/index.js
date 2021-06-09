@@ -52,7 +52,7 @@ const SplashScreen = ({ navigation }) => {
     //State for ActivityIndicator animation
     const [user, setUser] = useState(null);
     const [animating, setAnimating] = useState(true);
-    const backgroundColor = useSelector((state) => state.theme.TAB);
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     useEffect(() => {
         const usersRef = firebase.firestore().collection("users");
         firebase.auth().onAuthStateChanged((user) => {

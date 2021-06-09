@@ -46,11 +46,11 @@ const LoginScreen = ({ navigation }) => {
     const handleSubmitPress = () => {
         setErrortext("");
         if (!userEmail.value) {
-            alert("Vui lòng nhập Email");
+            alert("Cảnh báo", "Vui lòng nhập Email");
             return;
         }
         if (!userPassword) {
-            alert("Vui lòng nhập mật khẩu");
+            alert("Cảnh bảo", "Vui lòng nhập mật khẩu");
             return;
         }
         userEmail.onChangeText(userEmail.value.trim());

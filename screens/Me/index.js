@@ -30,9 +30,11 @@ const Stack = createStackNavigator();
 const MeScreen = ({ navigation }) => {
     const [userID, setUserID] = React.useState("");
     const [userName, setUserName] = React.useState("");
-    const topProfileColor = useSelector((state) => state.theme.TOP_PROFILE);
+    const topProfileColor = useSelector(
+        (state) => state.theme.theme.TOP_PROFILE
+    );
     const bottomProfileColor = useSelector(
-        (state) => state.theme.BOTTOM_PROFILE
+        (state) => state.theme.theme.BOTTOM_PROFILE
     );
     const [avatar, setAvatar] = React.useState(null);
     const user = React.useContext(UserContext);
@@ -40,7 +42,7 @@ const MeScreen = ({ navigation }) => {
 
     React.useEffect(() => {
         (async () => {
-            const ref = firebase.storage().ref(user.id);
+            const ref = firebase.storage().ref("avatar/" + user.id);
             const url = await ref.getDownloadURL();
             setAvatar(url);
         })();
@@ -55,7 +57,7 @@ const MeScreen = ({ navigation }) => {
                 });
             })
             .catch((error) => {
-                console.error(error);
+                console.log(error);
             });
     });
 

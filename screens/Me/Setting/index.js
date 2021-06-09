@@ -9,12 +9,12 @@ import { useNavigation } from "@react-navigation/native";
 
 const SettingScreen = () => {
     const navigation = useNavigation();
-    const buttonLogoutColor = useSelector((state) => state.theme.TAB);
+    const buttonLogoutColor = useSelector((state) => state.theme.theme.TAB);
     const leftBackgroundButton = useSelector(
-        (state) => state.theme.HEADER_LEFT
+        (state) => state.theme.theme.HEADER_LEFT
     );
     const rightBackgroundButton = useSelector(
-        (state) => state.theme.HEADER_RIGHT
+        (state) => state.theme.theme.HEADER_RIGHT
     );
     const [visible, setVisible] = useState(false);
 
@@ -24,9 +24,15 @@ const SettingScreen = () => {
     let count = 0;
     ListData.map((item, i) => {
         item.content.map((items, j) => {
-            items.COLOR1 = useSelector((state) => state.theme[count].COLOR1);
-            items.COLOR2 = useSelector((state) => state.theme[count].COLOR2);
-            items.COLOR3 = useSelector((state) => state.theme[count].COLOR3);
+            items.COLOR1 = useSelector(
+                (state) => state.theme.theme[count].COLOR1
+            );
+            items.COLOR2 = useSelector(
+                (state) => state.theme.theme[count].COLOR2
+            );
+            items.COLOR3 = useSelector(
+                (state) => state.theme.theme[count].COLOR3
+            );
             count++;
         });
     });

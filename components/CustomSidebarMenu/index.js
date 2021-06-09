@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, Alert, StyleSheet } from "react-native";
-
+import { View, Alert, StyleSheet } from "react-native";
+import { Text } from "react-native-elements";
 import {
     DrawerContentScrollView,
     DrawerItemList,
@@ -9,13 +9,29 @@ import {
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const CustomSidebarMenu = (props) => {
-    // const backgroundColor = useSelector((state) => state.theme.theme.TAB);
-    // const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
+    const drawerColor = useSelector((state) => state.theme.theme.DRAWER);
+    const drawerProfileColor = useSelector(
+        (state) => state.theme.theme.DRAWER_PROFILE
+    );
+    const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
+    const textDrawerOption = useSelector(
+        (state) => state.theme.theme.TEXT_DRAWER_OPTION
+    );
     return (
-        <View style={stylesSidebar.sideMenuContainer}>
-            <View style={stylesSidebar.profileHeader}>
+        <View
+            style={[
+                stylesSidebar.sideMenuContainer,
+                { backgroundColor: drawerColor },
+            ]}
+        >
+            <View
+                style={[
+                    stylesSidebar.profileHeader,
+                    { backgroundColor: drawerProfileColor },
+                ]}
+            >
                 <View style={stylesSidebar.profileHeaderPicCircle}>
-                    <Text style={{ fontSize: 25, color: "#307e" }}>
+                    <Text style={{ fontSize: 25, color: textDrawerOption }}>
                         {"About React".charAt(0)}
                     </Text>
                 </View>
@@ -27,22 +43,24 @@ const CustomSidebarMenu = (props) => {
                 <DrawerItemList {...props} />
                 <DrawerItem
                     label={({ color }) => (
-                        <Text style={{ color: "#d8d8d8" }}>Logout</Text>
+                        <Text style={{ color: textDrawerOption }}>
+                            Đăng xuất
+                        </Text>
                     )}
                     onPress={() => {
                         props.navigation.toggleDrawer();
                         Alert.alert(
-                            "Logout",
-                            "Are you sure? You want to logout?",
+                            "Đăng xuất?",
+                            "Bạn chắc chắn? Bạn vẫn muốn đăng xuất khi còn nhiều món hàng rẻ đẹp?",
                             [
                                 {
-                                    text: "Cancel",
+                                    text: "Trở lại mua tiếp",
                                     onPress: () => {
                                         return null;
                                     },
                                 },
                                 {
-                                    text: "Confirm",
+                                    text: "Đồng ý",
                                     onPress: () => {
                                         AsyncStorage.clear();
                                         props.navigation.replace("Auth");
@@ -64,7 +82,7 @@ const stylesSidebar = StyleSheet.create({
     sideMenuContainer: {
         width: "100%",
         height: "100%",
-        backgroundColor: "#307e",
+        backgroundColor: "#000",
         paddingTop: 40,
         color: "white",
     },
