@@ -4,56 +4,44 @@ import * as React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button, Icon, Badge } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-
+import { useSelector } from "react-redux";
 const RightButton = () => {
     const navigation = useNavigation();
+    const headercolor = useSelector((state) => state.theme.theme.HEADER_TITLE);
     return (
         <View style={styles.rightbutton}>
-            <Button
-                icon={
-                    <View>
-                        <Icon
-                            name="settings-outline"
-                            type="ionicon"
-                            size={24}
-                            color="#000"
-                        ></Icon>
-                    </View>
-                }
-                buttonStyle={styles.styleButton}
-                onPress={() => navigation.navigate("Setting")}
-            />
-            <Button
-                icon={
-                    <View>
-                        <Icon
-                            name="cart-outline"
-                            type="ionicon"
-                            size={24}
-                            color="#000"
-                        ></Icon>
-                        <Badge
-                            status="success"
-                            value="0"
-                            containerStyle={styles.Badge}
-                        />
-                    </View>
-                }
-                buttonStyle={styles.styleButton}
-                onPress={() => navigation.navigate("Theme")}
-            />
+            <Icon
+                name="settings"
+                type="ionicon"
+                size={24}
+                color={headercolor}
+                containerStyle={{ margin: 10 }}
+                onPress={() => {
+                    navigation.navigate("Setting");
+                }}
+            ></Icon>
+            <View style={{ margin: 10 }}>
+                <Icon
+                    name="cart"
+                    type="ionicon"
+                    size={24}
+                    color={headercolor}
+                ></Icon>
+                <Badge
+                    status="success"
+                    value="0"
+                    containerStyle={styles.Badge}
+                />
+            </View>
         </View>
     );
 };
 export default RightButton;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-    },
     rightbutton: {
         flexDirection: "row",
+        marginRight: 15,
     },
     styleButton: {
         margin: 4,
