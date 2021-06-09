@@ -10,9 +10,16 @@ import {
   Text,
 } from "@ui-kitten/components";
 import { View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const ServiceScreen = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const topProfileColor = useSelector((state) => state.theme.theme.TOP_PROFILE);
+  const bottomProfileColor = useSelector(
+    (state) => state.theme.theme.BOTTOM_PROFILE
+  );
   return (
     <TabView
       tabBarStyle={{ height: 50 }}

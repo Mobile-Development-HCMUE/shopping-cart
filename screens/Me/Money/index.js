@@ -2,16 +2,26 @@ import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { Button, Card, Icon } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
+import { LinearGradient } from "expo-linear-gradient";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const MoneyScreen = () => {
+  const topProfileColor = useSelector((state) => state.theme.theme.TOP_PROFILE);
+  const bottomProfileColor = useSelector(
+    (state) => state.theme.theme.BOTTOM_PROFILE
+  );
   return (
     <SafeAreaView>
-      <ScrollView>
+      <LinearGradient
+        style={{ height: "100%" }}
+        colors={[topProfileColor, bottomProfileColor]}
+      >
         <Card containerStyle={styles.card}>
           <Card.Title></Card.Title>
           <View style={styles.containerButton}></View>
         </Card>
-      </ScrollView>
+      </LinearGradient>
     </SafeAreaView>
   );
 };
