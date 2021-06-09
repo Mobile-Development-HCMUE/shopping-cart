@@ -1,18 +1,23 @@
 const data = [
-  {
-    nhan: "Chờ xác nhận",
-  },
-  {
-    nhan: "Chờ vận chuyển",
-  },
-  {
-    nhan: "Đang giao hàng",
-  },
-  {
-    nhan: "Đã giao",
-  },
-  {
-    nhan: "Đã hủy",
-  },
+    {
+        key: "one",
+        title: "Chờ xác nhận",
+    },
+    {
+        key: "two",
+        title: "Chờ vận chuyển",
+    },
+    {
+        key: "three",
+        title: "Đang giao hàng",
+    },
+    {
+        key: "four",
+        title: "Đã giao",
+    },
+    {
+        key: "five",
+        title: "Đã hủy",
+    },
 ];
 export default data;

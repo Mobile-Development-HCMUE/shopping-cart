@@ -1,0 +1,11 @@
+{
+    "name": "GenerateData",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Phong",
+    "license": "MIT",
+    "dependencies": {
+        "faker": "^5.5.3",
+        "firebase": "^8.6.5"
+    }
+}
