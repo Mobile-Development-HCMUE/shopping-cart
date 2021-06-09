@@ -38,7 +38,7 @@ const url =
     new URLSearchParams({
         by: "relevancy",
         limit: "50",
-        keyword: "laptop",
+        keyword: "sách",
         newest: "0",
         order: "desc",
         page_type: "search",
@@ -63,23 +63,27 @@ fetch(url, {
     .then((data) => {
         Object.keys(data.items).map((u, i) => {
             let e = data.items[u].item_basic;
-            // console.log(e);
-            const j = {
-                itemid: e.itemid,
-                name: e.name,
-                image: "https://cf.shopee.vn/file/" + e.image + "_tn",
-                currency: e.currency,
-                liked_count: e.liked_count,
-                view_count: e.view_count,
-                price: e.price,
-                price_min: e.price_min,
-                price_max: e.price_max,
-                discount: e.discount,
-                item_rating: e.item_rating.rating_star,
-                rating_count: e.item_rating.rating_count,
-            };
+            delete e.label_ids;
+            // const j = {
+            //     itemid: e.itemid,
+            //     name: e.name,
+            //     image: e.image,
+            //     images: e.images,
+            //     currency: e.currency,
+            //     stock:e.stock,
+            //     ctime: e.ctime,
+            //     liked_count: e.liked_count,
+            //     view_count: e.view_count,
+            //     price: e.price,
+            //     price_min: e.price_min,
+            //     price_max: e.price_max,
+            //     discount: e.discount,
+            //     historical_sold: e.historical_sold;
+            //     item_rating: e.item_rating.rating_star,
+            //     rating_count: e.item_rating.rating_count,
+            // };
             // console.log(j);
-            res.push(j);
+            res.push(e);
         });
     })
     .then(() => {
@@ -88,9 +92,13 @@ fetch(url, {
             product
                 .add(u)
                 .then((docFef) => console.log("Document written success", i))
+
                 .catch((error) => {
                     console.error("Error adding document: ", error);
                 });
         });
+    })
+    .then(() => {
+        console.log("end");
     })
     .catch((error) => console.error("Error adding document: ", error));
