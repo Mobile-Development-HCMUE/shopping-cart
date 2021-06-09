@@ -1,6 +1,6 @@
 import { Button } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 const MainButton = ({ styleContainer, styleButton, title, onPress }) => {
     const leftColor = useSelector((state) => state.theme.theme.HEADER_LEFT);

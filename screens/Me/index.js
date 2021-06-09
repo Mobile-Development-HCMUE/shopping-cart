@@ -59,7 +59,7 @@ const MeScreen = ({ navigation }) => {
             .catch((error) => {
                 console.log(error);
             });
-    });
+    }, [2]);
 
     return (
         <ScrollView
