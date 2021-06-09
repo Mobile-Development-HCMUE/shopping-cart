@@ -11,7 +11,7 @@ export const themeOptions = {
     HEADER_TITLE: "#fff",
     BACK_BUTTON: "#fff",
     DRAWER: "#307e",
-    DRAWER_PROFILE: "#307e",
+    DRAWER_PROFILE: "#892cdc",
     TEXT_DRAWER_OPTION: "#307e",
   },
   orange: {
@@ -50,8 +50,8 @@ export const themeOptions = {
     HEADER_TITLE: "#fff",
     BACK_BUTTON: "#fff",
     DRAWER: "#150e56",
-    DRAWER_PROFILE: "#f55c47",
-    TEXT_DRAWER_OPTION: "#FFF",
+    DRAWER_PROFILE: "#77acf1",
+    TEXT_DRAWER_OPTION: "#150e56",
   },
   brown: {
     TAB: "#864000",
@@ -64,7 +64,7 @@ export const themeOptions = {
     BACK_BUTTON: "#fff",
     DRAWER: "#290001",
     DRAWER_PROFILE: "#87431d",
-    TEXT_DRAWER_OPTION: "#FFF",
+    TEXT_DRAWER_OPTION: "#290001",
   },
   black: {
     TAB: "#0b0b0d",
