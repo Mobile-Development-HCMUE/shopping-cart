@@ -26,13 +26,14 @@ const CardListHome = ({ listButton }) => {
             <View
                 style={{
                     flexDirection: "row",
-                    marginTop: 5,
+                    marginTop: 10,
                     borderRadius: 10,
                     justifyContent: "center",
                     width: "100%",
                     alignContent: "space-between",
                     backgroundColor: "#fff",
                     flex: 1,
+                    padding: 5,
                 }}
             >
                 {listButton.map((i, u) => (
