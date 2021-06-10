@@ -1,52 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import {
-  BottomNavigation,
-  BottomNavigationTab,
-  Icon,
-  Layout,
-  Tab,
-  TabView,
-  Text,
-} from "@ui-kitten/components";
+import { Icon, Layout, Text } from "@ui-kitten/components";
+import HomeScreen from "../../Home/index";
 import { View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import data from "./data";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { SceneMap } from "react-native-tab-view";
+import ScrollviewTab from "components/ScrollviewTab";
+import { LinearGradient } from "expo-linear-gradient";
+import { Button } from "react-native-elements";
 
-const ServiceScreen = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const topProfileColor = useSelector((state) => state.theme.theme.TOP_PROFILE);
-  const bottomProfileColor = useSelector(
-    (state) => state.theme.theme.BOTTOM_PROFILE
+const OneTab = () => {
+  const leftBackgroundButton = useSelector(
+    (state) => state.theme.theme.HEADER_LEFT
+  );
+  const rightBackgroundButton = useSelector(
+    (state) => state.theme.theme.HEADER_RIGHT
   );
   return (
-    <TabView
-      tabBarStyle={{ height: 50 }}
-      selectedIndex={selectedIndex}
-      onSelect={(index) => setSelectedIndex(index)}
-    >
-      <Tab title="Chưa thanh toán">
-        <Layout style={styles.tabContainer} level="1">
-          <Text category="h6">Chưa có đơn hàng</Text>
-        </Layout>
-      </Tab>
-      <Tab title="Đã thanh toán">
-        <Layout style={styles.tabContainer}>
-          <Text category="h6">Chưa có đơn hàng</Text>
-        </Layout>
-      </Tab>
-      <Tab title="Đã hoàn thành">
-        <Layout style={styles.tabContainer}>
-          <Text category="h6">Chưa có đơn hàng</Text>
-        </Layout>
-      </Tab>
-      <Tab style={{}} title="Đã hủy">
-        <Layout style={styles.tabContainer}>
-          <Text category="h6">Chưa có đơn hàng</Text>
-        </Layout>
-      </Tab>
-    </TabView>
+    <Layout style={styles.tabContainer} level="1">
+      <Text style={{ justifyContent: "center", marginTop: 8 }} category="h6">
+        Chưa có đơn hàng
+      </Text>
+      <Button
+        // onPress={toggleOverlay}
+        containerStyle={styles.ButtonContainerStyles}
+        buttonStyle={styles.ButtonStyles}
+        title="Mua ngay thôi!!!"
+        ViewComponent={LinearGradient}
+        linearGradientProps={{
+          colors: [leftBackgroundButton, rightBackgroundButton],
+          style: { flex: 1 },
+          start: { x: 0, y: 0 },
+          end: { x: 1, y: 0 },
+        }}
+      ></Button>
+    </Layout>
+  );
+};
+
+const renderScene = SceneMap({
+  one: OneTab,
+  two: OneTab,
+  three: OneTab,
+  four: OneTab,
+  five: OneTab,
+});
+
+const ServiceScreen = () => {
+  const navigation = useNavigation();
+  const leftBackgroundButton = useSelector(
+    (state) => state.theme.theme.HEADER_LEFT
+  );
+  const rightBackgroundButton = useSelector(
+    (state) => state.theme.theme.HEADER_RIGHT
+  );
+  const backgroundTab = useSelector((state) => state.theme.theme.TAB);
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState(data);
+
+  return (
+    <View style={{ height: "100%", flex: 1 }}>
+      <ScrollviewTab
+        index={index}
+        routes={routes}
+        setIndex={setIndex}
+        renderScene={renderScene}
+      ></ScrollviewTab>
+    </View>
   );
 };
 
@@ -55,6 +77,20 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
+    alignContent: "center",
+  },
+  ButtonContainerStyles: {
+    flex: 1,
+    justifyContent: "center",
+    marginBottom: 10,
+    marginLeft: 80,
+    marginRight: 80,
+    borderRadius: 20,
+    minHeight: 40,
+  },
+  ButtonStyles: {
+    minHeight: 40,
+    borderRadius: 20,
   },
 });
 export default ServiceScreen;
