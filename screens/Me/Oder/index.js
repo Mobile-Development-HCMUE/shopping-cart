@@ -21,7 +21,9 @@ const OneTab = () => {
     );
     return (
         <Layout style={styles.tabContainer} level="1">
-            <Text category="h6">Chưa có đơn hàng</Text>
+            <Text style={{ margin: 10 }} category="h6">
+                Chưa có đơn hàng
+            </Text>
             <Button
                 // onPress={toggleOverlay}
                 containerStyle={styles.ButtonContainerStyles}
