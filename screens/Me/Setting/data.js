@@ -33,7 +33,7 @@ const ListData = [
         link: "Privacy",
       },
       {
-        title: "Chế độ màu",
+        title: "Chủ đề",
         icon: "color-palette",
         type: "ionicon",
         link: "Theme",
