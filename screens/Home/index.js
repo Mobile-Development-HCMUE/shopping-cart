@@ -114,28 +114,24 @@ const HomeScreen = () => {
     }, []);
     // console.log(dataSource);
     return (
-        <SafeAreaView style={{}}>
-            <ScrollView
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
-            >
-                <SearchBar
-                    placeholder="Tìm kiếm thương hiệu, sản phẩm ở đây..."
-                    onChangeText={(text) => searchFilterFunction(text)}
-                    onClear={(text) => searchFilterFunction("")}
-                    lightTheme
-                    round
-                    inputContainerStyle={{ maxHeight: 50 }}
-                    searchIcon={{ size: 24 }}
-                    value={search}
-                />
-                <ListProduct ListData={dataSource} />
-            </ScrollView>
-        </SafeAreaView>
+        <ScrollView
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+        >
+            <StatusBar barStyle="#fff" />
+            <SearchBar
+                placeholder="Tìm kiếm thương hiệu, sản phẩm ở đây..."
+                onChangeText={(text) => searchFilterFunction(text)}
+                onClear={(text) => searchFilterFunction("")}
+                lightTheme
+                round
+                inputContainerStyle={{ maxHeight: 50 }}
+                searchIcon={{ size: 24 }}
+                value={search}
+            />
+            <ListProduct ListData={dataSource} />
+        </ScrollView>
     );
 };
 
