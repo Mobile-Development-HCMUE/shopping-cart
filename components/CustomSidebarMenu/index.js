@@ -8,6 +8,7 @@ import {
 } from "@react-navigation/drawer";
 import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Avatar from "../Avatar";
 const CustomSidebarMenu = (props) => {
     const drawerColor = useSelector((state) => state.theme.theme.DRAWER);
     const drawerProfileColor = useSelector(
@@ -17,6 +18,8 @@ const CustomSidebarMenu = (props) => {
     const textDrawerOption = useSelector(
         (state) => state.theme.theme.TEXT_DRAWER_OPTION
     );
+    const avatar = useSelector((state) => state.user.avatar);
+    const name = useSelector((state) => state.user.name);
     return (
         <View
             style={[
@@ -30,12 +33,8 @@ const CustomSidebarMenu = (props) => {
                     { backgroundColor: drawerProfileColor },
                 ]}
             >
-                <View style={stylesSidebar.profileHeaderPicCircle}>
-                    <Text style={{ fontSize: 25, color: textDrawerOption }}>
-                        {"About React".charAt(0)}
-                    </Text>
-                </View>
-                <Text style={stylesSidebar.profileHeaderText}>AboutReact</Text>
+                <Avatar src={avatar} />
+                <Text style={stylesSidebar.profileHeaderText}>{name}</Text>
             </View>
             <View style={stylesSidebar.profileHeaderLine} />
 

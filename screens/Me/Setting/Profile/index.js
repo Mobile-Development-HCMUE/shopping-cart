@@ -5,7 +5,8 @@ import List from "components/ListOptions/index.js";
 import { ListData3, ListData4 } from "./data.js";
 import Avatar from "components/Avatar";
 import { ImageBackground } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { change_avatar } from "reduxs";
 import { Text, Button as ButtonKitten } from "@ui-kitten/components";
 import { UserContext } from "contexts";
 import { firebase } from "../../../../firebase/config";
@@ -19,15 +20,11 @@ const ProfileScreen = () => {
     const [image, setImage] = useState(null);
     const [visible, setVisible] = useState(false);
     const [transferred, setTransferred] = useState(0);
-    const user = React.useContext(UserContext);
-    const [avatar, setAvatar] = useState(null);
+    const avatar = useSelector((state) => state.user.avatar);
+    const userid = useSelector((state) => state.user.id);
+    const dispatch = useDispatch();
     // console.log(avatar);
     useEffect(() => {
-        (async () => {
-            const ref = firebase.storage().ref("avatar/" + user.id);
-            const url = await ref.getDownloadURL();
-            setAvatar(url);
-        })();
         (async () => {
             if (Platform.OS !== "web") {
                 const { status } =
@@ -63,7 +60,7 @@ const ProfileScreen = () => {
         var ref = firebase
             .storage()
             .ref()
-            .child("avatar/" + user.id);
+            .child("avatar/" + userid);
         const snapshot = await ref.put(blob);
         const remoteUri = await snapshot.ref.getDownloadURL();
         // when we're done sending it, close and release the blob
@@ -77,7 +74,7 @@ const ProfileScreen = () => {
             setLoading(true);
             const res = await uploadImageAsync(image);
             console.log(avatar != res ? "true" : "false");
-            setAvatar(res);
+            dispatch(change_avatar(res));
             setLoading(false);
             setVisible(false);
         } catch (error) {

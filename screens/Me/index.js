@@ -21,39 +21,16 @@ import { firebase } from "../../firebase/config";
 const Stack = createStackNavigator();
 
 const MeScreen = ({ navigation }) => {
-    const [userID, setUserID] = React.useState("");
-    const [userName, setUserName] = React.useState("");
+    const userID = useSelector((state) => state.user.id);
+    const userName = useSelector((state) => state.user.name);
+    const avatar = useSelector((state) => state.user.avatar);
     const topProfileColor = useSelector(
         (state) => state.theme.theme.TOP_PROFILE
     );
     const bottomProfileColor = useSelector(
         (state) => state.theme.theme.BOTTOM_PROFILE
     );
-    const [avatar, setAvatar] = React.useState(null);
-    const user = React.useContext(UserContext);
-    const users = firebase.firestore().collection("users");
-
-    React.useEffect(() => {
-        (async () => {
-            console.log("Me: get avatar");
-            const ref = firebase.storage().ref("avatar/" + user.id);
-            const url = await ref.getDownloadURL();
-            setAvatar(url);
-        })();
-        users
-            .where("id", "==", user.id)
-            .get()
-            .then((query) => {
-                query.forEach((doc) => {
-                    const res = doc.data();
-                    setUserName(res.name);
-                    // console.log("success", res);
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [2]);
+    React.useEffect(() => {}, [2]);
 
     return (
         <ScrollView

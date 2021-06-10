@@ -156,7 +156,7 @@ const user = {
 };
 
 const initialStateUser = {
-    info: user,
+    user,
 };
 
 export const CHANGE_THEME = "CHANGE_THEME";
@@ -171,17 +171,17 @@ export const change_theme = (titleTheme) => ({
 
 export const change_id = (id) => ({
     type: CHANGE_ID,
-    info: { userid: id, name: user.name, avatar: user.avatar },
+    info: id,
 });
 
 export const change_avatar = (img) => ({
     type: CHANGE_AVATAR,
-    info: { userid: user.userid, name: user.name, avatar: img },
+    info: img,
 });
 
 export const change_name = (name) => ({
     type: CHANGE_NAME,
-    info: { userid: user.userid, name: name, avatar: user.avatar },
+    info: name,
 });
 
 export const themeReducer = (state = initialState, action) => {
@@ -196,11 +196,14 @@ export const themeReducer = (state = initialState, action) => {
 export const userReducer = (state = initialStateUser, action) => {
     switch (action.type) {
         case CHANGE_ID:
-            return { ...state, info: action.info };
+            console.log("change id");
+            return { ...state, id: action.info };
         case CHANGE_AVATAR:
-            return { ...state, info: action.info };
+            console.log("change avatar");
+            return { ...state, avatar: action.info };
         case CHANGE_NAME:
-            return { ...state, info: action.info };
+            console.log("change name");
+            return { ...state, name: action.info };
         default:
             return state;
     }

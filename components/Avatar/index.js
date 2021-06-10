@@ -4,16 +4,16 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
 
-const AvatarCustom = ({ src }) => {
+const AvatarCustom = (props) => {
     return (
         <Avatar
             rounded
             size="large"
             title="LW"
             source={{
-                uri: src,
+                uri: props.src,
             }}
-            onPress={() => console.log("Works!")}
+            onPress={() => console.log(src)}
             activeOpacity={0.7}
             containerStyle={styles.Avatar}
         />

@@ -30,7 +30,7 @@ const Footer = (props) => {
     return (
         <ActivityIndicator
             size="large"
-            animating={props.loading}
+            animating={!props.loading}
             color={backgroundColor}
         />
     );

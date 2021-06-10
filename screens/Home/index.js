@@ -8,6 +8,7 @@ import { firebase } from "../../firebase/config";
 import ListProduct from "components/ListProduct";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "../../components/SearchBar";
+import { useSelector, useDispatch } from "react-redux";
 import data from "../Home/data";
 
 const Stack = createStackNavigator();
@@ -27,6 +28,8 @@ const HomeScreen = () => {
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
     const [dataSource, setDataSource] = useState([]);
+    const dispatch = useDispatch();
+    const userid = useSelector((state) => state.user);
     const searchFilterFunction = (text) => {
         // Check if searched text is not blank
         if (text) {
@@ -52,7 +55,7 @@ const HomeScreen = () => {
     const db = firebase.firestore();
     const first = db.collection("product").orderBy("itemid").limit(10);
     const [lastVisible, setLastVisible] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const getNext = async () => {
         console.log("Is loading", isLoading);
         if (!isLoading) {
@@ -137,6 +140,7 @@ const HomeScreen = () => {
                         newList = newList.concat(j);
                         // console.log(newList);
                         setDataSource(newList);
+                        setIsLoading(false);
                         // console.log("last visiable:", lastVisible);
                     });
                 })
@@ -144,6 +148,13 @@ const HomeScreen = () => {
                     console.log("Error getting documents: ", error);
                 });
         })();
+        console.log(userid);
+        // (async () => {
+        //     console.log("Home: get avatar");
+        //     const ref = firebase.storage().ref("avatar/" + userid);
+        //     const url = await ref.getDownloadURL();
+        //     setAvatar(url);
+        // })();
     }, []);
     return (
         <>
