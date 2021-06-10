@@ -40,6 +40,10 @@ const ListProduct = (props) => {
     const margin = 10;
     const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     // const ITEM_HEIGHT = 200;
+    function currencyFormat(num) {
+        return "₫" + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }
+
     return (
         <FlatList
             ListHeaderComponent={
@@ -62,7 +66,7 @@ const ListProduct = (props) => {
                     props.onEndReached();
                 })();
             }}
-            onEndReachedThreshold={5}
+            onEndReachedThreshold={3}
             refreshControl={
                 <RefreshControl
                     colors={["#9Bd35A", "#689F38"]}
@@ -123,10 +127,14 @@ const ListProduct = (props) => {
                                     color: "#999",
                                 }}
                             >
-                                {item.moneyOld}
+                                {item.price_before_discount != null
+                                    ? currencyFormat(
+                                          item.price_before_discount / 100000
+                                      )
+                                    : ""}
                             </Text>
                             <Text style={{ color: "#f54748" }}>
-                                {item.price_min}
+                                {currencyFormat(item.price / 100000)}
                             </Text>
                         </View>
                         <Text style={{ alignSelf: "flex-end", fontSize: 10 }}>

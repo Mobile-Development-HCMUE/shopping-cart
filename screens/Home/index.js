@@ -129,7 +129,7 @@ const HomeScreen = () => {
                             liked_count: e.liked_count,
                             view_count: e.view_count,
                             price: e.price,
-
+                            price_before_discount: e.price_before_discount,
                             price_min: e.price_min,
                             price_max: e.price_max,
                             discount: e.discount,
@@ -148,7 +148,7 @@ const HomeScreen = () => {
                     console.log("Error getting documents: ", error);
                 });
         })();
-        console.log(userid);
+        // console.log(userid);
         // (async () => {
         //     console.log("Home: get avatar");
         //     const ref = firebase.storage().ref("avatar/" + userid);
