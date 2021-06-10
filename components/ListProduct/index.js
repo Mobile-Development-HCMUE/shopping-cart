@@ -1,20 +1,55 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, FlatList } from "react-native";
+import {
+    StyleSheet,
+    View,
+    ScrollView,
+    FlatList,
+    RefreshControl,
+} from "react-native";
 import { Button, Card, Icon, Image } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
+import SearchBar from "../SearchBar";
+import CardList from "../CardListHome";
+const Header = (props) => {
+    return (
+        <>
+            <SearchBar
+                search={props.search}
+                searchFunciton={props.searchFunction}
+            />
+            <CardList listButton={props.listButton} />
+        </>
+    );
+};
 
-const ListProduct = ({ ListData }) => {
+const ListProduct = (props) => {
     const margin = 10;
     // const ITEM_HEIGHT = 200;
     return (
         <FlatList
+            ListHeaderComponent={
+                <Header
+                    search={props.search}
+                    searchFunciton={props.searchFunciton}
+                    listButton={props.listButton}
+                />
+            }
             columnWrapperStyle={{ justifyContent: "space-between" }}
             numColumns="2"
-            data={ListData}
+            data={props.ListData}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item, index) => item.itemid}
             columnWrapperStyle={styles.row}
+            refreshControl={
+                <RefreshControl
+                    colors={["#9Bd35A", "#689F38"]}
+                    refreshing={props.refreshing}
+                    onRefresh={() => {
+                        props.onRefresh();
+                    }}
+                />
+            }
             // getItemLayout={(data, index) => ({
             //     length: ITEM_HEIGHT,
             //     offset: ITEM_HEIGHT * index,

@@ -17,17 +17,22 @@ const CardListHome = ({ listButton }) => {
     );
     const navigation = useNavigation();
     return (
-        <ScrollView horizontal={true}>
+        <ScrollView
+            horizontal={true}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            style={styles.container}
+        >
             <View
                 style={{
                     flexDirection: "row",
                     marginTop: 5,
                     borderRadius: 10,
                     justifyContent: "center",
-                    height: "20%",
                     width: "100%",
                     alignContent: "space-between",
                     backgroundColor: "#fff",
+                    flex: 1,
                 }}
             >
                 {listButton.map((i, u) => (
@@ -90,5 +95,6 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         borderRadius: 31,
     },
+    container: { marginLeft: 10, marginRight: 10, borderRadius: 23 },
 });
 export default CardListHome;

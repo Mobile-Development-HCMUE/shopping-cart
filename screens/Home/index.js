@@ -1,12 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View, ScrollView, RefreshControl } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/Ionicons";
-import { Text, SearchBar } from "react-native-elements";
+import { Text } from "react-native-elements";
 import { firebase } from "../../firebase/config";
 import ListProduct from "components/ListProduct";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SearchBar from "../../components/SearchBar";
+import data from "../Home/data";
 
 const Stack = createStackNavigator();
 
@@ -114,24 +116,19 @@ const HomeScreen = () => {
     }, []);
     // console.log(dataSource);
     return (
-        <ScrollView
-            refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
-        >
+        <>
             <StatusBar barStyle="#fff" />
-            <SearchBar
-                placeholder="Tìm kiếm thương hiệu, sản phẩm ở đây..."
-                onChangeText={(text) => searchFilterFunction(text)}
-                onClear={(text) => searchFilterFunction("")}
-                lightTheme
-                round
-                inputContainerStyle={{ maxHeight: 50 }}
-                searchIcon={{ size: 24 }}
-                value={search}
+            {/* <SearchBar search={search} searchFunciton={searchFilterFunction} /> */}
+            <ListProduct
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                ListData={dataSource}
+                search={search}
+                searchFunciton={searchFilterFunction}
+                isSeach={true}
+                listButton={data}
             />
-            <ListProduct ListData={dataSource} />
-        </ScrollView>
+        </>
     );
 };
 

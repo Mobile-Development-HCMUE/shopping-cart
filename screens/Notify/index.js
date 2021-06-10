@@ -3,10 +3,11 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import CardListHome from "../../components/CardListHome/index";
-import data from "./data";
+// import data from "../Home/data";
 
 const NotifyScreen = () => {
-    return <CardListHome listButton={data}></CardListHome>;
+    return <View />;
+    // <CardListHome listButton={data}></CardListHome>;
 };
 
 const Notify = ({ navigation }) => {
