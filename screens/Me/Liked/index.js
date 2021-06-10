@@ -9,29 +9,31 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 const LikedScreen = () => {
-  const topProfileColor = useSelector((state) => state.theme.theme.TOP_PROFILE);
-  const bottomProfileColor = useSelector(
-    (state) => state.theme.theme.BOTTOM_PROFILE
-  );
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <LinearGradient
-        style={{ height: "100%" }}
-        colors={[topProfileColor, bottomProfileColor]}
-      >
-        <ListProduct ListData={users} />
-      </LinearGradient>
-    </SafeAreaView>
-  );
+    const topProfileColor = useSelector(
+        (state) => state.theme.theme.TOP_PROFILE
+    );
+    const bottomProfileColor = useSelector(
+        (state) => state.theme.theme.BOTTOM_PROFILE
+    );
+    return (
+        <SafeAreaView style={{ flex: 1 }}>
+            <LinearGradient
+                style={{ height: "100%" }}
+                colors={[topProfileColor, bottomProfileColor]}
+            >
+                <ListProduct ListData={users} />
+            </LinearGradient>
+        </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
-  card: {},
-  container: {
-    flexDirection: "row",
-    borderRadius: 16,
-    justifyContent: "space-between",
-  },
+    card: {},
+    container: {
+        flexDirection: "row",
+        borderRadius: 16,
+        justifyContent: "space-between",
+    },
 });
 
 export default LikedScreen;

@@ -42,6 +42,7 @@ const MeScreen = ({ navigation }) => {
 
     React.useEffect(() => {
         (async () => {
+            console.log("Me: get avatar");
             const ref = firebase.storage().ref("avatar/" + user.id);
             const url = await ref.getDownloadURL();
             setAvatar(url);
