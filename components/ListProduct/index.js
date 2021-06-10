@@ -41,6 +41,12 @@ const ListProduct = (props) => {
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item, index) => item.itemid}
             columnWrapperStyle={styles.row}
+            onEndReached={() => {
+                (async () => {
+                    props.onEndReached();
+                })();
+            }}
+            onEndReachedThreshold={5}
             refreshControl={
                 <RefreshControl
                     colors={["#9Bd35A", "#689F38"]}

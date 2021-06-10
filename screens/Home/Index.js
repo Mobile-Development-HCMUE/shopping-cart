@@ -50,37 +50,66 @@ const HomeScreen = () => {
         }
     };
     const db = firebase.firestore();
-    const first = db.collection("product").orderBy("itemid").limit(6);
-    // const getNext = async (next) => {
-    //     next.get()
-    //         .then((documentSnapshots) => {
-    //             // Get the last visible document
-    //             return (lastVisible =
-    //                 documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+    const first = db.collection("product").orderBy("itemid").limit(10);
+    const [lastVisible, setLastVisible] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const getNext = async () => {
+        console.log("Is loading", isLoading);
+        if (!isLoading) {
+            console.log("Is loading", isLoading);
+            db.collection("product")
+                .orderBy("itemid")
+                .startAfter(lastVisible)
+                .limit(10)
+                .get()
+                .then((query) => {
+                    console.log("start last", typeof lastVisible);
+                    setLastVisible(query.docs[query.docs.length - 1]);
+                    // console.log("new querry");
+                    let newList = dataSource;
+                    // console.log("success");
+                    query.forEach((doc) => {
+                        let e = doc.data();
+                        const j = {
+                            itemid: e.itemid,
+                            name: e.name,
+                            image: e.image,
+                            images: e.images,
+                            currency: e.currency,
+                            stock: e.stock,
+                            ctime: e.ctime,
+                            liked_count: e.liked_count,
+                            view_count: e.view_count,
+                            price: e.price,
 
-    //             // Construct a new query starting at this document,
-    //             // get the next 25 cities.
-    //         })
-    //         .then((lastVisible) => {
-    //             return (first = db
-    //                 .collection("cities")
-    //                 .orderBy("population")
-    //                 .startAfter(lastVisible)
-    //                 .limit(6));
-    //         })
-    //         .then((next) => {
-    //             next.get.then((data) => {
-    //                 const newList = dataSource.concat(data.data());
-    //                 setDataSource(newList);
-    //             });
-    //         });
-    // };
+                            price_min: e.price_min,
+                            price_max: e.price_max,
+                            discount: e.discount,
+                            historical_sold: e.historical_sold,
+                            item_rating: e.item_rating.rating_star,
+                            rating_count: e.item_rating.rating_count,
+                        };
+                        newList = newList.concat(j);
+                        // console.log(newList);
+                        setDataSource(newList);
+
+                        // console.log("last visiable:", lastVisible);
+                    });
+                    console.log("end last", typeof lastVisible);
+                    setIsLoading(false);
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+        }
+    };
     React.useEffect(() => {
         (async () => {
             await console.log("Home: get data");
             first
                 .get()
                 .then((query) => {
+                    setLastVisible(query.docs[query.docs.length - 1]);
                     // console.log("new querry");
                     let newList = [];
                     // console.log("success");
@@ -97,6 +126,7 @@ const HomeScreen = () => {
                             liked_count: e.liked_count,
                             view_count: e.view_count,
                             price: e.price,
+
                             price_min: e.price_min,
                             price_max: e.price_max,
                             discount: e.discount,
@@ -107,6 +137,7 @@ const HomeScreen = () => {
                         newList = newList.concat(j);
                         // console.log(newList);
                         setDataSource(newList);
+                        // console.log("last visiable:", lastVisible);
                     });
                 })
                 .catch((error) => {
@@ -114,7 +145,6 @@ const HomeScreen = () => {
                 });
         })();
     }, []);
-    // console.log(dataSource);
     return (
         <>
             <StatusBar barStyle="#fff" />
@@ -127,6 +157,7 @@ const HomeScreen = () => {
                 searchFunciton={searchFilterFunction}
                 isSeach={true}
                 listButton={data}
+                onEndReached={getNext}
             />
         </>
     );
