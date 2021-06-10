@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as eva from "@eva-design/eva";
 import {
     ApplicationProvider,
@@ -13,6 +13,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // import thunk from "redux-thunk";
 import { reducers } from "./redux/ducks";
@@ -43,30 +44,32 @@ const App0 = () => {
         <>
             <IconRegistry icons={EvaIconsPack} />
             <ApplicationProvider {...eva} theme={eva.light}>
-                <NavigationContainer>
-                    <Stack.Navigator initialRouteName="SplashScreen">
-                        {/* SplashScreen which will come once for 5 Seconds */}
-                        <Stack.Screen
-                            name="SplashScreen"
-                            component={SplashScreen}
-                            // Hiding header for Splash Screen
-                            options={{ headerShown: false }}
-                        />
-                        {/* Auth Navigator: Include Login and Signup */}
-                        <Stack.Screen
-                            name="Auth"
-                            component={Auth}
-                            options={{ headerShown: false }}
-                        />
-                        {/* Navigation Drawer as a landing page */}
-                        <Stack.Screen
-                            name="DrawerNavigationRoutes"
-                            component={DrawerNavigationRoutes}
-                            // Hiding header for Navigation Drawer
-                            options={{ headerShown: false }}
-                        />
-                    </Stack.Navigator>
-                </NavigationContainer>
+                <SafeAreaProvider>
+                    <NavigationContainer>
+                        <Stack.Navigator initialRouteName="SplashScreen">
+                            {/* SplashScreen which will come once for 5 Seconds */}
+                            <Stack.Screen
+                                name="SplashScreen"
+                                component={SplashScreen}
+                                // Hiding header for Splash Screen
+                                options={{ headerShown: false }}
+                            />
+                            {/* Auth Navigator: Include Login and Signup */}
+                            <Stack.Screen
+                                name="Auth"
+                                component={Auth}
+                                options={{ headerShown: false }}
+                            />
+                            {/* Navigation Drawer as a landing page */}
+                            <Stack.Screen
+                                name="DrawerNavigationRoutes"
+                                component={DrawerNavigationRoutes}
+                                // Hiding header for Navigation Drawer
+                                options={{ headerShown: false }}
+                            />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </SafeAreaProvider>
             </ApplicationProvider>
         </>
     );

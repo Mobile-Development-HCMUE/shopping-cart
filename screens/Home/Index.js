@@ -1,18 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {
-    StyleSheet,
-    View,
-    ScrollView,
-    SafeAreaView,
-    RefreshControl,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, View, ScrollView, RefreshControl } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Text, SearchBar } from "react-native-elements";
 import { firebase } from "../../firebase/config";
 import ListProduct from "components/ListProduct";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 const Stack = createStackNavigator();
 
 const wait = (timeout) => {
@@ -119,7 +114,7 @@ const HomeScreen = () => {
     }, []);
     // console.log(dataSource);
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{}}>
             <ScrollView
                 refreshControl={
                     <RefreshControl
@@ -149,12 +144,7 @@ const Home = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
+    container: { flex: 1, justifyContent: "center", alignItems: "center" },
 });
 
 export default Home;

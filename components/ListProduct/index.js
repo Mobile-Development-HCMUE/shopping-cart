@@ -1,11 +1,5 @@
 import React from "react";
-import {
-    StyleSheet,
-    View,
-    SafeAreaView,
-    ScrollView,
-    FlatList,
-} from "react-native";
+import { StyleSheet, View, ScrollView, FlatList } from "react-native";
 import { Button, Card, Icon, Image } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
 

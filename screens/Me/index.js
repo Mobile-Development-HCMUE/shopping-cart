@@ -1,14 +1,7 @@
 // In App.js in a new project
 
 import * as React from "react";
-import {
-    View,
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    Platform,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon, Image } from "react-native-elements";
 import { Text, Button } from "@ui-kitten/components";

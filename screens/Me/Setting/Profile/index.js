@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { Button, Card, Icon, Overlay, Image } from "react-native-elements";
 import List from "components/ListOptions/index.js";
 import { ListData3, ListData4 } from "./data.js";
@@ -11,6 +11,7 @@ import { UserContext } from "contexts";
 import { firebase } from "../../../../firebase/config";
 import * as ImagePicker from "expo-image-picker";
 import Loader from "components/Loader";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
     const [loading, setLoading] = useState(false);

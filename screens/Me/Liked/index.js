@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { Button, Card, Icon, Image } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
 import ListProduct from "components/ListProduct";
@@ -7,6 +7,7 @@ import users from "./data";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const LikedScreen = () => {
     const topProfileColor = useSelector(

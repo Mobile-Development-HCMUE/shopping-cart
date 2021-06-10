@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { Button, Card, Icon, ListItem } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
 import { List } from "components/ListOptions/index.js";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const LanguageScreen = () => {
     return (

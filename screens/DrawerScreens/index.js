@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon, Text } from "react-native-elements";
+import { StatusBar } from "react-native";
 // Import Navigators from React Navigation
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
