@@ -147,8 +147,6 @@ const HomeScreen = () => {
     }, []);
     return (
         <>
-            <StatusBar barStyle="#fff" />
-            {/* <SearchBar search={search} searchFunciton={searchFilterFunction} /> */}
             <ListProduct
                 refreshing={refreshing}
                 onRefresh={onRefresh}
@@ -158,6 +156,7 @@ const HomeScreen = () => {
                 isSeach={true}
                 listButton={data}
                 onEndReached={getNext}
+                loading={isLoading}
             />
         </>
     );

@@ -5,11 +5,14 @@ import {
     ScrollView,
     FlatList,
     RefreshControl,
+    ActivityIndicator,
 } from "react-native";
 import { Button, Card, Icon, Image } from "react-native-elements";
-import { Text } from "@ui-kitten/components";
+import { Text, Spinner } from "@ui-kitten/components";
 import SearchBar from "../SearchBar";
 import CardList from "../CardListHome";
+import { useSelector } from "react-redux";
+
 const Header = (props) => {
     return (
         <>
@@ -22,8 +25,20 @@ const Header = (props) => {
     );
 };
 
+const Footer = (props) => {
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+    return (
+        <ActivityIndicator
+            size="large"
+            animating={props.loading}
+            color={backgroundColor}
+        />
+    );
+};
+
 const ListProduct = (props) => {
     const margin = 10;
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     // const ITEM_HEIGHT = 200;
     return (
         <FlatList
@@ -34,6 +49,7 @@ const ListProduct = (props) => {
                     listButton={props.listButton}
                 />
             }
+            ListFooterComponent={<Footer loading={props.loading} />}
             columnWrapperStyle={{ justifyContent: "space-between" }}
             numColumns="2"
             data={props.ListData}
@@ -84,6 +100,12 @@ const ListProduct = (props) => {
                                     "_tn",
                             }}
                             resizeMode="cover"
+                            PlaceholderContent={
+                                <ActivityIndicator
+                                    size="large"
+                                    color={backgroundColor}
+                                />
+                            }
                         ></Image>
                         <View style={{ height: "22%", width: "110%" }}>
                             <Text>{item.name}</Text>
