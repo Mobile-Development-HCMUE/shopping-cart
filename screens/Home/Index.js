@@ -1,6 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import {
+    StyleSheet,
+    View,
+    ScrollView,
+    SafeAreaView,
+    RefreshControl,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -9,7 +15,17 @@ import { firebase } from "../../firebase/config";
 import ListProduct from "components/ListProduct";
 const Stack = createStackNavigator();
 
+const wait = (timeout) => {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 const HomeScreen = () => {
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
     const [search, setSearch] = useState("");
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
@@ -103,19 +119,28 @@ const HomeScreen = () => {
     }, []);
     // console.log(dataSource);
     return (
-        <ScrollView>
-            <SearchBar
-                placeholder="Tìm kiếm thương hiệu, sản phẩm ở đây..."
-                onChangeText={(text) => searchFilterFunction(text)}
-                onClear={(text) => searchFilterFunction("")}
-                lightTheme
-                round
-                inputContainerStyle={{ maxHeight: 50 }}
-                searchIcon={{ size: 24 }}
-                value={search}
-            />
-            <ListProduct ListData={dataSource} />
-        </ScrollView>
+        <SafeAreaView>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+                }
+            >
+                <SearchBar
+                    placeholder="Tìm kiếm thương hiệu, sản phẩm ở đây..."
+                    onChangeText={(text) => searchFilterFunction(text)}
+                    onClear={(text) => searchFilterFunction("")}
+                    lightTheme
+                    round
+                    inputContainerStyle={{ maxHeight: 50 }}
+                    searchIcon={{ size: 24 }}
+                    value={search}
+                />
+                <ListProduct ListData={dataSource} />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
