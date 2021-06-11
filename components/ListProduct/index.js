@@ -70,7 +70,7 @@ const ListProduct = (props) => {
                     props.onEndReached();
                 })();
             }}
-            onEndReachedThreshold={3}
+            onEndReachedThreshold={2}
             refreshControl={
                 <RefreshControl
                     colors={["#9Bd35A", "#689F38"]}

@@ -184,9 +184,10 @@ const homeScreenStack = ({ navigation, route }) => {
                 name="Detail"
                 component={DetailScreeen}
                 options={{
+                    headerShown: false,
                     title: "Chi tiết",
-                    headerTransparent: true,
                 }}
+                // screenOptions={{ headerTransparent: true }}
             />
             <Stack.Screen
                 name="Setting"

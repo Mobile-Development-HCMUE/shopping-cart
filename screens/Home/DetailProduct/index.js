@@ -6,10 +6,14 @@ import {
     View,
     Animated,
     ActivityIndicator,
+    StatusBar,
 } from "react-native";
-import { Image } from "react-native-elements";
+import { Image, Badge, Icon } from "react-native-elements";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text } from "@ui-kitten/components";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { royalblue } from "color-name";
+import { useSelector } from "react-redux";
 
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
@@ -25,8 +29,23 @@ const DetailScreeen = ({ route, navigation }) => {
     function currencyFormat(num) {
         return "₫" + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }
+    const headercolor = useSelector((state) => state.theme.theme.HEADER_TITLE);
     return (
         <View style={{ flex: 1 }}>
+            <StatusBar hidden />
+            <View style={styles.cart}>
+                <Icon
+                    name="cart"
+                    type="ionicon"
+                    size={24}
+                    color={headercolor}
+                ></Icon>
+                <Badge
+                    status="success"
+                    value="0"
+                    containerStyle={styles.Badge}
+                />
+            </View>
             <View style={{ height: ITEM_HEIGHT, overflow: "hidden" }}>
                 <Animated.FlatList
                     data={data.images}
@@ -138,6 +157,21 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: -DOT_SIZE / 2,
         left: -DOT_SIZE / 2,
+    },
+    cart: {
+        margin: 5,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: 25,
+        height: 25,
+        color: "#fff",
+    },
+    Badge: {
+        // backgroundColor: "#2E8364",
+        position: "absolute",
+        top: -8,
+        right: -9,
     },
 });
 
