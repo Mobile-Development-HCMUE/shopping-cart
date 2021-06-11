@@ -18,6 +18,7 @@ const OneTab = () => {
   const rightBackgroundButton = useSelector(
     (state) => state.theme.theme.HEADER_RIGHT
   );
+  const navigation = useNavigation();
   return (
     <Layout style={styles.tabContainer} level="1">
       <Text style={{ justifyContent: "center", marginTop: 8 }} category="h6">
@@ -27,7 +28,8 @@ const OneTab = () => {
         // onPress={toggleOverlay}
         containerStyle={styles.ButtonContainerStyles}
         buttonStyle={styles.ButtonStyles}
-        title="Mua ngay thôi!!!"
+        title="Mua thẻ ngay!!!"
+        onPress={() => navigation.navigate("card")}
         ViewComponent={LinearGradient}
         linearGradientProps={{
           colors: [leftBackgroundButton, rightBackgroundButton],
