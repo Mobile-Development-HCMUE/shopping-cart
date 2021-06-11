@@ -13,7 +13,6 @@ const AvatarCustom = (props) => {
             source={{
                 uri: props.src,
             }}
-            onPress={() => console.log(src)}
             activeOpacity={0.7}
             containerStyle={styles.Avatar}
         />
