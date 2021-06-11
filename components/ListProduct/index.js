@@ -85,6 +85,7 @@ const ListProduct = (props) => {
             // })}
             renderItem={({ item, index }) => (
                 <Pressable
+                    style={{ margin: 0, padding: 0, flex: 1 }}
                     onPress={() => {
                         navigation.navigate("Detail");
                     }}
