@@ -53,9 +53,11 @@ const OneTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>10.000</Text>
@@ -63,9 +65,11 @@ const OneTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>20.000</Text>
@@ -73,9 +77,11 @@ const OneTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>50.000</Text>
@@ -83,9 +89,11 @@ const OneTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>100.000</Text>
@@ -93,9 +101,11 @@ const OneTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>200.000</Text>
@@ -103,9 +113,11 @@ const OneTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>500.000</Text>
@@ -206,9 +218,11 @@ const TwoTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>10.000</Text>
@@ -216,9 +230,11 @@ const TwoTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>20.000</Text>
@@ -226,9 +242,11 @@ const TwoTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>50.000</Text>
@@ -236,9 +254,11 @@ const TwoTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>100.000</Text>
@@ -246,9 +266,11 @@ const TwoTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>200.000</Text>
@@ -256,9 +278,11 @@ const TwoTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
             wrapperStyle={{
               alignItems: "center",
+              borderRadius: 16,
             }}
           >
             <Text>500.000</Text>
@@ -362,6 +386,7 @@ const ThreeTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
           >
             <View
@@ -376,6 +401,7 @@ const ThreeTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
           >
             <View
@@ -389,6 +415,7 @@ const ThreeTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
           >
             <View
@@ -403,6 +430,7 @@ const ThreeTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
           >
             <View
@@ -417,6 +445,7 @@ const ThreeTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
           >
             <View
@@ -431,6 +460,7 @@ const ThreeTab = () => {
           <Card
             containerStyle={{
               width: "40%",
+              borderRadius: 16,
             }}
           >
             <View
