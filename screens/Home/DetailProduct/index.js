@@ -47,7 +47,8 @@ const DetailScreeen = ({ route, navigation }) => {
                                         uri:
                                             "https://cf.shopee.vn/file/" + item,
                                     }}
-                                    style={styles.image}
+                                    containerStyle={styles.image}
+                                    transition
                                     // PlaceholderContent={<ActivityIndicator />}
                                 />
                             </View>
@@ -114,7 +115,7 @@ const DetailScreeen = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    image: { width: ITEM_WIDTH, height: ITEM_HEIGHT, resizeMode: "cover" },
+    image: { width: ITEM_WIDTH, height: ITEM_HEIGHT },
     pagination: {
         position: "absolute",
         top: ITEM_WIDTH / 2,
