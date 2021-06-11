@@ -6,12 +6,14 @@ import {
     FlatList,
     RefreshControl,
     ActivityIndicator,
+    Pressable,
 } from "react-native";
 import { Button, Card, Icon, Image } from "react-native-elements";
 import { Text, Spinner } from "@ui-kitten/components";
 import SearchBar from "../SearchBar";
 import CardList from "../CardListHome";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = (props) => {
     return (
@@ -43,7 +45,7 @@ const ListProduct = (props) => {
     function currencyFormat(num) {
         return "₫" + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }
-
+    const navigation = useNavigation();
     return (
         <FlatList
             ListHeaderComponent={
@@ -82,67 +84,76 @@ const ListProduct = (props) => {
             //     index,
             // })}
             renderItem={({ item, index }) => (
-                <Card
-                    key={item.key}
-                    containerStyle={{
-                        flex: 1,
-                        marginLeft: index % 2 == 0 ? margin : margin / 2,
-                        marginRight: index % 2 == 0 ? margin / 2 : margin,
-                        marginTop:
-                            index == 0 || index == 1 ? margin : margin / 2,
-                        marginBottom: margin / 2,
+                <Pressable
+                    onPress={() => {
+                        navigation.navigate("Detail");
                     }}
-                    wrapperStyle={{ alignContent: "center" }}
                 >
-                    <View style={{ alignContent: "center" }}>
-                        <Image
-                            style={{ width: "100%", minHeight: 150 }}
-                            source={{
-                                uri:
-                                    "https://cf.shopee.vn/file/" +
-                                    item.image +
-                                    "_tn",
-                            }}
-                            resizeMode="cover"
-                            PlaceholderContent={
-                                <ActivityIndicator
-                                    size="large"
-                                    color={backgroundColor}
-                                />
-                            }
-                        ></Image>
-                        <View style={{ height: "22%", width: "110%" }}>
-                            <Text>{item.name}</Text>
-                        </View>
+                    <Card
+                        key={item.key}
+                        containerStyle={{
+                            flex: 1,
+                            marginLeft: index % 2 == 0 ? margin : margin / 2,
+                            marginRight: index % 2 == 0 ? margin / 2 : margin,
+                            marginTop:
+                                index == 0 || index == 1 ? margin : margin / 2,
+                            marginBottom: margin / 2,
+                        }}
+                        wrapperStyle={{ alignContent: "center" }}
+                    >
+                        <View style={{ alignContent: "center" }}>
+                            <Image
+                                style={{ width: "100%", minHeight: 150 }}
+                                source={{
+                                    uri:
+                                        "https://cf.shopee.vn/file/" +
+                                        item.image +
+                                        "_tn",
+                                }}
+                                resizeMode="cover"
+                                PlaceholderContent={
+                                    <ActivityIndicator
+                                        size="large"
+                                        color={backgroundColor}
+                                    />
+                                }
+                            ></Image>
+                            <View style={{ height: "22%", width: "110%" }}>
+                                <Text>{item.name}</Text>
+                            </View>
 
-                        <View
-                            style={{
-                                flexDirection: "row",
-                                justifyContent: "space-around",
-                            }}
-                        >
-                            <Text
+                            <View
                                 style={{
-                                    textDecorationLine: "line-through",
-                                    color: "#999",
+                                    flexDirection: "row",
+                                    justifyContent: "space-around",
                                 }}
                             >
-                                {item.price_before_discount != null
-                                    ? currencyFormat(
-                                          item.price_before_discount / 100000
-                                      )
-                                    : ""}
-                            </Text>
-                            <Text style={{ color: "#f54748" }}>
-                                {currencyFormat(item.price / 100000)}
+                                <Text
+                                    style={{
+                                        textDecorationLine: "line-through",
+                                        color: "#999",
+                                    }}
+                                >
+                                    {item.price_before_discount != null
+                                        ? currencyFormat(
+                                              item.price_before_discount /
+                                                  100000
+                                          )
+                                        : ""}
+                                </Text>
+                                <Text style={{ color: "#f54748" }}>
+                                    {currencyFormat(item.price / 100000)}
+                                </Text>
+                            </View>
+                            <Text
+                                style={{ alignSelf: "flex-end", fontSize: 10 }}
+                            >
+                                {" "}
+                                Đã bán {item.historical_sold}
                             </Text>
                         </View>
-                        <Text style={{ alignSelf: "flex-end", fontSize: 10 }}>
-                            {" "}
-                            Đã bán {item.historical_sold}
-                        </Text>
-                    </View>
-                </Card>
+                    </Card>
+                </Pressable>
             )}
         />
     );
