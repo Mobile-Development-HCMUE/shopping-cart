@@ -138,7 +138,9 @@ const HomeScreen = () => {
                             rating_count: e.item_rating.rating_count,
                         };
                         newList = newList.concat(j);
-                        // console.log(newList);
+                        console.log(
+                            "https://cf.shopee.vn/file/" + e.image + "_tn"
+                        );
                         setDataSource(newList);
                         setIsLoading(false);
                         // console.log("last visiable:", lastVisible);
