@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Dimensions, FlatList, View, Animated } from "react-native";
+import {
+    StyleSheet,
+    Dimensions,
+    FlatList,
+    View,
+    Animated,
+    ActivityIndicator,
+} from "react-native";
 import { Image } from "react-native-elements";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text } from "@ui-kitten/components";
@@ -41,6 +48,7 @@ const DetailScreeen = ({ route, navigation }) => {
                                             "https://cf.shopee.vn/file/" + item,
                                     }}
                                     style={styles.image}
+                                    PlaceholderContent={<ActivityIndicator />}
                                 />
                             </View>
                         );
@@ -74,11 +82,14 @@ const DetailScreeen = ({ route, navigation }) => {
                 </View>
             </View>
             <BottomSheet
+                style={{
+                    elevation: 100,
+                }}
                 initialSnapIndex={0}
                 snapPoints={[height - ITEM_HEIGHT, height]}
             >
                 <BottomSheetScrollView
-                    style={{ backgroundColor: "white" }}
+                    style={{ backgroundColor: "#fff" }}
                     contentContainerStyle={{ padding: 20 }}
                 >
                     <Text>{data.name}</Text>
@@ -86,7 +97,13 @@ const DetailScreeen = ({ route, navigation }) => {
                         {currencyFormat(data.price / 100000)}
                     </Text>
                     <View style={{ marginVertical: 20 }}>
-                        <Text style={{ marginBottom: 10, lineHeight: 22 }}>
+                        <Text
+                            style={{
+                                marginBottom: 10,
+                                lineHeight: 22,
+                                color: "#000",
+                            }}
+                        >
                             {data.description}
                         </Text>
                     </View>

@@ -13,6 +13,7 @@ const SeachBar = (props) => {
             onClear={(text) => props.searchFunciton("")}
             lightTheme
             round
+            platform="ios"
             inputContainerStyle={{ maxHeight: 50 }}
             searchIcon={{ size: 24 }}
             value={props.search}
