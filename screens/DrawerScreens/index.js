@@ -184,10 +184,30 @@ const homeScreenStack = ({ navigation, route }) => {
                 name="Detail"
                 component={DetailScreeen}
                 options={{
-                    headerShown: false,
+                    // headerShown: false,
                     title: "Chi tiết",
+                    RightButton: () => (
+                        <View>
+                            <Icon
+                                name="cart"
+                                type="ionicon"
+                                size={24}
+                                color={headerTitleColor}
+                            ></Icon>
+                            <Badge
+                                status="success"
+                                value="0"
+                                containerStyle={{
+                                    backgroundColor: "#2E8364",
+                                    position: "absolute",
+                                    top: -8,
+                                    right: -9,
+                                }}
+                            />
+                        </View>
+                    ),
                 }}
-                // screenOptions={{ headerTransparent: true }}
+                screenOptions={{ headerTransparent: true }}
             />
             <Stack.Screen
                 name="Setting"
