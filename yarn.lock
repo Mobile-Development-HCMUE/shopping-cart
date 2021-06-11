@@ -6161,6 +6161,13 @@ react-native-svg@12.1.0:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"
 
+react-native-tab-view@^1.0.2:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-1.4.1.tgz#f113cd87485808f0c991abec937f70fa380478b9"
+  integrity sha512-Bke8KkDcDhvB/z0AS7MnQKMD2p6Kwfc1rSKlMOvg9CC5CnClQ2QEnhPSbwegKDYhUkBI92iH/BYy7hNSm5kbUQ==
+  dependencies:
+    prop-types "^15.6.1"
+
 react-native-tab-view@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-3.0.1.tgz#7ed8c5c4a0bb48fa8895e612d26e6d545ed03447"
@@ -6179,6 +6186,13 @@ react-native-vector-icons@^8.1.0:
     lodash.template "^4.5.0"
     prop-types "^15.7.2"
     yargs "^16.1.1"
+
+react-native-vertical-tab-view@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-vertical-tab-view/-/react-native-vertical-tab-view-0.1.3.tgz#415d53411bb2ab43a91cafc1391edae3cf22e48a"
+  integrity sha512-0WCE865MyrUmTz6KkYcDvCE754CG+JtS/raGbsbWeMO+eRhDz5ZvvlkTcJJB2ap/xqAAcmTbnAHS8GrOzHtHlQ==
+  dependencies:
+    react-native-tab-view "^1.0.2"
 
 react-native-web@~0.13.12:
   version "0.13.18"

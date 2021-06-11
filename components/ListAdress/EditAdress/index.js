@@ -9,11 +9,9 @@ import {
   Text,
 } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
-
 const data = ["Nhà", "Trường học", "Nơi làm việc", "Khác"];
 
-const ListAdress = ({ ListData }) => {
-  const navigation = useNavigation();
+const EditAddress = ({ ListData }) => {
   const margin = 10;
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
   const displayValue = data[selectedIndex.row];
@@ -60,16 +58,6 @@ const ListAdress = ({ ListData }) => {
                   {data.map(renderOption)}
                 </Select>
               </Layout>
-              <Button
-                containerStyle={styles.container1}
-                buttonStyle={styles.Style}
-                title="Chỉnh sửa"
-                onPress={() => {
-                  if (typeof item.link === "undefined") {
-                    console.log("Null");
-                  } else navigation.navigate(item.link);
-                }}
-              />
             </View>
             <View
               style={{
@@ -143,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListAdress;
+export default EditAddress;

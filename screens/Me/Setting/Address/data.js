@@ -5,6 +5,7 @@ const data = [
     phuong: "Tân Quý",
     quan: "Tân Phú",
     tp: "Hồ Chí Minh",
+    link: "input",
   },
   {
     sonha: "39",
@@ -12,6 +13,7 @@ const data = [
     phuong: "Sơn Kỳ",
     quan: "Tân Phú",
     tp: "Hồ Chí Minh",
+    link: "input",
   },
   {
     sonha: "39",
@@ -19,6 +21,7 @@ const data = [
     phuong: "Sơn Kỳ",
     quan: "Tân Phú",
     tp: "Hồ Chí Minh",
+    link: "input",
   },
 ];
 export default data;

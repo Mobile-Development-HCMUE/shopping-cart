@@ -37,6 +37,7 @@ import EmailScreen from "../Me/Setting/Profile/Email";
 import DateScreen from "../Me/Setting/Profile/Date";
 import GioiTinhScreen from "../Me/Setting/Profile/GioiTinh";
 import CardScreen from "../Me/Service/Card";
+import EditScreen from "../Me/Setting/Address/EditAdress";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 import DetailScreeen from "../Home/DetailProduct";
@@ -45,381 +46,367 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const getHeaderTitle = (route, navigation) => {
-    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
-    switch (routeName) {
-        case "Home":
-            return "Trang chủ";
-        case "Notify":
-            return "Thông báo";
-        case "Me":
-            return "Tôi";
-    }
+  const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
+  switch (routeName) {
+    case "Home":
+      return "Trang chủ";
+    case "Notify":
+      return "Thông báo";
+    case "Me":
+      return "Tôi";
+  }
 };
 
 const Tab = createMaterialBottomTabNavigator();
 const HomeTab = ({ navigation, route }) => {
-    React.useLayoutEffect(() => {
-        const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
-        navigation.setOptions({
-            headerRight: (props) => {
-                switch (routeName) {
-                    case "Me":
-                        return <RightButton />;
-                    default:
-                        return;
-                }
-            },
-        });
-    }, [navigation, route]);
-    const userId = route.params;
-    // console.log(userId);
-    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
-    const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
-    return (
-        <Tab.Navigator
-            initialRouteName="Home"
-            tabBarOptions={{
-                activeTintColor: tabActiveColor,
-            }}
-            barStyle={{ backgroundColor: backgroundColor }}
-        >
-            <Tab.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{
-                    title: "Trang chủ",
-                    tabBarIcon: ({ color }) => (
-                        <Icon
-                            name="home"
-                            type="ionicon"
-                            color={color}
-                            size={24}
-                        />
-                    ),
-                }}
-            />
-            <Tab.Screen
-                name="Notify"
-                component={NotifyScreen}
-                options={{
-                    title: "Thông báo",
-                    tabBarIcon: ({ color }) => (
-                        <Icon
-                            name="notifications"
-                            type="ionicon"
-                            color={color}
-                            size={24}
-                        />
-                    ),
-                    tabBarBadge: 0,
-                }}
-            />
-            <Tab.Screen
-                name="Me"
-                component={MeScreen}
-                options={{
-                    title: "Tôi",
-                    tabBarIcon: ({ color }) => (
-                        <Icon
-                            name="person"
-                            type="ionicon"
-                            color={color}
-                            size={24}
-                        />
-                    ),
-                }}
-            ></Tab.Screen>
-        </Tab.Navigator>
-    );
+  React.useLayoutEffect(() => {
+    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
+    navigation.setOptions({
+      headerRight: (props) => {
+        switch (routeName) {
+          case "Me":
+            return <RightButton />;
+          default:
+            return;
+        }
+      },
+    });
+  }, [navigation, route]);
+  const userId = route.params;
+  // console.log(userId);
+  const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+  const tabActiveColor = useSelector((state) => state.theme.theme.TAB_ACTIVE);
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: tabActiveColor,
+      }}
+      barStyle={{ backgroundColor: backgroundColor }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: "Trang chủ",
+          tabBarIcon: ({ color }) => (
+            <Icon name="home" type="ionicon" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Notify"
+        component={NotifyScreen}
+        options={{
+          title: "Thông báo",
+          tabBarIcon: ({ color }) => (
+            <Icon name="notifications" type="ionicon" color={color} size={24} />
+          ),
+          tabBarBadge: 0,
+        }}
+      />
+      <Tab.Screen
+        name="Me"
+        component={MeScreen}
+        options={{
+          title: "Tôi",
+          tabBarIcon: ({ color }) => (
+            <Icon name="person" type="ionicon" color={color} size={24} />
+          ),
+        }}
+      ></Tab.Screen>
+    </Tab.Navigator>
+  );
 };
 
 const homeScreenStack = ({ navigation, route }) => {
-    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
-    const headerTitleColor = useSelector(
-        (state) => state.theme.theme.HEADER_TITLE
-    );
-    const leftHeaderColor = useSelector(
-        (state) => state.theme.theme.HEADER_LEFT
-    );
-    const rightHeaderColor = useSelector(
-        (state) => state.theme.theme.HEADER_RIGHT
-    );
-    const backButtonColor = useSelector(
-        (state) => state.theme.theme.BACK_BUTTON
-    );
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerBackground: () => (
-                    <LinearGradient
-                        colors={[leftHeaderColor, rightHeaderColor]}
-                        style={{ flex: 1 }}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                    />
-                ),
-                headerTitleStyle: { color: headerTitleColor },
-                headerBackImage: ({ size }) => (
-                    <Icon
-                        name="arrow-back-circle-outline"
-                        type="ionicon"
-                        size={size}
-                        color={backButtonColor}
-                    />
-                ),
-            }}
-        >
-            <Stack.Screen
-                name="HomeTab"
-                component={HomeTab}
-                options={({ route, navigation }) => ({
-                    headerTitle: getHeaderTitle(route, navigation),
-                    title: "Home",
-                    headerLeft: () => (
-                        <NavigationDrawerHeader navigationProps={navigation} />
-                    ),
-                })}
-            />
-            <Stack.Screen
-                name="Detail"
-                component={DetailScreeen}
-                options={{
-                    headerShown: false,
-                    title: "Chi tiết",
-                }}
-                // screenOptions={{ headerTransparent: true }}
-            />
-            <Stack.Screen
-                name="Setting"
-                component={SettingScreen}
-                options={{
-                    title: "Cài đặt",
-                }}
-            />
-            <Stack.Screen
-                name="Theme"
-                component={ThemeScreen}
-                options={{
-                    title: "Chủ đề",
-                }}
-            />
-            <Stack.Screen
-                name="Profile"
-                component={ProfileScreen}
-                options={{
-                    title: "Hồ sơ của tôi",
-                }}
-            />
-            <Stack.Screen
-                name="Address"
-                component={AddressScreen}
-                options={{
-                    title: "Địa chỉ",
-                }}
-            />
-            <Stack.Screen
-                name="Setting-Notify"
-                component={StNotifyScreen}
-                options={{
-                    title: "Cài đặt thông báo",
-                }}
-            />
-            <Stack.Screen
-                name="Privacy"
-                component={PrivacyScreen}
-                options={{
-                    title: "Cài đặt quyền riêng tư",
-                }}
-            />
-            <Stack.Screen
-                name="Language"
-                component={LanguageScreen}
-                options={{
-                    title: "Ngôn ngữ",
-                }}
-            />
-            <Stack.Screen
-                name="Help"
-                component={HelpScreen}
-                options={{
-                    title: "Trung tâm hỗ trợ",
-                }}
-            />
-            <Stack.Screen
-                name="Introduce"
-                component={IntroduceScreen}
-                options={{
-                    title: "Giới thiệu",
-                }}
-            />
-            <Stack.Screen
-                name="Order"
-                component={OrderScreen}
-                options={{
-                    title: "Đơn mua",
-                }}
-            />
-            <Stack.Screen
-                name="Liked"
-                component={LikedScreen}
-                options={{
-                    title: "Đã thích",
-                }}
-            />
-            <Stack.Screen
-                name="Money"
-                component={MoneyScreen}
-                options={{
-                    title: "Ví",
-                }}
-            />
-            <Stack.Screen
-                name="Product-Reviews"
-                component={ReViewScreen}
-                options={{
-                    title: "Đánh giá của tôi",
-                }}
-            />
-            <Stack.Screen
-                name="Repurchase"
-                component={RepurchaseScreen}
-                options={{
-                    title: "Mua lại",
-                }}
-            />
-            <Stack.Screen
-                name="Service"
-                component={ServiceScreen}
-                options={{
-                    title: "Đơn thẻ và dịch vụ",
-                }}
-            />
-            <Stack.Screen
-                name="TenScreen"
-                component={TenScreen}
-                options={{
-                    title: "Tên", //Set Header Title
-                }}
-            />
-            <Stack.Screen
-                name="PassScreen"
-                component={PassScreen}
-                options={{
-                    title: "Mật khẩu", //Set Header Title
-                }}
-            />
-            <Stack.Screen
-                name="PhoneScreen"
-                component={PhoneScreen}
-                options={{
-                    title: "Số điện thoại", //Set Header Title
-                }}
-            />
-            <Stack.Screen
-                name="EmailScreen"
-                component={EmailScreen}
-                options={{
-                    title: "Email", //Set Header Title
-                }}
-            />
-            <Stack.Screen
-                name="DateScreen"
-                component={DateScreen}
-                options={{
-                    title: "Ngày sinh", //Set Header Title
-                }}
-            />
-            <Stack.Screen
-                name="GioiTinhScreen"
-                component={GioiTinhScreen}
-                options={{
-                    title: "Giới tính", //Set Header Title
-                }}
-            />
-            <Stack.Screen
-                name="card"
-                component={CardScreen}
-                options={{
-                    title: "Nạp thẻ",
-                }}
-            />
-        </Stack.Navigator>
-    );
+  const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+  const headerTitleColor = useSelector(
+    (state) => state.theme.theme.HEADER_TITLE
+  );
+  const leftHeaderColor = useSelector((state) => state.theme.theme.HEADER_LEFT);
+  const rightHeaderColor = useSelector(
+    (state) => state.theme.theme.HEADER_RIGHT
+  );
+  const backButtonColor = useSelector((state) => state.theme.theme.BACK_BUTTON);
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerBackground: () => (
+          <LinearGradient
+            colors={[leftHeaderColor, rightHeaderColor]}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          />
+        ),
+        headerTitleStyle: { color: headerTitleColor },
+        headerBackImage: ({ size }) => (
+          <Icon
+            name="arrow-back-circle-outline"
+            type="ionicon"
+            size={size}
+            color={backButtonColor}
+          />
+        ),
+      }}
+    >
+      <Stack.Screen
+        name="HomeTab"
+        component={HomeTab}
+        options={({ route, navigation }) => ({
+          headerTitle: getHeaderTitle(route, navigation),
+          title: "Home",
+          headerLeft: () => (
+            <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={DetailScreeen}
+        options={{
+          headerShown: false,
+          title: "Chi tiết",
+        }}
+        // screenOptions={{ headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{
+          title: "Cài đặt",
+        }}
+      />
+      <Stack.Screen
+        name="Theme"
+        component={ThemeScreen}
+        options={{
+          title: "Chủ đề",
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: "Hồ sơ của tôi",
+        }}
+      />
+      <Stack.Screen
+        name="Address"
+        component={AddressScreen}
+        options={{
+          title: "Địa chỉ",
+        }}
+      />
+      <Stack.Screen
+        name="Setting-Notify"
+        component={StNotifyScreen}
+        options={{
+          title: "Cài đặt thông báo",
+        }}
+      />
+      <Stack.Screen
+        name="Privacy"
+        component={PrivacyScreen}
+        options={{
+          title: "Cài đặt quyền riêng tư",
+        }}
+      />
+      <Stack.Screen
+        name="Language"
+        component={LanguageScreen}
+        options={{
+          title: "Ngôn ngữ",
+        }}
+      />
+      <Stack.Screen
+        name="Help"
+        component={HelpScreen}
+        options={{
+          title: "Trung tâm hỗ trợ",
+        }}
+      />
+      <Stack.Screen
+        name="Introduce"
+        component={IntroduceScreen}
+        options={{
+          title: "Giới thiệu",
+        }}
+      />
+      <Stack.Screen
+        name="Order"
+        component={OrderScreen}
+        options={{
+          title: "Đơn mua",
+        }}
+      />
+      <Stack.Screen
+        name="Liked"
+        component={LikedScreen}
+        options={{
+          title: "Đã thích",
+        }}
+      />
+      <Stack.Screen
+        name="Money"
+        component={MoneyScreen}
+        options={{
+          title: "Ví",
+        }}
+      />
+      <Stack.Screen
+        name="Product-Reviews"
+        component={ReViewScreen}
+        options={{
+          title: "Đánh giá của tôi",
+        }}
+      />
+      <Stack.Screen
+        name="Repurchase"
+        component={RepurchaseScreen}
+        options={{
+          title: "Mua lại",
+        }}
+      />
+      <Stack.Screen
+        name="Service"
+        component={ServiceScreen}
+        options={{
+          title: "Đơn thẻ và dịch vụ",
+        }}
+      />
+      <Stack.Screen
+        name="TenScreen"
+        component={TenScreen}
+        options={{
+          title: "Tên", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="PassScreen"
+        component={PassScreen}
+        options={{
+          title: "Mật khẩu", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="PhoneScreen"
+        component={PhoneScreen}
+        options={{
+          title: "Số điện thoại", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="EmailScreen"
+        component={EmailScreen}
+        options={{
+          title: "Email", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="DateScreen"
+        component={DateScreen}
+        options={{
+          title: "Ngày sinh", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="GioiTinhScreen"
+        component={GioiTinhScreen}
+        options={{
+          title: "Giới tính", //Set Header Title
+        }}
+      />
+      <Stack.Screen
+        name="card"
+        component={CardScreen}
+        options={{
+          title: "Nạp thẻ",
+        }}
+      />
+      <Stack.Screen
+        name="input"
+        component={EditScreen}
+        options={{
+          title: "Sửa địa chỉ",
+        }}
+      />
+    </Stack.Navigator>
+  );
 };
 
 const settingScreenStack = ({ navigation }) => {
-    const headerTitleColor = useSelector(
-        (state) => state.theme.theme.HEADER_TITLE
-    );
-    const leftHeaderColor = useSelector(
-        (state) => state.theme.theme.HEADER_LEFT
-    );
-    const rightHeaderColor = useSelector(
-        (state) => state.theme.theme.HEADER_RIGHT
-    );
-    return (
-        <Stack.Navigator
-            initialRouteName="SettingsScreen"
-            screenOptions={{
-                headerLeft: () => (
-                    <NavigationDrawerHeader navigationProps={navigation} />
-                ),
-                headerBackground: () => (
-                    <LinearGradient
-                        colors={[leftHeaderColor, rightHeaderColor]}
-                        style={{ flex: 1 }}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                    />
-                ),
-                headerTitleStyle: {
-                    fontWeight: "bold", //Set Header text style
-                    color: headerTitleColor,
-                },
-            }}
-        >
-            <Stack.Screen
-                name="SettingsScreen"
-                component={SettingsScreen}
-                options={{
-                    title: "Cài đặt", //Set Header Title
-                }}
-            />
-        </Stack.Navigator>
-    );
+  const headerTitleColor = useSelector(
+    (state) => state.theme.theme.HEADER_TITLE
+  );
+  const leftHeaderColor = useSelector((state) => state.theme.theme.HEADER_LEFT);
+  const rightHeaderColor = useSelector(
+    (state) => state.theme.theme.HEADER_RIGHT
+  );
+  return (
+    <Stack.Navigator
+      initialRouteName="SettingsScreen"
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerHeader navigationProps={navigation} />
+        ),
+        headerBackground: () => (
+          <LinearGradient
+            colors={[leftHeaderColor, rightHeaderColor]}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          />
+        ),
+        headerTitleStyle: {
+          fontWeight: "bold", //Set Header text style
+          color: headerTitleColor,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{
+          title: "Cài đặt", //Set Header Title
+        }}
+      />
+    </Stack.Navigator>
+  );
 };
 
 const DrawerNavigatorRoutes = (props) => {
-    const textDrawerOption = useSelector(
-        (state) => state.theme.theme.TEXT_DRAWER_OPTION
-    );
-    return (
-        <UserContext.Provider value={props.route.params}>
-            <Drawer.Navigator
-                drawerContentOptions={{
-                    activeTintColor: "#cee1f2",
-                    color: "#cee1f2",
-                    itemStyle: { marginVertical: 5, color: "white" },
-                    labelStyle: {
-                        color: textDrawerOption,
-                    },
-                }}
-                screenOptions={{ headerShown: false }}
-                drawerContent={(props) => <CustomSidebarMenu {...props} />}
-            >
-                <Drawer.Screen
-                    name="homeScreenStack"
-                    options={{ drawerLabel: "Màn hình chính" }}
-                    component={homeScreenStack}
-                />
-                <Drawer.Screen
-                    name="settingScreenStack"
-                    options={{ drawerLabel: "Cài đặt" }}
-                    component={settingScreenStack}
-                />
-            </Drawer.Navigator>
-        </UserContext.Provider>
-    );
+  const textDrawerOption = useSelector(
+    (state) => state.theme.theme.TEXT_DRAWER_OPTION
+  );
+  return (
+    <UserContext.Provider value={props.route.params}>
+      <Drawer.Navigator
+        drawerContentOptions={{
+          activeTintColor: "#cee1f2",
+          color: "#cee1f2",
+          itemStyle: { marginVertical: 5, color: "white" },
+          labelStyle: {
+            color: textDrawerOption,
+          },
+        }}
+        screenOptions={{ headerShown: false }}
+        drawerContent={(props) => <CustomSidebarMenu {...props} />}
+      >
+        <Drawer.Screen
+          name="homeScreenStack"
+          options={{ drawerLabel: "Màn hình chính" }}
+          component={homeScreenStack}
+        />
+        <Drawer.Screen
+          name="settingScreenStack"
+          options={{ drawerLabel: "Cài đặt" }}
+          component={settingScreenStack}
+        />
+      </Drawer.Navigator>
+    </UserContext.Provider>
+  );
 };
 
 export default DrawerNavigatorRoutes;
