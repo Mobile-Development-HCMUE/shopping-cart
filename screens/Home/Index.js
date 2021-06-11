@@ -84,7 +84,8 @@ const HomeScreen = () => {
                             liked_count: e.liked_count,
                             view_count: e.view_count,
                             price: e.price,
-
+                            price_before_discount: e.price_before_discount,
+                            description: e.description,
                             price_min: e.price_min,
                             price_max: e.price_max,
                             discount: e.discount,
@@ -130,6 +131,7 @@ const HomeScreen = () => {
                             view_count: e.view_count,
                             price: e.price,
                             price_before_discount: e.price_before_discount,
+                            description: e.description,
                             price_min: e.price_min,
                             price_max: e.price_max,
                             discount: e.discount,
@@ -138,9 +140,9 @@ const HomeScreen = () => {
                             rating_count: e.item_rating.rating_count,
                         };
                         newList = newList.concat(j);
-                        console.log(
-                            "https://cf.shopee.vn/file/" + e.image + "_tn"
-                        );
+                        // console.log(
+                        //     "https://cf.shopee.vn/file/" + e.image + "_tn"
+                        // );
                         setDataSource(newList);
                         setIsLoading(false);
                         // console.log("last visiable:", lastVisible);
