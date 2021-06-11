@@ -55,7 +55,9 @@ const ListProduct = (props) => {
                     listButton={props.listButton}
                 />
             }
-            ListFooterComponent={<Footer loading={props.loading} />}
+            ListFooterComponent={
+                props.isHome & <Footer loading={props.loading} />
+            }
             columnWrapperStyle={{ justifyContent: "space-between" }}
             numColumns="2"
             data={props.ListData}

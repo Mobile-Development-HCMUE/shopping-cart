@@ -10,7 +10,6 @@ import {
 import { Image } from "react-native-elements";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text } from "@ui-kitten/components";
-import FastImage from "react-native-fast-image";
 
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
@@ -43,14 +42,10 @@ const DetailScreeen = ({ route, navigation }) => {
                     renderItem={({ item }) => {
                         return (
                             <View key={item.key}>
-                                <FastImage
+                                <Image
                                     source={{
                                         uri:
                                             "https://cf.shopee.vn/file/" + item,
-                                        headers: {
-                                            Authorization: "someAuthToken",
-                                        },
-                                        priority: FastImage.priority.normal,
                                     }}
                                     style={styles.image}
                                     // PlaceholderContent={<ActivityIndicator />}

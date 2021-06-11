@@ -172,6 +172,7 @@ const HomeScreen = () => {
                 listButton={data}
                 onEndReached={getNext}
                 loading={isLoading}
+                isHome={true}
             />
         </>
     );
