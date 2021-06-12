@@ -17,6 +17,8 @@ import { Text } from "react-native-elements";
 import Button from "components/MainButton";
 import Loader from "components/Loader";
 import { firebase } from "../../../firebase/config";
+import { change_id, change_name, change_avatar } from "reduxs";
+import { useSelector, useDispatch } from "react-redux";
 
 const useInputState = (initialValue = "") => {
     const [value, setValue] = React.useState(initialValue);
@@ -42,7 +44,7 @@ const LoginScreen = ({ navigation }) => {
             <Icon {...props} name={secureTextEntry ? "eye-off" : "eye"} />
         </TouchableWithoutFeedback>
     );
-
+    const dispatch = useDispatch();
     const handleSubmitPress = () => {
         setErrortext("");
         if (!userEmail.value) {
@@ -72,10 +74,16 @@ const LoginScreen = ({ navigation }) => {
                             return;
                         }
                         setLoading(false);
-                        const user = firestoreDocument.data();
-                        navigation.replace("DrawerNavigationRoutes", {
-                            user,
+                        const userData = firestoreDocument.data();
+                        setUser(userData);
+                        dispatch(change_id(userData.id));
+                        dispatch(change_name(userData.name));
+                        const local = "avatar/" + userData.id;
+                        const ref = firebase.storage().ref(local);
+                        ref.getDownloadURL().then((url) => {
+                            dispatch(change_avatar(url));
                         });
+                        navigation.replace("DrawerNavigationRoutes");
                     })
                     .catch((error) => {
                         setLoading(false);

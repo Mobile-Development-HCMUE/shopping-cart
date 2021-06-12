@@ -45,7 +45,7 @@ const App0 = () => {
             <IconRegistry icons={EvaIconsPack} />
             <ApplicationProvider {...eva} theme={eva.light}>
                 <SafeAreaProvider>
-                    <StatusBar barStyle="#fff" />
+                    <StatusBar />
                     <NavigationContainer>
                         <Stack.Navigator initialRouteName="SplashScreen">
                             {/* SplashScreen which will come once for 5 Seconds */}
