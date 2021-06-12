@@ -74,6 +74,7 @@ const HomeScreen = () => {
                     query.forEach((doc) => {
                         let e = doc.data();
                         const j = {
+                            attributes: e.attributes,
                             itemid: e.itemid,
                             name: e.name,
                             image: e.image,
@@ -118,6 +119,7 @@ const HomeScreen = () => {
                 query.forEach((doc) => {
                     let e = doc.data();
                     const j = {
+                        attributes: e.attributes,
                         itemid: e.itemid,
                         name: e.name,
                         image: e.image,

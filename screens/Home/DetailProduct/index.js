@@ -30,6 +30,15 @@ const DetailScreeen = ({ route, navigation }) => {
     function currencyFormat(num) {
         return "₫" + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }
+    const namemap = {
+        Bảo: "Bảo hành",
+        Tá: "Tác giả",
+    };
+    const getName = (u) => {
+        let name = u.name;
+        console.log(name);
+        return namemap.name;
+    };
     return (
         <View style={{ flex: 1 }}>
             {/* <StatusBar hidden /> */}
@@ -49,7 +58,6 @@ const DetailScreeen = ({ route, navigation }) => {
                     renderItem={({ item }) => {
                         return (
                             <View key={item}>
-                                {console.log(item.key)}
                                 <Image
                                     source={{
                                         uri:
@@ -105,6 +113,25 @@ const DetailScreeen = ({ route, navigation }) => {
                     <Text style={{ color: "red" }}>
                         {currencyFormat(data.price / 100000)}
                     </Text>
+                    <Text style={{ fontWeight: "bold", marginTop: 10 }}>
+                        Chi tiết sản phẩm
+                    </Text>
+                    {/* {console.log(data.attributes)} */}
+                    <View
+                        style={{
+                            borderBottomColor: "#f0f0f0",
+                            borderBottomWidth: 1,
+                            marginTop: 10,
+                        }}
+                    />
+                    {typeof data.attributes != "undefined" ? (
+                        data.attributes.map((u, i) => {
+                            return <Text key={i}>{getName(u)}</Text>;
+                        })
+                    ) : (
+                        <></>
+                    )}
+
                     <View style={{ marginVertical: 20 }}>
                         <Text
                             style={{
