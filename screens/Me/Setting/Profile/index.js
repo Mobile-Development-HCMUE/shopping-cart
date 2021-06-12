@@ -12,7 +12,6 @@ import { UserContext } from "contexts";
 import { firebase } from "../../../../firebase/config";
 import * as ImagePicker from "expo-image-picker";
 import Loader from "components/Loader";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
     const [loading, setLoading] = useState(false);
@@ -84,7 +83,7 @@ const ProfileScreen = () => {
         }
     };
     return (
-        <SafeAreaView>
+        <View style={{ flex: 1 }}>
             <Loader loading={loading} />
             <View style={styles.Setting}>
                 <Overlay
@@ -165,7 +164,7 @@ const ProfileScreen = () => {
                     </View>
                 </Card>
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 

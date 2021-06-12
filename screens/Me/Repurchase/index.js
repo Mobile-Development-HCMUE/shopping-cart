@@ -7,7 +7,6 @@ import users from "./data";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const RepurchaseScreen = () => {
     const topProfileColor = useSelector(
@@ -17,14 +16,12 @@ const RepurchaseScreen = () => {
         (state) => state.theme.theme.BOTTOM_PROFILE
     );
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <LinearGradient
-                style={{ height: "100%" }}
-                colors={[topProfileColor, bottomProfileColor]}
-            >
-                <ListProduct ListData={users} />
-            </LinearGradient>
-        </SafeAreaView>
+        <LinearGradient
+            style={{ height: "100%" }}
+            colors={[topProfileColor, bottomProfileColor]}
+        >
+            <ListProduct ListData={users} />
+        </LinearGradient>
     );
 };
 

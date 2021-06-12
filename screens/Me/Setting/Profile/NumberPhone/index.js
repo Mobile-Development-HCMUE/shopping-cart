@@ -14,7 +14,6 @@ import {
     Icon,
     Button as button,
 } from "@ui-kitten/components";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const AlertIcon = (props) => <Icon {...props} name="alert-circle-outline" />;
 
@@ -42,60 +41,56 @@ const PhoneScreen = () => {
         );
     };
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <Card
-                    style={
-                        (styles.card,
-                        {
-                            borderRadius: 20,
-                        })
-                    }
-                    status="primary"
+        <ScrollView>
+            <Card
+                style={
+                    (styles.card,
+                    {
+                        borderRadius: 20,
+                    })
+                }
+                status="primary"
+            >
+                <View
+                    style={{
+                        flex: 1,
+                        alignItems: "center",
+                    }}
                 >
-                    <View
+                    <Text style={{ fontWeight: "bold" }}>Số điện thoại</Text>
+                </View>
+                <View
+                    style={{
+                        flex: 1,
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flexDirection: "row",
+                        alignContent: "center",
+                    }}
+                >
+                    <Input
                         style={{
-                            flex: 1,
-                            alignItems: "center",
+                            marginBottom: 10,
+                            marginTop: 10,
+                            width: "63%",
+                            borderRadius: 20,
                         }}
-                    >
-                        <Text style={{ fontWeight: "bold" }}>
-                            Số điện thoại
-                        </Text>
-                    </View>
-                    <View
-                        style={{
-                            flex: 1,
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            flexDirection: "row",
-                            alignContent: "center",
-                        }}
-                    >
-                        <Input
-                            style={{
-                                marginBottom: 10,
-                                marginTop: 10,
-                                width: "63%",
-                                borderRadius: 20,
-                            }}
-                            value={value}
-                            label="Số điện thoại"
-                            placeholder="Nhập số điện thoại"
-                            caption={renderCaption}
-                            accessoryRight={renderIcon}
-                            secureTextEntry={secureTextEntry}
-                            onChangeText={(nextValue) => setValue(nextValue)}
-                        />
-                        <Button
-                            containerStyle={styles.container1}
-                            buttonStyle={styles.Style}
-                            title="Lưu"
-                        />
-                    </View>
-                </Card>
-            </ScrollView>
-        </SafeAreaView>
+                        value={value}
+                        label="Số điện thoại"
+                        placeholder="Nhập số điện thoại"
+                        caption={renderCaption}
+                        accessoryRight={renderIcon}
+                        secureTextEntry={secureTextEntry}
+                        onChangeText={(nextValue) => setValue(nextValue)}
+                    />
+                    <Button
+                        containerStyle={styles.container1}
+                        buttonStyle={styles.Style}
+                        title="Lưu"
+                    />
+                </View>
+            </Card>
+        </ScrollView>
     );
 };
 

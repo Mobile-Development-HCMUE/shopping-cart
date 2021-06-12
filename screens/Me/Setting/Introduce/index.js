@@ -3,7 +3,6 @@ import { StyleSheet, View, ScrollView, Image } from "react-native";
 import { Button, Card, Icon, Avatar } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
 import { List } from "components/ListOptions/index.js";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const users = [
     {
@@ -26,42 +25,38 @@ const users = [
 
 const IntroduceScreen = () => {
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <Card containerStyle={styles.card}>
-                    <Card.Title>
-                        Phần mềm được thực hiện bởi: Team-IT
-                    </Card.Title>
-                    {users.map((u, i) => {
-                        return (
-                            <View
-                                key={i}
-                                style={{
-                                    alignItems: "center",
-                                    justifyContent: "space-between",
-                                    flexDirection: "row",
-                                    margin: 10,
+        <ScrollView>
+            <Card containerStyle={styles.card}>
+                <Card.Title>Phần mềm được thực hiện bởi: Team-IT</Card.Title>
+                {users.map((u, i) => {
+                    return (
+                        <View
+                            key={i}
+                            style={{
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                flexDirection: "row",
+                                margin: 10,
+                            }}
+                        >
+                            <Avatar
+                                rounded
+                                size="large"
+                                title="LW"
+                                source={{
+                                    uri: u.avatar,
                                 }}
-                            >
-                                <Avatar
-                                    rounded
-                                    size="large"
-                                    title="LW"
-                                    source={{
-                                        uri: u.avatar,
-                                    }}
-                                    activeOpacity={0.7}
-                                    containerStyle={styles.Avatar}
-                                />
-                                <Text style={styles.name}>{u.name}</Text>
-                                <Card.Divider />
-                            </View>
-                        );
-                    })}
-                </Card>
-                <View></View>
-            </ScrollView>
-        </SafeAreaView>
+                                activeOpacity={0.7}
+                                containerStyle={styles.Avatar}
+                            />
+                            <Text style={styles.name}>{u.name}</Text>
+                            <Card.Divider />
+                        </View>
+                    );
+                })}
+            </Card>
+            <View></View>
+        </ScrollView>
     );
 };
 

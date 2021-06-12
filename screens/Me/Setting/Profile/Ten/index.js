@@ -8,51 +8,48 @@ import {
     Input,
     Button as button,
 } from "@ui-kitten/components";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const TenScreen = () => {
     const [value, setValue] = React.useState("");
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <Card style={styles.card} status="primary">
-                    <View
+        <ScrollView>
+            <Card style={styles.card} status="primary">
+                <View
+                    style={{
+                        flex: 1,
+                        alignItems: "center",
+                    }}
+                >
+                    <Text style={{ fontWeight: "bold" }}>Tên</Text>
+                </View>
+                <View
+                    style={{
+                        flex: 1,
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flexDirection: "row",
+                        alignContent: "center",
+                    }}
+                >
+                    <Input
                         style={{
-                            flex: 1,
-                            alignItems: "center",
+                            marginBottom: 10,
+                            marginTop: 10,
+                            width: "63%",
+                            borderRadius: 20,
                         }}
-                    >
-                        <Text style={{ fontWeight: "bold" }}>Tên</Text>
-                    </View>
-                    <View
-                        style={{
-                            flex: 1,
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            flexDirection: "row",
-                            alignContent: "center",
-                        }}
-                    >
-                        <Input
-                            style={{
-                                marginBottom: 10,
-                                marginTop: 10,
-                                width: "63%",
-                                borderRadius: 20,
-                            }}
-                            placeholder="Nhập tên của bạn"
-                            value={value}
-                            onChangeText={(nextValue) => setValue(nextValue)}
-                        />
-                        <Button
-                            containerStyle={styles.container1}
-                            buttonStyle={styles.Style}
-                            title="Lưu"
-                        />
-                    </View>
-                </Card>
-            </ScrollView>
-        </SafeAreaView>
+                        placeholder="Nhập tên của bạn"
+                        value={value}
+                        onChangeText={(nextValue) => setValue(nextValue)}
+                    />
+                    <Button
+                        containerStyle={styles.container1}
+                        buttonStyle={styles.Style}
+                        title="Lưu"
+                    />
+                </View>
+            </Card>
+        </ScrollView>
     );
 };
 

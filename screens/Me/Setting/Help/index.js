@@ -6,7 +6,6 @@ import List from "components/ListOptions/index";
 import cauhoi from "./data.js";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const HelpScreen = () => {
     const topProfileColor = useSelector(
@@ -16,21 +15,19 @@ const HelpScreen = () => {
         (state) => state.theme.theme.BOTTOM_PROFILE
     );
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <LinearGradient
-                    style={{ height: "100%" }}
-                    colors={[topProfileColor, bottomProfileColor]}
-                >
-                    <Card containerStyle={styles.card}>
-                        <Card.Title>Câu hỏi thường gặp</Card.Title>
-                        <View>
-                            <List listData={cauhoi}></List>
-                        </View>
-                    </Card>
-                </LinearGradient>
-            </ScrollView>
-        </SafeAreaView>
+        <ScrollView>
+            <LinearGradient
+                style={{ height: "100%" }}
+                colors={[topProfileColor, bottomProfileColor]}
+            >
+                <Card containerStyle={styles.card}>
+                    <Card.Title>Câu hỏi thường gặp</Card.Title>
+                    <View>
+                        <List listData={cauhoi}></List>
+                    </View>
+                </Card>
+            </LinearGradient>
+        </ScrollView>
     );
 };
 

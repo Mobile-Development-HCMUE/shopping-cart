@@ -75,7 +75,6 @@ const LoginScreen = ({ navigation }) => {
                         }
                         setLoading(false);
                         const userData = firestoreDocument.data();
-                        setUser(userData);
                         dispatch(change_id(userData.id));
                         dispatch(change_name(userData.name));
                         const local = "avatar/" + userData.id;

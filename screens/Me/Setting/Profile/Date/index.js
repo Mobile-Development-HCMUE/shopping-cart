@@ -15,7 +15,6 @@ import {
     Button as button,
     Datepicker,
 } from "@ui-kitten/components";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const CalendarIcon = (props) => <Icon {...props} name="calendar" />;
 const useDatepickerState = (initialDate = null) => {
@@ -51,81 +50,79 @@ const DateScreen = () => {
         );
     };
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <Card
-                    style={
-                        (styles.card,
-                        {
-                            borderRadius: 20,
-                        })
-                    }
-                    status="primary"
+        <ScrollView>
+            <Card
+                style={
+                    (styles.card,
+                    {
+                        borderRadius: 20,
+                    })
+                }
+                status="primary"
+            >
+                <View
+                    style={{
+                        flex: 1,
+                        alignItems: "center",
+                    }}
                 >
-                    <View
-                        style={{
-                            flex: 1,
-                            alignItems: "center",
-                        }}
-                    >
-                        <Text style={{ fontWeight: "bold" }}>Ngày sinh</Text>
-                    </View>
-                    <View
-                        style={{
-                            flex: 1,
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            flexDirection: "row",
-                            alignContent: "center",
-                        }}
-                    >
-                        {/* //   style={{
+                    <Text style={{ fontWeight: "bold" }}>Ngày sinh</Text>
+                </View>
+                <View
+                    style={{
+                        flex: 1,
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flexDirection: "row",
+                        alignContent: "center",
+                    }}
+                >
+                    {/* //   style={{
             //     marginBottom: 10,
             //     marginTop: 10,
             //     width: "63%",
             //     borderRadius: 20,
             //   }}
              */}
-                        {/* <Datepicker
+                    {/* <Datepicker
               placeholder="Min / Max"
               min={yesterday}
               max={tomorrow}
               {...minMaxPickerState}
             /> */}
 
-                        <View style={styles.rowContainer}>
-                            {/* <Datepicker
+                    <View style={styles.rowContainer}>
+                        {/* <Datepicker
                 style={styles.picker}
                 placeholder="Date Filter"
                 filter={filter}
                 {...filterPickerState}
               /> */}
 
-                            <Datepicker
-                                style={
-                                    (styles.picker,
-                                    {
-                                        marginBottom: 10,
-                                        marginTop: 10,
+                        <Datepicker
+                            style={
+                                (styles.picker,
+                                {
+                                    marginBottom: 10,
+                                    marginTop: 10,
 
-                                        borderRadius: 20,
-                                    })
-                                }
-                                placeholder="Ngày sinh"
-                                boundingMonth={true}
-                                {...boundingPickerState}
-                                accessoryRight={CalendarIcon}
-                            />
-                        </View>
-                        <Button
-                            containerStyle={styles.container1}
-                            buttonStyle={styles.Style}
-                            title="Lưu"
+                                    borderRadius: 20,
+                                })
+                            }
+                            placeholder="Ngày sinh"
+                            boundingMonth={true}
+                            {...boundingPickerState}
+                            accessoryRight={CalendarIcon}
                         />
                     </View>
-                </Card>
-            </ScrollView>
-        </SafeAreaView>
+                    <Button
+                        containerStyle={styles.container1}
+                        buttonStyle={styles.Style}
+                        title="Lưu"
+                    />
+                </View>
+            </Card>
+        </ScrollView>
     );
 };
 

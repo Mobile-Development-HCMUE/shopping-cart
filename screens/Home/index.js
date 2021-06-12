@@ -6,7 +6,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { Text } from "react-native-elements";
 import { firebase } from "../../firebase/config";
 import ListProduct from "components/ListProduct";
-import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "../../components/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import data from "../Home/data";

@@ -17,7 +17,6 @@ import {
     SelectItem,
     IndexPath,
 } from "@ui-kitten/components";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const AlertIcon = (props) => <Icon {...props} name="alert-circle-outline" />;
 const data = ["Nam", "Nữ", "Khác"];
@@ -28,52 +27,50 @@ const GioiTinhScreen = () => {
     const [secureTextEntry, setSecureTextEntry] = React.useState(true);
     const renderOption = (title) => <SelectItem title={title} />;
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <Card
-                    style={
-                        (styles.card,
-                        {
-                            borderRadius: 20,
-                        })
-                    }
-                    status="primary"
+        <ScrollView>
+            <Card
+                style={
+                    (styles.card,
+                    {
+                        borderRadius: 20,
+                    })
+                }
+                status="primary"
+            >
+                <View
+                    style={{
+                        flex: 1,
+                        alignItems: "center",
+                    }}
                 >
-                    <View
-                        style={{
-                            flex: 1,
-                            alignItems: "center",
-                        }}
+                    <Text style={{ fontWeight: "bold" }}>Giới tính</Text>
+                </View>
+                <View
+                    style={{
+                        flex: 1,
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flexDirection: "row",
+                        alignContent: "center",
+                    }}
+                >
+                    <Select
+                        style={styles.select}
+                        placeholder="Default"
+                        value={displayValue}
+                        selectedIndex={selectedIndex}
+                        onSelect={(index) => setSelectedIndex(index)}
                     >
-                        <Text style={{ fontWeight: "bold" }}>Giới tính</Text>
-                    </View>
-                    <View
-                        style={{
-                            flex: 1,
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            flexDirection: "row",
-                            alignContent: "center",
-                        }}
-                    >
-                        <Select
-                            style={styles.select}
-                            placeholder="Default"
-                            value={displayValue}
-                            selectedIndex={selectedIndex}
-                            onSelect={(index) => setSelectedIndex(index)}
-                        >
-                            {data.map(renderOption)}
-                        </Select>
-                        <Button
-                            containerStyle={styles.container1}
-                            buttonStyle={styles.Style}
-                            title="Lưu"
-                        />
-                    </View>
-                </Card>
-            </ScrollView>
-        </SafeAreaView>
+                        {data.map(renderOption)}
+                    </Select>
+                    <Button
+                        containerStyle={styles.container1}
+                        buttonStyle={styles.Style}
+                        title="Lưu"
+                    />
+                </View>
+            </Card>
+        </ScrollView>
     );
 };
 

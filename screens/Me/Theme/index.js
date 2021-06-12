@@ -5,31 +5,28 @@ import { Card } from "react-native-elements";
 import { Text } from "@ui-kitten/components";
 import Button from "components/ColorButton";
 import { themeOptions } from "reduxs";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const ThemeScreen = () => {
     return (
-        <SafeAreaView>
-            <View style={styles.Setting}>
-                <Card>
-                    <Text style={{ marginBottom: 8 }}>
-                        Chọn chủ đề cho phần mềm của bạn:{" "}
-                    </Text>
-                    <View style={styles.containerButton}>
-                        {Object.keys(themeOptions).map((item, i) => {
-                            return (
-                                <Button
-                                    title={item}
-                                    key={i}
-                                    color={themeOptions[item].TAB}
-                                    style={styles.buttonStyle}
-                                />
-                            );
-                        })}
-                    </View>
-                </Card>
-            </View>
-        </SafeAreaView>
+        <View style={styles.Setting}>
+            <Card>
+                <Text style={{ marginBottom: 8 }}>
+                    Chọn chủ đề cho phần mềm của bạn:{" "}
+                </Text>
+                <View style={styles.containerButton}>
+                    {Object.keys(themeOptions).map((item, i) => {
+                        return (
+                            <Button
+                                title={item}
+                                key={i}
+                                color={themeOptions[item].TAB}
+                                style={styles.buttonStyle}
+                            />
+                        );
+                    })}
+                </View>
+            </Card>
+        </View>
     );
 };
 
