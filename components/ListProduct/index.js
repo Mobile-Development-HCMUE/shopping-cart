@@ -96,9 +96,9 @@ const ListProduct = (props) => {
                         // console.log(item);
                         navigation.navigate("Detail", { data: item });
                     }}
+                    key={item.key}
                 >
                     <Card
-                        key={item.key}
                         containerStyle={{
                             flex: 1,
                             marginLeft: index % 2 == 0 ? margin : margin / 2,

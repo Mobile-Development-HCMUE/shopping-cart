@@ -37,7 +37,7 @@ const DetailScreeen = ({ route, navigation }) => {
             <View style={{ height: ITEM_HEIGHT, overflow: "hidden" }}>
                 <Animated.FlatList
                     data={data.images}
-                    keyExtractor={(item, index) => item.image}
+                    keyExtractor={(item) => item}
                     snapToInterval={ITEM_HEIGHT}
                     decelerationRate="fast"
                     showsVerticalScrollIndicator={false}
@@ -48,7 +48,8 @@ const DetailScreeen = ({ route, navigation }) => {
                     )}
                     renderItem={({ item }) => {
                         return (
-                            <View key={item.key}>
+                            <View key={item}>
+                                {console.log(item.key)}
                                 <Image
                                     source={{
                                         uri:
