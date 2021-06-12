@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { firebase } from "../../firebase/config"; // add this code to your project to reset all timeouts
 import { Platform, InteractionManager } from "react-native";
 import { change_id, change_name, change_avatar } from "../../redux/ducks";
-import { useFonts } from "expo-font";
+import * as Font from "expo-font";
+import { isLoading } from "expo-font";
 const _setTimeout = global.setTimeout;
 const _clearTimeout = global.clearTimeout;
 const MAX_TIMER_DURATION_MS = 60 * 1000;
@@ -49,6 +50,11 @@ if (Platform.OS === "android") {
         _clearTimeout(id);
     };
 }
+
+let customFonts = {
+    "The-Wild-Thing": require("../../assets/fonts/SVN.otf"),
+};
+
 const SplashScreen = ({ navigation }) => {
     //State for ActivityIndicator animation
     const [user, setUser] = useState(null);
@@ -57,9 +63,6 @@ const SplashScreen = ({ navigation }) => {
         (state) => state.theme.theme.TOP_PROFILE
     );
     const dispatch = useDispatch();
-    const [fontsLoaded] = useFonts({
-        "The-Wild-Thing": require("../../assets/fonts/SVN.otf"),
-    });
     useEffect(() => {
         const usersRef = firebase.firestore().collection("users");
         firebase.auth().onAuthStateChanged((user) => {
@@ -77,7 +80,13 @@ const SplashScreen = ({ navigation }) => {
                         ref.getDownloadURL().then((url) => {
                             dispatch(change_avatar(url));
                         });
-                        navigation.replace("DrawerNavigationRoutes", userData);
+                        Font.loadAsync(customFonts).then(() => {
+                            console.log("load font success");
+                            navigation.replace(
+                                "DrawerNavigationRoutes",
+                                userData
+                            );
+                        });
                     })
                     .catch((error) => {
                         console.log(error);
