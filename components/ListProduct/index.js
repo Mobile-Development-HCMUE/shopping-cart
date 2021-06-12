@@ -53,10 +53,11 @@ const ListProduct = (props) => {
                     search={props.search}
                     searchFunciton={props.searchFunciton}
                     listButton={props.listButton}
+                    isHomw={props.}
                 />
             }
             ListFooterComponent={
-                props.isHome & <Footer loading={props.loading} />
+                <Footer loading={props.loading} />
             }
             columnWrapperStyle={{ justifyContent: "space-between" }}
             numColumns="2"
