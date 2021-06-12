@@ -58,7 +58,7 @@ const SplashScreen = ({ navigation }) => {
     );
     const dispatch = useDispatch();
     const [fontsLoaded] = useFonts({
-        "The-Wild-Thing": require("../../assets/fonts/SVN-The Wild Things Script.otf"),
+        "The-Wild-Thing": require("../../assets/fonts/SVN.otf"),
     });
     useEffect(() => {
         const usersRef = firebase.firestore().collection("users");
