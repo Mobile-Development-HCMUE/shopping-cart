@@ -9,6 +9,7 @@ import {
   Text,
 } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
+import { Item } from "react-native-paper/lib/typescript/components/List/List";
 const data = ["Nhà", "Trường học", "Nơi làm việc", "Khác"];
 
 const EditAddress = ({ ListData }) => {
@@ -16,6 +17,18 @@ const EditAddress = ({ ListData }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
   const displayValue = data[selectedIndex.row];
   const renderOption = (title) => <SelectItem title={title} />;
+  const [value, setValue] = React.useState("");
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+  const renderIcon = (props) => (
+    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+      <Icon {...props} name={"email-outline"} />
+    </TouchableWithoutFeedback>
+  );
   return (
     <ScrollView>
       <FlatList
@@ -31,78 +44,44 @@ const EditAddress = ({ ListData }) => {
         renderItem={({ item, index }) => (
           <Card
             key={item.key}
-            containerStyle={
-              ({
-                flex: 1,
-              },
-              styles.container)
+            containerStyle={({ flex: 1 }, styles.container)}
+            style={
+              (styles.card,
+              {
+                borderRadius: 20,
+              })
             }
+            status="primary"
           >
             <View
               style={{
-                flexDirection: "row",
+                flex: 1,
                 justifyContent: "space-between",
+                alignItems: "center",
+                flexDirection: "row",
+                alignContent: "center",
               }}
             >
-              <Layout
-                style={(styles.container, { marginBottom: 15, width: "50%" })}
-                level="1"
-              >
-                <Select
-                  style={styles.select}
-                  placeholder="Default"
-                  value={displayValue}
-                  selectedIndex={selectedIndex}
-                  onSelect={(index) => setSelectedIndex(index)}
-                >
-                  {data.map(renderOption)}
-                </Select>
-              </Layout>
+              <Input
+                style={{
+                  marginBottom: 10,
+                  marginTop: 10,
+                  width: "63%",
+                  borderRadius: 20,
+                }}
+                value={value}
+                label="Số  nhà"
+                placeholder={item.sonha}
+                accessoryRight={renderIcon}
+                secureTextEntry={secureTextEntry}
+                onChangeText={(nextValue) => setValue(nextValue)}
+              />
+              <Button
+                containerStyle={styles.container1}
+                buttonStyle={styles.Style}
+                title="Lưu"
+              />
             </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <Text style={{ color: "#999" }}>Số nhà</Text>
-              <Text>{item.sonha}</Text>
-            </View>
-            <Card.Divider></Card.Divider>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <Text style={{ color: "#999" }}>Phường/Xã</Text>
-              <Text>{item.phuong}</Text>
-            </View>
-            <Card.Divider></Card.Divider>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <Text style={{ color: "#999" }}>Quận/Huyện</Text>
-              <Text>{item.quan}</Text>
-            </View>
-            <Card.Divider></Card.Divider>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <Text style={{ color: "#999" }}>Tỉnh/Thành phố</Text>
-              <Text>{item.tp}</Text>
-            </View>
-            <Card.Divider></Card.Divider>
           </Card>
         )}
       />
@@ -111,7 +90,6 @@ const EditAddress = ({ ListData }) => {
 };
 
 const styles = StyleSheet.create({
-  card: {},
   container: {
     borderRadius: 16,
     justifyContent: "space-between",
@@ -120,14 +98,36 @@ const styles = StyleSheet.create({
   flatlist: {
     flex: 1,
   },
+  card: {
+    borderRadius: 16,
+  },
   container1: {
-    borderRadius: 10,
+    borderRadius: 15,
+    width: "35%",
+    //height: "100%",
+    marginTop: 10,
+    marginBottom: 10,
   },
   Style: {
-    backgroundColor: "#fd4b59",
-    borderRadius: 10,
+    backgroundColor: "#7579e7",
+    borderRadius: 15,
     height: 30,
     width: 100,
+  },
+  captionContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  captionIcon: {
+    width: 10,
+    height: 10,
+    marginRight: 5,
+  },
+  captionText: {
+    fontSize: 12,
+    fontWeight: "400",
+    color: "#8F9BB3",
   },
 });
 

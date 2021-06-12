@@ -10,10 +10,11 @@ import {
 } from "react-native";
 import { Image, Badge, Icon } from "react-native-elements";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { Text } from "@ui-kitten/components";
+import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { royalblue } from "color-name";
 import { useSelector } from "react-redux";
+import InputSpinner from "react-native-input-spinner";
 
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
@@ -29,23 +30,10 @@ const DetailScreeen = ({ route, navigation }) => {
     function currencyFormat(num) {
         return "₫" + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }
-    const headercolor = useSelector((state) => state.theme.theme.HEADER_TITLE);
     return (
         <View style={{ flex: 1 }}>
-            <StatusBar hidden />
-            <View style={styles.cart}>
-                <Icon
-                    name="cart"
-                    type="ionicon"
-                    size={24}
-                    color={headercolor}
-                ></Icon>
-                <Badge
-                    status="success"
-                    value="0"
-                    containerStyle={styles.Badge}
-                />
-            </View>
+            {/* <StatusBar hidden /> */}
+
             <View style={{ height: ITEM_HEIGHT, overflow: "hidden" }}>
                 <Animated.FlatList
                     data={data.images}
@@ -128,6 +116,52 @@ const DetailScreeen = ({ route, navigation }) => {
                         </Text>
                     </View>
                 </BottomSheetScrollView>
+
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "center",
+                    }}
+                >
+                    <InputSpinner
+                        max={10}
+                        min={1}
+                        step={1}
+                        colorMax={"#f04048"}
+                        // colorMin={"#40c5f4"}
+                        value={1}
+                        onChange={(num) => {
+                            console.log(num);
+                        }}
+                        style={{
+                            height: 50,
+                            margin: 10,
+                            flex: 1,
+                            // backgroundColor:
+                        }}
+                        skin="clean"
+                    />
+                    <Button
+                        appearance="outline"
+                        accessoryLeft={() => (
+                            <Icon
+                                name="cart"
+                                type="ionicon"
+                                size={30}
+                                color="red"
+                            />
+                        )}
+                        style={{
+                            borderRadius: 25,
+                            height: 50,
+                            flex: 1,
+                            margin: 10,
+                            // elevation: 10,
+                            // marginTop: 0,
+                        }}
+                        status="danger"
+                    ></Button>
+                </View>
             </BottomSheet>
         </View>
     );
@@ -157,21 +191,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: -DOT_SIZE / 2,
         left: -DOT_SIZE / 2,
-    },
-    cart: {
-        margin: 5,
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: 25,
-        height: 25,
-        color: "#fff",
-    },
-    Badge: {
-        // backgroundColor: "#2E8364",
-        position: "absolute",
-        top: -8,
-        right: -9,
     },
 });
 

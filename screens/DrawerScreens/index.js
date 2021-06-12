@@ -120,6 +120,7 @@ const HomeTab = ({ navigation, route }) => {
 };
 
 const homeScreenStack = ({ navigation, route }) => {
+<<<<<<< HEAD
   const backgroundColor = useSelector((state) => state.theme.theme.TAB);
   const headerTitleColor = useSelector(
     (state) => state.theme.theme.HEADER_TITLE
@@ -334,6 +335,239 @@ const homeScreenStack = ({ navigation, route }) => {
       />
     </Stack.Navigator>
   );
+=======
+    const backgroundColor = useSelector((state) => state.theme.theme.TAB);
+    const headerTitleColor = useSelector(
+        (state) => state.theme.theme.HEADER_TITLE
+    );
+    const leftHeaderColor = useSelector(
+        (state) => state.theme.theme.HEADER_LEFT
+    );
+    const rightHeaderColor = useSelector(
+        (state) => state.theme.theme.HEADER_RIGHT
+    );
+    const backButtonColor = useSelector(
+        (state) => state.theme.theme.BACK_BUTTON
+    );
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerBackground: () => (
+                    <LinearGradient
+                        colors={[leftHeaderColor, rightHeaderColor]}
+                        style={{ flex: 1 }}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                    />
+                ),
+                headerTitleStyle: { color: headerTitleColor },
+                headerBackImage: ({ size }) => (
+                    <Icon
+                        name="arrow-back-circle-outline"
+                        type="ionicon"
+                        size={size}
+                        color={backButtonColor}
+                    />
+                ),
+            }}
+        >
+            <Stack.Screen
+                name="HomeTab"
+                component={HomeTab}
+                options={({ route, navigation }) => ({
+                    headerTitle: getHeaderTitle(route, navigation),
+                    title: "Home",
+                    headerLeft: () => (
+                        <NavigationDrawerHeader navigationProps={navigation} />
+                    ),
+                })}
+            />
+            <Stack.Screen
+                name="Detail"
+                component={DetailScreeen}
+                options={{
+                    // headerShown: false,
+                    title: "Chi tiết",
+                    RightButton: () => (
+                        <View>
+                            <Icon
+                                name="cart"
+                                type="ionicon"
+                                size={24}
+                                color={headerTitleColor}
+                            ></Icon>
+                            <Badge
+                                status="success"
+                                value="0"
+                                containerStyle={{
+                                    backgroundColor: "#2E8364",
+                                    position: "absolute",
+                                    top: -8,
+                                    right: -9,
+                                }}
+                            />
+                        </View>
+                    ),
+                }}
+                screenOptions={{ headerTransparent: true }}
+            />
+            <Stack.Screen
+                name="Setting"
+                component={SettingScreen}
+                options={{
+                    title: "Cài đặt",
+                }}
+            />
+            <Stack.Screen
+                name="Theme"
+                component={ThemeScreen}
+                options={{
+                    title: "Chủ đề",
+                }}
+            />
+            <Stack.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    title: "Hồ sơ của tôi",
+                }}
+            />
+            <Stack.Screen
+                name="Address"
+                component={AddressScreen}
+                options={{
+                    title: "Địa chỉ",
+                }}
+            />
+            <Stack.Screen
+                name="Setting-Notify"
+                component={StNotifyScreen}
+                options={{
+                    title: "Cài đặt thông báo",
+                }}
+            />
+            <Stack.Screen
+                name="Privacy"
+                component={PrivacyScreen}
+                options={{
+                    title: "Cài đặt quyền riêng tư",
+                }}
+            />
+            <Stack.Screen
+                name="Language"
+                component={LanguageScreen}
+                options={{
+                    title: "Ngôn ngữ",
+                }}
+            />
+            <Stack.Screen
+                name="Help"
+                component={HelpScreen}
+                options={{
+                    title: "Trung tâm hỗ trợ",
+                }}
+            />
+            <Stack.Screen
+                name="Introduce"
+                component={IntroduceScreen}
+                options={{
+                    title: "Giới thiệu",
+                }}
+            />
+            <Stack.Screen
+                name="Order"
+                component={OrderScreen}
+                options={{
+                    title: "Đơn mua",
+                }}
+            />
+            <Stack.Screen
+                name="Liked"
+                component={LikedScreen}
+                options={{
+                    title: "Đã thích",
+                }}
+            />
+            <Stack.Screen
+                name="Money"
+                component={MoneyScreen}
+                options={{
+                    title: "Ví",
+                }}
+            />
+            <Stack.Screen
+                name="Product-Reviews"
+                component={ReViewScreen}
+                options={{
+                    title: "Đánh giá của tôi",
+                }}
+            />
+            <Stack.Screen
+                name="Repurchase"
+                component={RepurchaseScreen}
+                options={{
+                    title: "Mua lại",
+                }}
+            />
+            <Stack.Screen
+                name="Service"
+                component={ServiceScreen}
+                options={{
+                    title: "Đơn thẻ và dịch vụ",
+                }}
+            />
+            <Stack.Screen
+                name="TenScreen"
+                component={TenScreen}
+                options={{
+                    title: "Tên", //Set Header Title
+                }}
+            />
+            <Stack.Screen
+                name="PassScreen"
+                component={PassScreen}
+                options={{
+                    title: "Mật khẩu", //Set Header Title
+                }}
+            />
+            <Stack.Screen
+                name="PhoneScreen"
+                component={PhoneScreen}
+                options={{
+                    title: "Số điện thoại", //Set Header Title
+                }}
+            />
+            <Stack.Screen
+                name="EmailScreen"
+                component={EmailScreen}
+                options={{
+                    title: "Email", //Set Header Title
+                }}
+            />
+            <Stack.Screen
+                name="DateScreen"
+                component={DateScreen}
+                options={{
+                    title: "Ngày sinh", //Set Header Title
+                }}
+            />
+            <Stack.Screen
+                name="GioiTinhScreen"
+                component={GioiTinhScreen}
+                options={{
+                    title: "Giới tính", //Set Header Title
+                }}
+            />
+            <Stack.Screen
+                name="card"
+                component={CardScreen}
+                options={{
+                    title: "Nạp thẻ",
+                }}
+            />
+        </Stack.Navigator>
+    );
+>>>>>>> 52673243c6b01d5836d096fa537c16f656948474
 };
 
 const settingScreenStack = ({ navigation }) => {
