@@ -24,6 +24,7 @@ const data = [
     color: "#4badea",
     incolor: "#E1F3FE",
     outcolor: "#F6FBFE",
+    link: "sale",
   },
   {
     title: "Nạp thẻ, dịch vụ",
@@ -51,6 +52,7 @@ const data = [
     color: "#A178EE",
     incolor: "#F1EBFD",
     outcolor: "#FAF9FE",
+    link: "xu",
   },
 ];
 export default data;

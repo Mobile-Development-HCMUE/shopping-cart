@@ -6,7 +6,7 @@ import { Card, Button } from "react-native-elements";
 import { useSelector } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
 
-const FreeshipScreen = () => {
+const SaleScreen = () => {
   const [isPress, setIsPress] = React.useState(true);
   const leftBackgroundButton = useSelector(
     (state) => state.theme.theme.HEADER_LEFT
@@ -30,7 +30,6 @@ const FreeshipScreen = () => {
               justifyContent: "center",
               flex: 1,
               width: "100%",
-              alignContent: "center",
             }}
           >
             <Text
@@ -38,12 +37,13 @@ const FreeshipScreen = () => {
                 fontFamily: "The-Wild-Thing",
                 fontWeight: "bold",
                 color: "#fff",
-                fontSize: 30,
+                fontSize: 32,
                 fontStyle: "italic",
                 width: "100%",
+                alignSelf: "center",
               }}
             >
-              Miễn phí vận chuyển
+              Săn ngay mã liền tay lưu ngay kẻo hết !!!
             </Text>
           </View>
         </LinearGradient>
@@ -62,7 +62,9 @@ const FreeshipScreen = () => {
               borderTopLeftRadius: 20,
             }}
           >
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>TEAM-IT</Text>
+            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 35 }}>
+              %
+            </Text>
           </View>
           <View
             style={{
@@ -83,7 +85,7 @@ const FreeshipScreen = () => {
                 alignSelf: "center",
               }}
             >
-              Miễn phí ship cho đơn từ 0đ
+              Giảm 10k cho đơn từ 20k
             </Text>
             <Button
               buttonStyle={
@@ -91,7 +93,7 @@ const FreeshipScreen = () => {
                   ? { backgroundColor: leftBackgroundButton }
                   : { backgroundColor: "#999" }
               }
-              title={isPress ? "Lưu" : "Hết mã :("}
+              title={isPress ? "Lưu ngay" : "Hết mã :("}
               onPress={() => {
                 setIsPress(!isPress);
               }}
@@ -118,7 +120,9 @@ const FreeshipScreen = () => {
               borderTopLeftRadius: 20,
             }}
           >
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>TEAM-IT</Text>
+            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 35 }}>
+              %
+            </Text>
           </View>
           <View
             style={{
@@ -139,7 +143,7 @@ const FreeshipScreen = () => {
                 alignSelf: "center",
               }}
             >
-              Miễn phí 30k phí ship đơn từ 100k
+              Giảm 20k cho đơn từ 70k
             </Text>
             <Button
               buttonStyle={
@@ -147,7 +151,7 @@ const FreeshipScreen = () => {
                   ? { backgroundColor: leftBackgroundButton }
                   : { backgroundColor: "#999" }
               }
-              title={isPress ? "Lưu" : "Hết mã :("}
+              title={isPress ? "Lưu ngay" : "Hết mã :("}
               onPress={() => {
                 setIsPress(!isPress);
               }}
@@ -174,7 +178,9 @@ const FreeshipScreen = () => {
               borderTopLeftRadius: 20,
             }}
           >
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>TEAM-IT</Text>
+            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 35 }}>
+              %
+            </Text>
           </View>
           <View
             style={{
@@ -195,7 +201,7 @@ const FreeshipScreen = () => {
                 alignSelf: "center",
               }}
             >
-              Miễn phí ship 100% đơn từ 150k
+              Giảm 10% cho đơn từ 100k
             </Text>
             <Button
               buttonStyle={
@@ -203,7 +209,7 @@ const FreeshipScreen = () => {
                   ? { backgroundColor: leftBackgroundButton }
                   : { backgroundColor: "#999" }
               }
-              title={isPress ? "Lưu" : "Hết mã :("}
+              title={isPress ? "Lưu ngay" : "Hết mã :("}
               onPress={() => {
                 setIsPress(!isPress);
               }}
@@ -230,7 +236,9 @@ const FreeshipScreen = () => {
               borderTopLeftRadius: 20,
             }}
           >
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>TEAM-IT</Text>
+            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 35 }}>
+              %
+            </Text>
           </View>
           <View
             style={{
@@ -251,7 +259,7 @@ const FreeshipScreen = () => {
                 alignSelf: "center",
               }}
             >
-              Miễn phí ship 100% đơn từ 100k
+              Giảm 30% cho đơn từ 200k
             </Text>
             <Button
               buttonStyle={
@@ -259,7 +267,7 @@ const FreeshipScreen = () => {
                   ? { backgroundColor: leftBackgroundButton }
                   : { backgroundColor: "#999" }
               }
-              title={isPress ? "Lưu" : "Hết mã :("}
+              title={isPress ? "Lưu ngay" : "Hết mã :("}
               onPress={() => {
                 setIsPress(!isPress);
               }}
@@ -278,8 +286,8 @@ const FreeshipScreen = () => {
   );
 };
 
-const Freeship = ({ navigation }) => {
-  return <FreeshipScreen />;
+const Sale = ({ navigation }) => {
+  return <SaleScreen />;
 };
 
 const styles = StyleSheet.create({
@@ -315,7 +323,8 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     flexDirection: "row",
+    borderRadius: 20,
   },
 });
 
-export default Freeship;
+export default Sale;

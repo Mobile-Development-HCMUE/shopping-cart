@@ -38,6 +38,8 @@ import DateScreen from "../Me/Setting/Profile/Date";
 import GioiTinhScreen from "../Me/Setting/Profile/GioiTinh";
 import CardScreen from "../Me/Service/Card";
 import EditScreen from "../Me/Setting/Address/EditAdress";
+import Sale from "../Home/Sale";
+import Xu from "../Home/Xu";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 import DetailScreeen from "../Home/DetailProduct";
@@ -358,6 +360,20 @@ const homeScreenStack = ({ navigation, route }) => {
         component={Freeship}
         options={{
           title: "Mã freeship",
+        }}
+      />
+      <Stack.Screen
+        name="sale"
+        component={Sale}
+        options={{
+          title: "Mã giảm giá",
+        }}
+      />
+      <Stack.Screen
+        name="xu"
+        component={Xu}
+        options={{
+          title: "Xu của tôi",
         }}
       />
     </Stack.Navigator>
