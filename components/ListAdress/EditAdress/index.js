@@ -25,6 +25,7 @@ const EditAddress = ({ ListData }) => {
   const toggleSecureEntry = () => {
     setSecureTextEntry(!secureTextEntry);
   };
+
   return (
     <ScrollView>
       <FlatList
@@ -49,124 +50,53 @@ const EditAddress = ({ ListData }) => {
             }
             status="primary"
           >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-                alignContent: "center",
-              }}
-            >
-              <Input
-                style={{
-                  marginBottom: 10,
-                  marginTop: 10,
-                  width: "100%",
-                  borderRadius: 20,
-                }}
-                value={value}
-                label="Số  nhà"
-                placeholder={item.sonha}
-                secureTextEntry={secureTextEntry}
-                onChangeText={(nextValue) => setValue(nextValue)}
-              />
+            <View style={styles.stylesView}>
+              <Text
+                style={{ margin: 10, fontSize: 15, fontWeight: "bold" }}
+                category="h6"
+              >
+                Số nhà:
+              </Text>
+              <Input style={styles.styleInput} placeholder={item.sonha}></Input>
             </View>
-
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-                alignContent: "center",
-              }}
-            >
-              <Input
-                style={{
-                  marginBottom: 10,
-                  marginTop: 10,
-                  width: "100%",
-                  borderRadius: 20,
-                }}
-                value={value}
-                label="Đường"
-                placeholder={item.duong}
-                secureTextEntry={secureTextEntry}
-                onChangeText={(nextValue) => setValue(nextValue)}
-              />
+            <View style={styles.stylesView}>
+              <Text
+                style={{ margin: 10, fontSize: 15, fontWeight: "bold" }}
+                category="h6"
+              >
+                Đường:
+              </Text>
+              <Input style={styles.styleInput} placeholder={item.duong}></Input>
             </View>
-
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-                alignContent: "center",
-              }}
-            >
+            <View style={styles.stylesView}>
+              <Text
+                style={{ margin: 10, fontSize: 15, fontWeight: "bold" }}
+                category="h6"
+              >
+                Phường/Xã:
+              </Text>
               <Input
-                style={{
-                  marginBottom: 10,
-                  marginTop: 10,
-                  width: "100%",
-                  borderRadius: 20,
-                }}
-                value={value}
-                label="Phường"
+                style={styles.styleInput}
                 placeholder={item.phuong}
-                secureTextEntry={secureTextEntry}
-                onChangeText={(nextValue) => setValue(nextValue)}
-              />
+              ></Input>
             </View>
-
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-                alignContent: "center",
-              }}
-            >
-              <Input
-                style={{
-                  marginBottom: 10,
-                  marginTop: 10,
-                  width: "100%",
-                  borderRadius: 20,
-                }}
-                value={value}
-                label="Quận/Huyện"
-                placeholder={item.quan}
-                secureTextEntry={secureTextEntry}
-                onChangeText={(nextValue) => setValue(nextValue)}
-              />
+            <View style={styles.stylesView}>
+              <Text
+                style={{ margin: 10, fontSize: 15, fontWeight: "bold" }}
+                category="h6"
+              >
+                Quận/Huyện:
+              </Text>
+              <Input style={styles.styleInput} placeholder={item.quan}></Input>
             </View>
-
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-                alignContent: "center",
-              }}
-            >
-              <Input
-                style={{
-                  marginBottom: 10,
-                  marginTop: 10,
-                  width: "100%",
-                  borderRadius: 20,
-                }}
-                value={value}
-                label="Thành phố/Tỉnh"
-                placeholder={item.tp}
-                secureTextEntry={secureTextEntry}
-                onChangeText={(nextValue) => setValue(nextValue)}
-              />
+            <View style={styles.stylesView}>
+              <Text
+                style={{ margin: 10, fontSize: 15, fontWeight: "bold" }}
+                category="h6"
+              >
+                Tỉnh/Thành Phố:
+              </Text>
+              <Input style={styles.styleInput} placeholder={item.tp}></Input>
             </View>
             <View style={{ alignItems: "center" }}>
               <Button
@@ -221,7 +151,20 @@ const styles = StyleSheet.create({
   captionText: {
     fontSize: 12,
     fontWeight: "400",
-    color: "#8F9BB3",
+    color: "#000",
+  },
+  stylesView: {
+    width: "100%",
+    backgroundColor: "#fff",
+  },
+  styleInput: {
+    marginLeft: 10,
+    maxWidth: "85%",
+    marginBottom: 10,
+    marginTop: 10,
+    width: "100%",
+    borderRadius: 20,
+    backgroundColor: "#fff",
   },
 });
 
