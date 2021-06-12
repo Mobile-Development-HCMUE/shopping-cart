@@ -37,7 +37,7 @@ const Footer = (props) => {
     return (
         <ActivityIndicator
             size="large"
-            animating={!props.loading}
+            animating={props.loading}
             color={backgroundColor}
         />
     );
@@ -74,7 +74,7 @@ const ListProduct = (props) => {
                     props.onEndReached();
                 })();
             }}
-            onEndReachedThreshold={2}
+            onEndReachedThreshold={props.ListData.length < 10 ? 0 : 2}
             refreshControl={
                 <RefreshControl
                     colors={["#9Bd35A", "#689F38"]}

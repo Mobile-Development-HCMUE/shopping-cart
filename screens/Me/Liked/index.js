@@ -16,13 +16,14 @@ const LikedScreen = () => {
     const bottomProfileColor = useSelector(
         (state) => state.theme.theme.BOTTOM_PROFILE
     );
+    const [loading, isLoading] = React.useState(false);
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <LinearGradient
                 style={{ height: "100%" }}
                 colors={[topProfileColor, bottomProfileColor]}
             >
-                <ListProduct ListData={users} />
+                <ListProduct ListData={users} loading={loading} />
             </LinearGradient>
         </SafeAreaView>
     );

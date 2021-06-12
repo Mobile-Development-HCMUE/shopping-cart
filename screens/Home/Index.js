@@ -53,17 +53,18 @@ const HomeScreen = () => {
         }
     };
     const db = firebase.firestore();
-    const first = db.collection("product").orderBy("itemid").limit(10);
+    const first = db.collection("product").orderBy("itemid").limit(14);
     const [lastVisible, setLastVisible] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const getNext = async () => {
-        console.log("Is loading", isLoading);
+    const getNext = () => {
+        console.log("Call loading");
         if (!isLoading) {
-            console.log("Is loading", isLoading);
+            setIsLoading(true);
+            console.log("Loading");
             db.collection("product")
                 .orderBy("itemid")
                 .startAfter(lastVisible)
-                .limit(10)
+                .limit(14)
                 .get()
                 .then((query) => {
                     console.log("start last", typeof lastVisible);
@@ -93,65 +94,59 @@ const HomeScreen = () => {
                             item_rating: e.item_rating.rating_star,
                             rating_count: e.item_rating.rating_count,
                         };
-                        newList = newList.concat(j);
-                        // console.log(newList);
-                        setDataSource(newList);
-
-                        // console.log("last visiable:", lastVisible);
+                        newList.push(j);
                     });
-                    console.log("end last", typeof lastVisible);
+                    setDataSource(newList);
                     setIsLoading(false);
+                    console.log("end");
                 })
                 .catch((error) => {
                     console.log("Error getting documents: ", error);
                 });
+        } else {
+            console.log("deny");
         }
     };
     React.useEffect(() => {
-        (async () => {
-            await console.log("Home: get data");
-            first
-                .get()
-                .then((query) => {
-                    setLastVisible(query.docs[query.docs.length - 1]);
-                    // console.log("new querry");
-                    let newList = [];
-                    // console.log("success");
-                    query.forEach((doc) => {
-                        let e = doc.data();
-                        const j = {
-                            itemid: e.itemid,
-                            name: e.name,
-                            image: e.image,
-                            images: e.images,
-                            currency: e.currency,
-                            stock: e.stock,
-                            ctime: e.ctime,
-                            liked_count: e.liked_count,
-                            view_count: e.view_count,
-                            price: e.price,
-                            price_before_discount: e.price_before_discount,
-                            description: e.description,
-                            price_min: e.price_min,
-                            price_max: e.price_max,
-                            discount: e.discount,
-                            historical_sold: e.historical_sold,
-                            item_rating: e.item_rating.rating_star,
-                            rating_count: e.item_rating.rating_count,
-                        };
-                        newList = newList.concat(j);
-                        // console.log(
-                        //     "https://cf.shopee.vn/file/" + e.image + "_tn"
-                        // );
-                        setDataSource(newList);
-                        setIsLoading(false);
-                        // console.log("last visiable:", lastVisible);
-                    });
-                })
-                .catch((error) => {
-                    console.log("Error getting documents: ", error);
+        console.log("Loading");
+        first
+            .get()
+            .then((query) => {
+                setLastVisible(query.docs[query.docs.length - 1]);
+                // console.log("new querry");
+                let newList = [];
+                // console.log("success");
+                query.forEach((doc) => {
+                    let e = doc.data();
+                    const j = {
+                        itemid: e.itemid,
+                        name: e.name,
+                        image: e.image,
+                        images: e.images,
+                        currency: e.currency,
+                        stock: e.stock,
+                        ctime: e.ctime,
+                        liked_count: e.liked_count,
+                        view_count: e.view_count,
+                        price: e.price,
+                        price_before_discount: e.price_before_discount,
+                        description: e.description,
+                        price_min: e.price_min,
+                        price_max: e.price_max,
+                        discount: e.discount,
+                        historical_sold: e.historical_sold,
+                        item_rating: e.item_rating.rating_star,
+                        rating_count: e.item_rating.rating_count,
+                    };
+                    newList.push(j);
                 });
-        })();
+                setDataSource(newList);
+                setIsLoading(false);
+                console.log("end");
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
         // console.log(userid);
         // (async () => {
         //     console.log("Home: get avatar");
