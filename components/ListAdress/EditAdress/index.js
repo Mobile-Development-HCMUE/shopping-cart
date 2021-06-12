@@ -7,10 +7,10 @@ import {
   Select,
   SelectItem,
   Text,
+  Input,
 } from "@ui-kitten/components";
-import { useNavigation } from "@react-navigation/native";
-import { Item } from "react-native-paper/lib/typescript/components/List/List";
 const data = ["Nhà", "Trường học", "Nơi làm việc", "Khác"];
+import { useSelector } from "react-redux";
 
 const EditAddress = ({ ListData }) => {
   const margin = 10;
@@ -19,16 +19,12 @@ const EditAddress = ({ ListData }) => {
   const renderOption = (title) => <SelectItem title={title} />;
   const [value, setValue] = React.useState("");
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
-
+  const buttonLogoutColor = useSelector(
+    (state) => state.theme.theme.HEADER_LEFT
+  );
   const toggleSecureEntry = () => {
     setSecureTextEntry(!secureTextEntry);
   };
-
-  const renderIcon = (props) => (
-    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
-      <Icon {...props} name={"email-outline"} />
-    </TouchableWithoutFeedback>
-  );
   return (
     <ScrollView>
       <FlatList
@@ -66,19 +62,118 @@ const EditAddress = ({ ListData }) => {
                 style={{
                   marginBottom: 10,
                   marginTop: 10,
-                  width: "63%",
+                  width: "100%",
                   borderRadius: 20,
                 }}
                 value={value}
                 label="Số  nhà"
                 placeholder={item.sonha}
-                accessoryRight={renderIcon}
                 secureTextEntry={secureTextEntry}
                 onChangeText={(nextValue) => setValue(nextValue)}
               />
+            </View>
+
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexDirection: "row",
+                alignContent: "center",
+              }}
+            >
+              <Input
+                style={{
+                  marginBottom: 10,
+                  marginTop: 10,
+                  width: "100%",
+                  borderRadius: 20,
+                }}
+                value={value}
+                label="Đường"
+                placeholder={item.duong}
+                secureTextEntry={secureTextEntry}
+                onChangeText={(nextValue) => setValue(nextValue)}
+              />
+            </View>
+
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexDirection: "row",
+                alignContent: "center",
+              }}
+            >
+              <Input
+                style={{
+                  marginBottom: 10,
+                  marginTop: 10,
+                  width: "100%",
+                  borderRadius: 20,
+                }}
+                value={value}
+                label="Phường"
+                placeholder={item.phuong}
+                secureTextEntry={secureTextEntry}
+                onChangeText={(nextValue) => setValue(nextValue)}
+              />
+            </View>
+
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexDirection: "row",
+                alignContent: "center",
+              }}
+            >
+              <Input
+                style={{
+                  marginBottom: 10,
+                  marginTop: 10,
+                  width: "100%",
+                  borderRadius: 20,
+                }}
+                value={value}
+                label="Quận/Huyện"
+                placeholder={item.quan}
+                secureTextEntry={secureTextEntry}
+                onChangeText={(nextValue) => setValue(nextValue)}
+              />
+            </View>
+
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexDirection: "row",
+                alignContent: "center",
+              }}
+            >
+              <Input
+                style={{
+                  marginBottom: 10,
+                  marginTop: 10,
+                  width: "100%",
+                  borderRadius: 20,
+                }}
+                value={value}
+                label="Thành phố/Tỉnh"
+                placeholder={item.tp}
+                secureTextEntry={secureTextEntry}
+                onChangeText={(nextValue) => setValue(nextValue)}
+              />
+            </View>
+            <View style={{ alignItems: "center" }}>
               <Button
                 containerStyle={styles.container1}
-                buttonStyle={styles.Style}
+                buttonStyle={
+                  (styles.Style, { backgroundColor: buttonLogoutColor })
+                }
                 title="Lưu"
               />
             </View>
@@ -102,15 +197,14 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   container1: {
-    borderRadius: 15,
+    borderRadius: 20,
     width: "35%",
     //height: "100%",
     marginTop: 10,
     marginBottom: 10,
   },
   Style: {
-    backgroundColor: "#7579e7",
-    borderRadius: 15,
+    borderRadius: 20,
     height: 30,
     width: 100,
   },

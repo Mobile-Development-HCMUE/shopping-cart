@@ -40,6 +40,7 @@ const data = [
     color: "#F25C05",
     incolor: "#fce9de",
     outcolor: "#fffaf7",
+    link: "Product-Reviews",
   },
 
   {
