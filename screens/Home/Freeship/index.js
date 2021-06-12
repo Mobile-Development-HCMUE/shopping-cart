@@ -32,6 +32,7 @@ const FreeshipScreen = () => {
           >
             <Text
               style={{
+                fontFamily: "The-Wild-Thing",
                 fontWeight: "bold",
                 color: "#ff5",
                 fontSize: 30,
