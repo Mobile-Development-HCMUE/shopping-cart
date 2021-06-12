@@ -16,15 +16,20 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 const Header = (props) => {
-    return (
-        <>
-            <SearchBar
-                search={props.search}
-                searchFunciton={props.searchFunction}
-            />
-            <CardList listButton={props.listButton} />
-        </>
-    );
+    const isHome = props.isHome;
+    if (isHome)
+        return (
+            <>
+                <SearchBar
+                    search={props.search}
+                    searchFunciton={props.searchFunction}
+                />
+                <CardList listButton={props.listButton} />
+            </>
+        );
+    else {
+        return <></>;
+    }
 };
 
 const Footer = (props) => {
@@ -53,12 +58,10 @@ const ListProduct = (props) => {
                     search={props.search}
                     searchFunciton={props.searchFunciton}
                     listButton={props.listButton}
-                    isHomw={props.}
+                    isHome={props.isHome}
                 />
             }
-            ListFooterComponent={
-                <Footer loading={props.loading} />
-            }
+            ListFooterComponent={<Footer loading={props.loading} />}
             columnWrapperStyle={{ justifyContent: "space-between" }}
             numColumns="2"
             data={props.ListData}

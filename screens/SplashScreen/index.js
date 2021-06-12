@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { firebase } from "../../firebase/config"; // add this code to your project to reset all timeouts
 import { Platform, InteractionManager } from "react-native";
 import { change_id, change_name, change_avatar } from "../../redux/ducks";
+import { useFonts } from "expo-font";
 const _setTimeout = global.setTimeout;
 const _clearTimeout = global.clearTimeout;
 const MAX_TIMER_DURATION_MS = 60 * 1000;
@@ -56,6 +57,9 @@ const SplashScreen = ({ navigation }) => {
         (state) => state.theme.theme.TOP_PROFILE
     );
     const dispatch = useDispatch();
+    const [fontsLoaded] = useFonts({
+        "The-Wild-Thing": require("../../assets/fonts/SVN-The Wild Things Script.otf"),
+    });
     useEffect(() => {
         const usersRef = firebase.firestore().collection("users");
         firebase.auth().onAuthStateChanged((user) => {
