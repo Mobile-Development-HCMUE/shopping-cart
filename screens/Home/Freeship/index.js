@@ -13,6 +13,7 @@ const FreeshipScreen = () => {
   const rightBackgroundButton = useSelector(
     (state) => state.theme.theme.HEADER_RIGHT
   );
+
   return (
     <View style={styles.outcard}>
       <View style={styles.incard}>
@@ -26,8 +27,6 @@ const FreeshipScreen = () => {
             style={{
               justifyContent: "center",
               flex: 1,
-              alignItems: "center",
-              alignContent: "center",
               width: "100%",
             }}
           >
@@ -37,16 +36,17 @@ const FreeshipScreen = () => {
                 color: "#ff5",
                 fontSize: 30,
                 fontStyle: "italic",
-                justifyContent: "center",
                 width: "100%",
-                alignItems: "center",
-                alignContent: "center",
               }}
             >
               Miễn phí vận chuyển
             </Text>
           </View>
         </LinearGradient>
+      </View>
+      <View>
+        <View></View>
+        <View></View>
       </View>
     </View>
   );
