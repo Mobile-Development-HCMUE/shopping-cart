@@ -41,6 +41,7 @@ import EditScreen from "../Me/Setting/Address/EditAdress";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 import DetailScreeen from "../Home/DetailProduct";
+import Freeship from "../Home/Freeship";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -350,6 +351,13 @@ const homeScreenStack = ({ navigation, route }) => {
         component={EditScreen}
         options={{
           title: "Sửa địa chỉ",
+        }}
+      />
+      <Stack.Screen
+        name="freeship"
+        component={Freeship}
+        options={{
+          title: "Mã freeship",
         }}
       />
     </Stack.Navigator>

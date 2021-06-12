@@ -11,6 +11,7 @@ const data = [
     title: "Miễn phí ship",
     icon: "subway",
     type: "ionicon",
+    link: "freeship",
 
     color: "#b739d3",
     incolor: "#fae5ff",
