@@ -40,6 +40,7 @@ import CardScreen from "../Me/Service/Card";
 import EditScreen from "../Me/Setting/Address/EditAdress";
 import Sale from "../Home/Sale";
 import Xu from "../Home/Xu";
+import List from "../Home/List";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { UserContext } from "contexts";
 import DetailScreeen from "../Home/DetailProduct";
@@ -374,6 +375,13 @@ const homeScreenStack = ({ navigation, route }) => {
         component={Xu}
         options={{
           title: "Xu của tôi",
+        }}
+      />
+      <Stack.Screen
+        name="listsp"
+        component={List}
+        options={{
+          title: "Danh mục sản phẩm",
         }}
       />
     </Stack.Navigator>

@@ -6,6 +6,7 @@ const data = [
     color: "#ff4669",
     incolor: "#FFE3EF",
     outcolor: "#FFF6FA",
+    link: "listsp",
   },
   {
     title: "Miễn phí ship",
