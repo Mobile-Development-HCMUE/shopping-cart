@@ -19,8 +19,9 @@ import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { royalblue } from "color-name";
-import { useSelector } from "react-redux";
 import InputSpinner from "react-native-input-spinner";
+import { firebase } from "../../../firebase/config";
+import { useSelector } from "react-redux";
 
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
@@ -28,6 +29,8 @@ const ITEM_HEIGHT = height * 0.75;
 const DOT_SIZE = 8;
 const DOT_SPACING = 8;
 const DOT_INDICATOR_SiZE = DOT_SIZE + DOT_SPACING;
+
+const db = firebase.firestore();
 
 const DetailScreeen = ({ route, navigation }) => {
     const data = route.params.data;
@@ -59,6 +62,37 @@ const DetailScreeen = ({ route, navigation }) => {
     const ratingCompleted = (rating) => {
         console.log("Rating is: " + rating);
     };
+    const [liked, setLiked] = React.useState(false);
+    const userid = useSelector((state) => state.user.id);
+    const user = db.collection("users").doc(userid);
+    React.useEffect(() => {
+        user.get()
+            .then((doc) => {
+                console.log("get like");
+                setLiked(doc.data().likeItem.includes(data.itemid));
+            })
+            .then(() => console.log("set success"));
+    });
+
+    const setUpdateLike = () => {
+        console.log("check like", liked);
+        if (liked) {
+            console.log("not liking");
+            setLiked(false);
+            user.update({
+                likeItem: firebase.firestore.FieldValue.arrayRemove(
+                    data.itemid
+                ),
+            });
+        } else {
+            setLiked(true);
+            console.log("liking");
+            user.update({
+                likeItem: firebase.firestore.FieldValue.arrayUnion(data.itemid),
+            });
+        }
+    };
+
     return (
         <View style={{ flex: 1 }}>
             {/* <StatusBar hidden /> */}
@@ -178,9 +212,13 @@ const DetailScreeen = ({ route, navigation }) => {
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Icon
-                                name="heart-outline"
+                                name={liked ? "heart" : "heart-outline"}
                                 type="ionicon"
                                 style={{}}
+                                color={liked && "red"}
+                                onPress={() => {
+                                    setUpdateLike();
+                                }}
                             />
                             <Icon
                                 name="share-social-outline"
