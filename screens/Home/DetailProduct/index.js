@@ -18,7 +18,6 @@ import {
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { royalblue } from "color-name";
 import InputSpinner from "react-native-input-spinner";
 import { db, firebase } from "../../../firebase/config";
 import { useSelector } from "react-redux";

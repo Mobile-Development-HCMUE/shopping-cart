@@ -10,8 +10,6 @@ import SearchBar from "../../components/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import data from "../Home/data";
 
-const Stack = createStackNavigator();
-
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
