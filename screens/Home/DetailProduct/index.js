@@ -8,7 +8,13 @@ import {
     ActivityIndicator,
     StatusBar,
 } from "react-native";
-import { Image, Badge, Icon } from "react-native-elements";
+import {
+    Image,
+    Badge,
+    Icon,
+    Rating,
+    AirbnbRating,
+} from "react-native-elements";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
@@ -33,11 +39,25 @@ const DetailScreeen = ({ route, navigation }) => {
     const namemap = {
         Bảo: "Bảo hành",
         Tá: "Tác giả",
+        "Nhà xuấ": "Nhà xuất bản",
+        "Công ty phát": "Công ty phát hành",
+        "Năm xuấ": "Năm xuất bản",
+        "Số ": "Số trang",
+    };
+    const valuemap = {
+        "Nhiều tá": "Nhiều tác giả",
+        "NXB Lao": "NXB Lao Động",
     };
     const getName = (u) => {
         let name = u.name;
-        console.log(name);
-        return namemap.name;
+        let value = u.value;
+        // console.log(name);
+        return (
+            namemap[name] + ": " + (valuemap[value] ? valuemap[value] : value)
+        );
+    };
+    const ratingCompleted = (rating) => {
+        console.log("Rating is: " + rating);
     };
     return (
         <View style={{ flex: 1 }}>
@@ -113,9 +133,6 @@ const DetailScreeen = ({ route, navigation }) => {
                     <Text style={{ color: "red" }}>
                         {currencyFormat(data.price / 100000)}
                     </Text>
-                    <Text style={{ fontWeight: "bold", marginTop: 10 }}>
-                        Chi tiết sản phẩm
-                    </Text>
                     {/* {console.log(data.attributes)} */}
                     <View
                         style={{
@@ -124,14 +141,22 @@ const DetailScreeen = ({ route, navigation }) => {
                             marginTop: 10,
                         }}
                     />
-                    {typeof data.attributes != "undefined" ? (
-                        data.attributes.map((u, i) => {
-                            return <Text key={i}>{getName(u)}</Text>;
-                        })
-                    ) : (
-                        <></>
-                    )}
-
+                    <View style={{ marginTop: 10 }}>
+                        {typeof data.attributes != "undefined" ? (
+                            data.attributes.map((u, i) => {
+                                return <Text key={i}>{getName(u)}</Text>;
+                            })
+                        ) : (
+                            <></>
+                        )}
+                    </View>
+                    <View
+                        style={{
+                            borderBottomColor: "#f0f0f0",
+                            borderBottomWidth: 1,
+                            marginTop: 10,
+                        }}
+                    />
                     <View style={{ marginVertical: 20 }}>
                         <Text
                             style={{
@@ -142,6 +167,28 @@ const DetailScreeen = ({ route, navigation }) => {
                         >
                             {data.description}
                         </Text>
+                        <View
+                            style={{
+                                borderBottomColor: "#f0f0f0",
+                                borderBottomWidth: 1,
+                                marginTop: 10,
+                            }}
+                        />
+                        <Text style={{ fontWeight: "bold", marginTop: 10 }}>
+                            Đánh giá sản phẩm
+                        </Text>
+                        <Rating
+                            showRating
+                            fractions={1}
+                            readonly
+                            startingValue={data.item_rating.rating_star}
+                            type="custom"
+                            ratingBackgroundColor="#c8c7c8"
+                            ratingCount={5}
+                            imageSize={30}
+                            // onFinishRating={ratingCompleted}
+                            style={{ marginTop: 10 }}
+                        />
                     </View>
                 </BottomSheetScrollView>
 

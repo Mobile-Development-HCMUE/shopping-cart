@@ -36,6 +36,7 @@ const Footer = (props) => {
     const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     return (
         <ActivityIndicator
+            style={{ margin: 10 }}
             size="large"
             animating={props.loading}
             color={backgroundColor}
