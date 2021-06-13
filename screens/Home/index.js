@@ -9,6 +9,7 @@ import ListProduct from "components/ListProduct";
 import SearchBar from "../../components/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import data from "../Home/data";
+import ContentLoader from "components/ContentLoader/Main";
 
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -157,6 +158,7 @@ const HomeScreen = () => {
     }, []);
     return (
         <>
+            {(isLoading || refreshing) && <ContentLoader />}
             <ListProduct
                 refreshing={refreshing}
                 onRefresh={onRefresh}

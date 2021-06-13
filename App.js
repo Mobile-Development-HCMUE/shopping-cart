@@ -26,6 +26,7 @@ import { change_theme } from "./redux/ducks/";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 import { Platform, InteractionManager } from "react-native";
+import Toast from "react-native-toast-message";
 
 const _setTimeout = global.setTimeout;
 const _clearTimeout = global.clearTimeout;
@@ -115,6 +116,7 @@ const App0 = () => {
                             />
                         </Stack.Navigator>
                     </NavigationContainer>
+                    <Toast ref={(ref) => Toast.setRef(ref)} />
                 </SafeAreaProvider>
             </ApplicationProvider>
         </>

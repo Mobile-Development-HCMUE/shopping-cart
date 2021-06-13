@@ -8,6 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { db } from "../../../firebase/config";
+import ContentLoader from "components/ContentLoader/Main";
 
 const LikedScreen = () => {
     const topProfileColor = useSelector(
@@ -84,6 +85,7 @@ const LikedScreen = () => {
             style={{ height: "100%" }}
             colors={[topProfileColor, bottomProfileColor]}
         >
+            {(isLoading || refreshing) && <ContentLoader />}
             <ListProduct
                 refreshing={refreshing}
                 onRefresh={onRefresh}
