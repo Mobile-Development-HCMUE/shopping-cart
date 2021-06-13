@@ -28,18 +28,15 @@ const LikedScreen = () => {
     const user = db.collection("users").doc(userid);
     // console.log(userid);
     const product = db.collection("product");
-
     React.useEffect(() => {
-        user.get().then((doc) => {
-            doc.data()
-                .likeItem.forEach((productid) => {
-                    let newList = [];
-                    console.log(productid);
-                    product
+        user.get().then(() => {
+            Promise.all(
+                doc.data().likeItem.map((productid) => {
+                    return product
                         .doc(productid)
                         .get()
                         .then((doc) => {
-                            let e = doc.data();
+                            const e = doc.data();
                             const j = {
                                 attributes: e.attributes,
                                 itemid: e.itemid,
@@ -62,15 +59,12 @@ const LikedScreen = () => {
                                     rating_star: e.item_rating.rating_star,
                                 },
                             };
-                            console.log(j);
-                            newList.push(j);
+                            return j;
                         });
-                    setDataSource(newList);
-                    // console.log(dataSource);
                 })
-                .catch((error) => {
-                    console.log("Error getting documents: ", error);
-                });
+            ).then((newL) => {
+                setDataSource(newL);
+            });
         });
     }, []);
     return (
@@ -83,6 +77,7 @@ const LikedScreen = () => {
                 onRefresh={onRefresh}
                 ListData={dataSource}
                 loading={isLoading}
+                onEndReached={() => {}}
             />
         </LinearGradient>
     );
