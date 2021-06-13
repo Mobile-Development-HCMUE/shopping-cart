@@ -20,7 +20,7 @@ import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { royalblue } from "color-name";
 import InputSpinner from "react-native-input-spinner";
-import { firebase } from "../../../firebase/config";
+import { db, firebase } from "../../../firebase/config";
 import { useSelector } from "react-redux";
 
 const { height, width } = Dimensions.get("screen");
@@ -29,8 +29,6 @@ const ITEM_HEIGHT = height * 0.75;
 const DOT_SIZE = 8;
 const DOT_SPACING = 8;
 const DOT_INDICATOR_SiZE = DOT_SIZE + DOT_SPACING;
-
-const db = firebase.firestore();
 
 const DetailScreeen = ({ route, navigation }) => {
     const data = route.params.data;

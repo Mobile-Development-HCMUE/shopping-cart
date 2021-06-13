@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ActivityIndicator, View, StyleSheet, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector, useDispatch } from "react-redux";
-import { firebase } from "../../firebase/config"; // add this code to your project to reset all timeouts
+import { firebase, db } from "../../firebase/config"; // add this code to your project to reset all timeouts
 import { Platform, InteractionManager } from "react-native";
 import { change_id, change_name, change_avatar } from "../../redux/ducks";
 import * as Font from "expo-font";
@@ -21,7 +21,7 @@ const SplashScreen = ({ navigation }) => {
     );
     const dispatch = useDispatch();
     useEffect(() => {
-        const usersRef = firebase.firestore().collection("users");
+        const usersRef = db.collection("users");
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 usersRef

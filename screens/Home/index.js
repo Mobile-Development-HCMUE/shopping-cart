@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Text } from "react-native-elements";
-import { firebase } from "../../firebase/config";
+import { db } from "../../firebase/config";
 import ListProduct from "components/ListProduct";
 import SearchBar from "../../components/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
@@ -51,7 +51,6 @@ const HomeScreen = () => {
             setSearch(text);
         }
     };
-    const db = firebase.firestore();
     const first = db.collection("product").orderBy("itemid").limit(14);
     const [lastVisible, setLastVisible] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
