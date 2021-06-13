@@ -25,7 +25,7 @@ const OneTab = () => {
         style={{ height: "50%", justifyContent: "flex-end", marginBottom: 20 }}
       >
         <Text style={{}} category="h6">
-          Chưa có gì trong giỏ hàng :(
+          Chưa mua hàng để đánh giá :(
         </Text>
       </View>
       <View style={{ height: "50%" }}>
