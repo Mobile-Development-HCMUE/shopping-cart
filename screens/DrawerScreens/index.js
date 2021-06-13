@@ -24,6 +24,7 @@ import IntroduceScreen from "../Me/Setting/Introduce";
 import HomeScreen from "../Home";
 import NotifyScreen from "../Notify";
 import MeScreen from "../Me";
+import CartScreen from "../Cart";
 import OrderScreen from "../Me/Oder/index";
 import LikedScreen from "../Me/Liked";
 import MoneyScreen from "../Me/Money";
@@ -58,6 +59,8 @@ const getHeaderTitle = (route, navigation) => {
       return "Thông báo";
     case "Me":
       return "Tôi";
+    case "Cart":
+      return "Giỏ hàng";
   }
 };
 
@@ -105,6 +108,17 @@ const HomeTab = ({ navigation, route }) => {
           title: "Thông báo",
           tabBarIcon: ({ color }) => (
             <Icon name="notifications" type="ionicon" color={color} size={24} />
+          ),
+          tabBarBadge: 0,
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          title: "Giỏ hàng",
+          tabBarIcon: ({ color }) => (
+            <Icon name="cart" type="ionicon" color={color} size={24} />
           ),
           tabBarBadge: 0,
         }}
@@ -160,7 +174,7 @@ const homeScreenStack = ({ navigation, route }) => {
         component={HomeTab}
         options={({ route, navigation }) => ({
           headerTitle: getHeaderTitle(route, navigation),
-          title: "Home",
+          title: "Giỏ hàng",
           headerLeft: () => (
             <NavigationDrawerHeader navigationProps={navigation} />
           ),
