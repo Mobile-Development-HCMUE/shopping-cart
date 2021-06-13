@@ -21,23 +21,29 @@ const OneTab = () => {
   );
   return (
     <Layout style={styles.tabContainer} level="1">
-      <Text style={{ margin: 10 }} category="h6">
-        Chưa có đánh giá nào!
-      </Text>
-      <Button
-        // onPress={toggleOverlay}
-        containerStyle={styles.ButtonContainerStyles}
-        buttonStyle={styles.ButtonStyles}
-        title="Mua ngay để đánh giá sản phẩm!!!"
-        onPress={() => navigation.navigate("Home")}
-        ViewComponent={LinearGradient}
-        linearGradientProps={{
-          colors: [leftBackgroundButton, rightBackgroundButton],
-          style: { flex: 1 },
-          start: { x: 0, y: 0 },
-          end: { x: 1, y: 0 },
-        }}
-      ></Button>
+      <View
+        style={{ height: "50%", justifyContent: "flex-end", marginBottom: 20 }}
+      >
+        <Text style={{}} category="h6">
+          Chưa có gì trong giỏ hàng :(
+        </Text>
+      </View>
+      <View style={{ height: "50%" }}>
+        <Button
+          // onPress={toggleOverlay}
+          containerStyle={styles.ButtonContainerStyles}
+          buttonStyle={styles.ButtonStyles}
+          title="Mua ngay thôi!!!"
+          onPress={() => navigation.navigate("Home")}
+          ViewComponent={LinearGradient}
+          linearGradientProps={{
+            colors: [leftBackgroundButton, rightBackgroundButton],
+            style: { flex: 1 },
+            start: { x: 0, y: 0 },
+            end: { x: 1, y: 0 },
+          }}
+        ></Button>
+      </View>
     </Layout>
   );
 };
@@ -82,8 +88,7 @@ const styles = StyleSheet.create({
   },
   ButtonContainerStyles: {
     flex: 1,
-    justifyContent: "center",
-    marginBottom: 10,
+    justifyContent: "flex-start",
     marginLeft: 80,
     marginRight: 80,
     borderRadius: 20,
