@@ -33,8 +33,8 @@ const OneTab = () => {
           // onPress={toggleOverlay}
           containerStyle={styles.ButtonContainerStyles}
           buttonStyle={styles.ButtonStyles}
-          title="Mua ngay thôi!!!"
-          onPress={() => navigation.navigate("Home")}
+          title="Mua thẻ ngay!!!"
+          onPress={() => navigation.navigate("card")}
           ViewComponent={LinearGradient}
           linearGradientProps={{
             colors: [leftBackgroundButton, rightBackgroundButton],
