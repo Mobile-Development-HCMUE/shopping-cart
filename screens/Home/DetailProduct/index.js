@@ -130,10 +130,44 @@ const DetailScreeen = ({ route, navigation }) => {
                     contentContainerStyle={{ padding: 20 }}
                 >
                     <Text>{data.name}</Text>
-                    <Text style={{ color: "red" }}>
-                        {currencyFormat(data.price / 100000)}
-                    </Text>
-                    {/* {console.log(data.attributes)} */}
+                    <View style={{ flexDirection: "row" }}>
+                        <Text style={{ color: "red" }}>
+                            {currencyFormat(data.price / 100000)}
+                        </Text>
+                        <Text
+                            style={{
+                                textDecorationLine: "line-through",
+                                color: "#999",
+                                marginLeft: 5,
+                            }}
+                        >
+                            {data.price_before_discount != null
+                                ? currencyFormat(
+                                      data.price_before_discount / 100000
+                                  )
+                                : ""}
+                        </Text>
+                    </View>
+                    <View style={{ flexDirection: "row", marginTop: 10 }}>
+                        <Rating
+                            type="custom"
+                            // showRating
+                            fractions={1}
+                            readonly
+                            startingValue={data.item_rating.rating_star}
+                            // type="custom"
+                            ratingBackgroundColor="#c8c7c8"
+                            ratingCount={5}
+                            imageSize={17}
+                            // onFinishRating={ratingCompleted}
+                            style={{
+                                justifyContent: "flex-start",
+                            }}
+                        />
+                        <Text style={{ marginLeft: 5 }}>
+                            {Math.round(data.item_rating.rating_star * 10) / 10}
+                        </Text>
+                    </View>
                     <View
                         style={{
                             borderBottomColor: "#f0f0f0",

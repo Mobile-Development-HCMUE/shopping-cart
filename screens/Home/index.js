@@ -91,8 +91,9 @@ const HomeScreen = () => {
                             price_max: e.price_max,
                             discount: e.discount,
                             historical_sold: e.historical_sold,
-                            item_rating: e.item_rating.rating_star,
-                            rating_count: e.item_rating.rating_count,
+                            item_rating: {
+                                rating_star: e.item_rating.rating_star,
+                            },
                         };
                         newList.push(j);
                     });
@@ -136,8 +137,9 @@ const HomeScreen = () => {
                         price_max: e.price_max,
                         discount: e.discount,
                         historical_sold: e.historical_sold,
-                        item_rating: e.item_rating.rating_star,
-                        rating_count: e.item_rating.rating_count,
+                        item_rating: {
+                            rating_star: e.item_rating.rating_star,
+                        },
                     };
                     newList.push(j);
                 });
