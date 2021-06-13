@@ -15,13 +15,14 @@ import {
     Rating,
     AirbnbRating,
 } from "react-native-elements";
+
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import InputSpinner from "react-native-input-spinner";
 import { db, firebase } from "../../../firebase/config";
 import { useSelector } from "react-redux";
-
+import Toast from "react-native-toast-message";
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
 const ITEM_HEIGHT = height * 0.75;
@@ -88,6 +89,13 @@ const DetailScreeen = ({ route, navigation }) => {
                 likeItem: firebase.firestore.FieldValue.arrayUnion(data.itemid),
             });
         }
+    };
+
+    const showToast = () => {
+        Toast.show({
+            text1: "Đặt hàng thành công",
+            text2: "Mời bạn đến kiểm tra giỏ hàng nha 👋",
+        });
     };
 
     return (
@@ -264,6 +272,9 @@ const DetailScreeen = ({ route, navigation }) => {
                                 marginTop: 10,
                             }}
                         />
+                        <Text style={{ marginTop: 10, color: "red" }}>
+                            Còn lại: {data.stock} sản phẩm
+                        </Text>
                         <Text style={{ fontWeight: "bold", marginTop: 10 }}>
                             Đánh giá sản phẩm
                         </Text>
@@ -289,7 +300,7 @@ const DetailScreeen = ({ route, navigation }) => {
                     }}
                 >
                     <InputSpinner
-                        max={10}
+                        max={data.stock}
                         min={1}
                         step={1}
                         colorMax={"#f04048"}
@@ -325,9 +336,13 @@ const DetailScreeen = ({ route, navigation }) => {
                             // marginTop: 0,
                         }}
                         status="danger"
+                        onPress={() => {
+                            showToast();
+                        }}
                     ></Button>
                 </View>
             </BottomSheet>
+            <Toast />
         </View>
     );
 };
