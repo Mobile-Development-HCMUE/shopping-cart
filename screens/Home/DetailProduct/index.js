@@ -148,25 +148,46 @@ const DetailScreeen = ({ route, navigation }) => {
                                 : ""}
                         </Text>
                     </View>
-                    <View style={{ flexDirection: "row", marginTop: 10 }}>
-                        <Rating
-                            type="custom"
-                            // showRating
-                            fractions={1}
-                            readonly
-                            startingValue={data.item_rating.rating_star}
-                            // type="custom"
-                            ratingBackgroundColor="#c8c7c8"
-                            ratingCount={5}
-                            imageSize={17}
-                            // onFinishRating={ratingCompleted}
-                            style={{
-                                justifyContent: "flex-start",
-                            }}
-                        />
-                        <Text style={{ marginLeft: 5 }}>
-                            {Math.round(data.item_rating.rating_star * 10) / 10}
-                        </Text>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            marginTop: 10,
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <View style={{ flexDirection: "row" }}>
+                            <Rating
+                                type="custom"
+                                // showRating
+                                fractions={1}
+                                readonly
+                                startingValue={data.item_rating.rating_star}
+                                // type="custom"
+                                ratingBackgroundColor="#c8c7c8"
+                                ratingCount={5}
+                                imageSize={17}
+                                // onFinishRating={ratingCompleted}
+                                style={{
+                                    justifyContent: "flex-start",
+                                }}
+                            />
+                            <Text style={{ marginLeft: 5 }}>
+                                {Math.round(data.item_rating.rating_star * 10) /
+                                    10}
+                            </Text>
+                        </View>
+                        <View style={{ flexDirection: "row" }}>
+                            <Icon
+                                name="heart-outline"
+                                type="ionicon"
+                                style={{}}
+                            />
+                            <Icon
+                                name="share-social-outline"
+                                type="ionicon"
+                                style={{ marginLeft: 10 }}
+                            />
+                        </View>
                     </View>
                     <View
                         style={{
