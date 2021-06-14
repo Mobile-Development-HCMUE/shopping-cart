@@ -60,16 +60,16 @@ const DetailScreeen = ({ route, navigation }) => {
     const ratingCompleted = (rating) => {
         console.log("Rating is: " + rating);
     };
+    const [loading, setLoading] = React.useState(true);
     const [liked, setLiked] = React.useState(false);
     const userid = useSelector((state) => state.user.id);
     const user = db.collection("users").doc(userid);
     React.useEffect(() => {
-        user.get()
-            .then((doc) => {
-                console.log("get like");
-                setLiked(doc.data().likeItem.includes(data.itemid));
-            })
-            .then(() => console.log("set success"));
+        user.get().then((doc) => {
+            console.log("get like");
+            setLiked(doc.data().likeItem.includes(data.itemid));
+            setLoading(false);
+        });
     });
 
     const setUpdateLike = () => {
