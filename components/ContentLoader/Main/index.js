@@ -15,25 +15,16 @@ const MyLoader = (props) => (
         foregroundColor="#ecebeb"
         {...props}
     >
-        <Circle cx="28" cy="76" r="20" />
-        <Circle cx="87" cy="77" r="20" />
-        <Rect x="74" y="140" rx="0" ry="0" width="0" height="2" />
-        <Rect x="17" y="44" rx="0" ry="0" width="0" height="1" />
-        <Rect x="43" y="148" rx="0" ry="0" width="0" height="2" />
-        <Rect x="5" y="125" rx="0" ry="0" width="185" height="148" />
-        <Rect x="247" y="524" rx="0" ry="0" width="0" height="1" />
-        <Rect x="167" y="403" rx="0" ry="0" width="0" height="77" />
-        <Rect x="-3" y="5" rx="0" ry="0" width="472" height="31" />
-        <Rect x="393" y="227" rx="0" ry="0" width="43" height="2" />
-        <Rect x="202" y="124" rx="0" ry="0" width="185" height="148" />
-        <Circle cx="149" cy="76" r="20" />
-        <Circle cx="209" cy="77" r="20" />
-        <Circle cx="269" cy="77" r="20" />
-        <Circle cx="328" cy="76" r="20" />
-        <Rect x="7" y="288" rx="0" ry="0" width="185" height="148" />
-        <Rect x="204" y="288" rx="0" ry="0" width="185" height="148" />
-        <Rect x="7" y="450" rx="0" ry="0" width="185" height="148" />
-        <Rect x="205" y="450" rx="0" ry="0" width="185" height="148" />
+        <Rect x="5" y="10" rx="0" ry="0" width="390" height="50" />
+        <Circle cx="50" cy="115" r="30" />
+        <Circle cx="150" cy="115" r="30" />
+        <Circle cx="250" cy="115" r="30" />
+        <Circle cx="350" cy="115" r="30" />
+        <Rect x="5" y="190" rx="0" ry="0" width="190" height="250" />
+        <Rect x="210" y="190" rx="0" ry="0" width="190" height="250" />
+        <Rect x="5" y="450" rx="0" ry="0" width="190" height="250" />
+        <Rect x="210" y="450" rx="0" ry="0" width="190" height="250" />
+        <Rect x="5" y="160" rx="0" ry="0" width="390" height="20" />
     </ContentLoader>
 );
 
