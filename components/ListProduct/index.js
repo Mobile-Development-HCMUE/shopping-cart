@@ -46,6 +46,8 @@ const Footer = (props) => {
 
 const ListProduct = (props) => {
     const margin = 10;
+    const leftColor = useSelector((state) => state.theme.theme.HEADER_RIGHT);
+    const rightColor = useSelector((state) => state.theme.theme.HEADER_LEFT);
     const backgroundColor = useSelector((state) => state.theme.theme.TAB);
     // const ITEM_HEIGHT = 200;
     function currencyFormat(num) {
@@ -78,7 +80,7 @@ const ListProduct = (props) => {
             onEndReachedThreshold={props.ListData.length < 10 ? 0 : 2}
             refreshControl={
                 <RefreshControl
-                    colors={["#9Bd35A", "#689F38"]}
+                    colors={[leftColor, rightColor]}
                     refreshing={props.refreshing}
                     onRefresh={() => {
                         props.onRefresh();

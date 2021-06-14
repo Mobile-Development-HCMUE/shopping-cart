@@ -53,6 +53,7 @@ const HomeScreen = () => {
     const first = db.collection("product").orderBy("itemid").limit(14);
     const [lastVisible, setLastVisible] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [firstLoading, setFirstLoading] = useState(true);
     const getNext = () => {
         console.log("Call loading");
         if (!isLoading) {
@@ -143,22 +144,16 @@ const HomeScreen = () => {
                 });
                 setDataSource(newList);
                 setIsLoading(false);
+                setFirstLoading(false);
                 console.log("end");
             })
             .catch((error) => {
                 console.log("Error getting documents: ", error);
             });
-        // console.log(userid);
-        // (async () => {
-        //     console.log("Home: get avatar");
-        //     const ref = firebase.storage().ref("avatar/" + userid);
-        //     const url = await ref.getDownloadURL();
-        //     setAvatar(url);
-        // })();
     }, []);
     return (
         <>
-            {(isLoading || refreshing) && <ContentLoader />}
+            {(firstLoading || refreshing) && <ContentLoader />}
             <ListProduct
                 refreshing={refreshing}
                 onRefresh={onRefresh}

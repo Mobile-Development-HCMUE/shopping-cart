@@ -115,8 +115,8 @@ const App0 = () => {
                                 options={{ headerShown: false }}
                             />
                         </Stack.Navigator>
+                        <Toast ref={(ref) => Toast.setRef(ref)} />
                     </NavigationContainer>
-                    <Toast ref={(ref) => Toast.setRef(ref)} />
                 </SafeAreaProvider>
             </ApplicationProvider>
         </>

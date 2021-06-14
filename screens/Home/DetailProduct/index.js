@@ -93,7 +93,7 @@ const DetailScreeen = ({ route, navigation }) => {
 
     const showToast = () => {
         Toast.show({
-            text1: "Đặt hàng thành công",
+            text1: "Thêm vào giỏ hàng thành công",
             text2: "Mời bạn đến kiểm tra giỏ hàng nha 👋",
         });
     };
