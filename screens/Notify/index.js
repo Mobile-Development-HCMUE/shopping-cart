@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import ContentLoader from "../../components/ContentLoader/Notify";
+import ContentLoader from "../../components/ContentLoader/Chitiet";
 
 const NotifyScreen = () => {
   return (
