@@ -1,13 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View, Dimensions, FlatList } from "react-native";
+import { StyleSheet, View, Dimensions, FlatList, Animated } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Button } from "react-native-elements";
+import { Button, Image } from "react-native-elements";
 import { Icon, Layout, Text } from "@ui-kitten/components";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomSheet from "@gorhom/bottom-sheet";
+import { PanGestureHandler } from "react-native-gesture-handler";
+import { useAnimatedGestureHandler } from "react-native-reanimated";
+import SwipeRow from "../../components/SwipeRow";
 const CartScreen = () => {
     return <View />;
 };
@@ -15,7 +18,81 @@ const data = ["Nhà", "Trường học", "Nơi làm việc", "Khác"];
 
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
-const ITEM_HEIGHT = height * 0.75;
+const ITEM_HEIGHT = height * 0.9;
+
+const RenderItem = (props) => {
+    const leftBackgroundButton = useSelector(
+        (state) => state.theme.theme.HEADER_LEFT
+    );
+    const rightBackgroundButton = useSelector(
+        (state) => state.theme.theme.HEADER_RIGHT
+    );
+    const [isPress, setIsPress] = React.useState(true);
+    return (
+        <SwipeRow onDelete={() => {}}>
+            <Image
+                containerStyle={{
+                    width: "30%",
+                    backgroundColor: leftBackgroundButton,
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    alignContent: "center",
+                    borderRadius: 20,
+                    margin: 15,
+                }}
+                source={{
+                    uri: "https://firebasestorage.googleapis.com/v0/b/test-b067a.appspot.com/o/avatar%2Fy8VAjfhZQSh6kK2wJTSK3ES6M8A3?alt=media&token=3a76fb02-5fcd-4f14-b663-d6a0c202c511",
+                }}
+            >
+                <Text
+                    style={{
+                        color: "#fff",
+                        fontWeight: "bold",
+                    }}
+                >
+                    TEAM-IT
+                </Text>
+            </Image>
+            <View style={{}}>
+                <Text
+                    style={{
+                        fontWeight: "bold",
+                        justifyContent: "center",
+                        marginTop: 10,
+                        alignContent: "center",
+                        alignItems: "center",
+                        alignSelf: "center",
+                    }}
+                >
+                    Miễn phí 30k phí ship đơn từ 100k
+                </Text>
+                <Button
+                    buttonStyle={
+                        isPress
+                            ? {
+                                  backgroundColor: leftBackgroundButton,
+                              }
+                            : {
+                                  backgroundColor: "#999",
+                              }
+                    }
+                    title={isPress ? "Lưu" : "Hết mã :("}
+                    onPress={() => {
+                        setIsPress(!isPress);
+                    }}
+                    containerStyle={{
+                        flex: 1,
+                        justifyContent: "flex-end",
+                        marginLeft: "20%",
+                        marginRight: "20%",
+                        marginBottom: "5%",
+                    }}
+                ></Button>
+            </View>
+        </SwipeRow>
+    );
+};
 
 const Cart = ({ navigation }) => {
     const leftBackgroundButton = useSelector(
@@ -24,63 +101,55 @@ const Cart = ({ navigation }) => {
     const rightBackgroundButton = useSelector(
         (state) => state.theme.theme.HEADER_RIGHT
     );
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ height: ITEM_HEIGHT, overflow: "hidden" }}>
-                <FlatList
-                    data={data.images}
-                    keyExtractor={(item) => item}
-                    snapToInterval={ITEM_HEIGHT}
-                    decelerationRate="fast"
-                    showsVerticalScrollIndicator={false}
-                    bounces={false}
-                    renderItem={({ item }) => {
-                        return (
-                            <View
-                                key={item}
+            <View
+                style={{
+                    height: ITEM_HEIGHT,
+                    overflow: "hidden",
+                    backgroundColor: "#fff",
+                }}
+            >
+                <View style={styles.incard}>
+                    <LinearGradient
+                        colors={[leftBackgroundButton, rightBackgroundButton]}
+                        style={styles.linearGradient}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                    >
+                        <View
+                            style={{
+                                justifyContent: "center",
+                                flex: 1,
+                                width: "100%",
+                                alignContent: "center",
+                            }}
+                        >
+                            <Text
                                 style={{
-                                    width: "70%",
-                                    elevation: 1,
-                                    borderColor: "#000",
-                                    borderBottomRightRadius: 20,
-                                    borderTopRightRadius: 20,
+                                    fontFamily: "The-Wild-Thing",
+                                    fontWeight: "bold",
+                                    color: "#fff",
+                                    fontSize: 30,
+                                    fontStyle: "italic",
+                                    width: "100%",
+                                    textAlign: "center",
                                 }}
                             >
-                                <Text
-                                    style={{
-                                        fontWeight: "bold",
-                                        justifyContent: "center",
-                                        marginTop: 10,
-                                        alignContent: "center",
-                                        alignItems: "center",
-                                        alignSelf: "center",
-                                    }}
-                                >
-                                    Miễn phí ship cho đơn từ 0đ
-                                </Text>
-                                <Button
-                                    buttonStyle={
-                                        isPress
-                                            ? {
-                                                  backgroundColor:
-                                                      leftBackgroundButton,
-                                              }
-                                            : { backgroundColor: "#999" }
-                                    }
-                                    title={isPress ? "Lưu" : "Hết mã :("}
-                                    onPress={() => {
-                                        setIsPress(!isPress);
-                                    }}
-                                    containerStyle={{
-                                        flex: 1,
-                                        justifyContent: "flex-end",
-                                        marginLeft: "20%",
-                                        marginRight: "20%",
-                                        marginBottom: "5%",
-                                    }}
-                                ></Button>
-                            </View>
-                        );
+                                Giỏ hàng
+                            </Text>
+                        </View>
+                    </LinearGradient>
+                </View>
+                <FlatList
+                    data={data}
+                    keyExtractor={(item) => item}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    numColumns={1}
+                    renderItem={({ item }) => {
+                        return <RenderItem item={item} key={item} />;
                     }}
                 />
             </View>
@@ -97,31 +166,6 @@ const Cart = ({ navigation }) => {
                 ></BottomSheetScrollView> */}
             </BottomSheet>
         </SafeAreaView>
-        // <Layout style={styles.tabContainer} level="1">
-        //   <View
-        //     style={{ height: "50%", justifyContent: "flex-end", marginBottom: 20 }}
-        //   >
-        //     <Text style={{}} category="h6">
-        //       Chưa có gì trong giỏ hàng :(
-        //     </Text>
-        //   </View>
-        //   <View style={{ height: "50%" }}>
-        //     <Button
-        //       // onPress={toggleOverlay}
-        //       containerStyle={styles.ButtonContainerStyles}
-        //       buttonStyle={styles.ButtonStyles}
-        //       title="Mua ngay thôi!!!"
-        //       onPress={() => navigation.navigate("Home")}
-        //       ViewComponent={LinearGradient}
-        //       linearGradientProps={{
-        //         colors: [leftBackgroundButton, rightBackgroundButton],
-        //         style: { flex: 1 },
-        //         start: { x: 0, y: 0 },
-        //         end: { x: 1, y: 0 },
-        //       }}
-        //     ></Button>
-        //   </View>
-        // </Layout>
     );
 };
 
@@ -149,6 +193,26 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: ITEM_WIDTH / 2,
         left: 20,
+    },
+    row: {
+        flex: 1,
+        justifyContent: "space-around",
+    },
+
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        width: "100%",
+        borderBottomLeftRadius: 100,
+        borderTopRightRadius: 100,
+        marginTop: 1,
+    },
+    incard: {
+        width: "100%",
+        height: "15%",
+        backgroundColor: "#fff",
+        marginBottom: 20,
     },
 });
 
