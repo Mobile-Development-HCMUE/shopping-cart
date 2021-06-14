@@ -15,7 +15,6 @@ import {
     Rating,
     AirbnbRating,
 } from "react-native-elements";
-
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
@@ -31,7 +30,6 @@ const ITEM_HEIGHT = height * 0.75;
 const DOT_SIZE = 8;
 const DOT_SPACING = 8;
 const DOT_INDICATOR_SiZE = DOT_SIZE + DOT_SPACING;
-
 const DetailScreeen = ({ route, navigation }) => {
     const data = route.params.data;
     // console.log(data);
