@@ -159,10 +159,15 @@ const initialStateUser = {
     user,
 };
 
+const initalStateStockCart = {
+    stock: 0,
+};
+
 export const CHANGE_THEME = "CHANGE_THEME";
 export const CHANGE_AVATAR = "CHANGE_AVATAR";
 export const CHANGE_NAME = "CHANGE_NAME";
 export const CHANGE_ID = "CHANGE_ID";
+export const CHANGE_CART = "CHANGE_CART";
 
 export const change_theme = (titleTheme) => ({
     type: CHANGE_THEME,
@@ -182,6 +187,11 @@ export const change_avatar = (img) => ({
 export const change_name = (name) => ({
     type: CHANGE_NAME,
     info: name,
+});
+
+export const change_cart = (stock) => ({
+    type: CHANGE_CART,
+    info: stock,
 });
 
 export const themeReducer = (state = initialState, action) => {
@@ -209,7 +219,18 @@ export const userReducer = (state = initialStateUser, action) => {
     }
 };
 
+export const cartReducer = (state = initalStateStockCart, action) => {
+    switch (action.type) {
+        case CHANGE_CART:
+            console.log("change number cart");
+            return { ...state, stock: action.info };
+        default:
+            return state;
+    }
+};
+
 export const reducers = combineReducers({
     theme: themeReducer,
     user: userReducer,
+    cart: cartReducer,
 });

@@ -21,8 +21,9 @@ import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import InputSpinner from "react-native-input-spinner";
 import { db, firebase } from "../../../firebase/config";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Toast from "react-native-toast-message";
+import { change_cart } from "../../../redux/ducks";
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
 const ITEM_HEIGHT = height * 0.75;
@@ -64,6 +65,7 @@ const DetailScreeen = ({ route, navigation }) => {
     const [liked, setLiked] = React.useState(false);
     const userid = useSelector((state) => state.user.id);
     const user = db.collection("users").doc(userid);
+    const [stock, setStock] = React.useState(1);
     React.useEffect(() => {
         user.get().then((doc) => {
             console.log("get like");
@@ -71,7 +73,7 @@ const DetailScreeen = ({ route, navigation }) => {
             setLoading(false);
         });
     });
-
+    const productid = data.itemid;
     const setUpdateLike = () => {
         console.log("check like", liked);
         if (liked) {
@@ -91,12 +93,27 @@ const DetailScreeen = ({ route, navigation }) => {
         }
     };
 
+    const addToCart = () => {
+        const newKey = "cartItem." + productid;
+        console.log(newKey);
+        user.update({
+            [newKey]: firebase.firestore.FieldValue.increment(stock),
+        }).then(() => {
+            showToast();
+            user.get().then((doc) => {
+                dispatch(change_cart(Object.keys(doc.data().cartItem).length));
+            });
+        });
+    };
+
     const showToast = () => {
         Toast.show({
             text1: "Thêm vào giỏ hàng thành công",
             text2: "Mời bạn đến kiểm tra giỏ hàng nha 👋",
         });
     };
+    const dispatch = useDispatch();
+    const cartNumber = useSelector((state) => state.cart.stock);
 
     return (
         <View style={{ flex: 1 }}>
@@ -305,9 +322,9 @@ const DetailScreeen = ({ route, navigation }) => {
                         step={1}
                         colorMax={"#f04048"}
                         // colorMin={"#40c5f4"}
-                        value={1}
-                        onChange={(num) => {
-                            console.log(num);
+                        value={stock}
+                        onChange={(stock) => {
+                            setStock(stock);
                         }}
                         style={{
                             height: 50,
@@ -337,7 +354,8 @@ const DetailScreeen = ({ route, navigation }) => {
                         }}
                         status="danger"
                         onPress={() => {
-                            showToast();
+                            console.log("Begin add to cart");
+                            addToCart();
                         }}
                     ></Button>
                 </View>
