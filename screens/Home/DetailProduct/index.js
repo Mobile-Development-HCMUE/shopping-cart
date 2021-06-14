@@ -24,6 +24,7 @@ import { db, firebase } from "../../../firebase/config";
 import { useSelector, useDispatch } from "react-redux";
 import Toast from "react-native-toast-message";
 import { change_cart } from "../../../redux/ducks";
+import { SafeAreaView } from "react-native-safe-area-context";
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
 const ITEM_HEIGHT = height * 0.75;
@@ -116,7 +117,7 @@ const DetailScreeen = ({ route, navigation }) => {
     const cartNumber = useSelector((state) => state.cart.stock);
 
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
             {/* <StatusBar hidden /> */}
 
             <View style={{ height: ITEM_HEIGHT, overflow: "hidden" }}>
@@ -128,7 +129,13 @@ const DetailScreeen = ({ route, navigation }) => {
                     showsVerticalScrollIndicator={false}
                     bounces={false}
                     onScroll={Animated.event(
-                        [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                        [
+                            {
+                                nativeEvent: {
+                                    contentOffset: { y: scrollY },
+                                },
+                            },
+                        ],
                         { useNativeDriver: true }
                     )}
                     renderItem={({ item }) => {
@@ -361,7 +368,7 @@ const DetailScreeen = ({ route, navigation }) => {
                 </View>
             </BottomSheet>
             <Toast />
-        </View>
+        </SafeAreaView>
     );
 };
 
