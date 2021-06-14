@@ -124,22 +124,6 @@ const HomeTab = ({ navigation, route }) => {
                 }}
             />
             <Tab.Screen
-                name="Cart"
-                component={CartScreen}
-                options={{
-                    title: "Giỏ hàng",
-                    tabBarIcon: ({ color }) => (
-                        <Icon
-                            name="cart"
-                            type="ionicon"
-                            color={color}
-                            size={24}
-                        />
-                    ),
-                    tabBarBadge: cartNumber,
-                }}
-            />
-            <Tab.Screen
                 name="Me"
                 component={MeScreen}
                 options={{
@@ -172,26 +156,42 @@ const homeScreenStack = ({ navigation, route }) => {
     const backButtonColor = useSelector(
         (state) => state.theme.theme.BACK_BUTTON
     );
+    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
+    console.log(routeName);
     return (
         <Stack.Navigator
-            screenOptions={{
-                headerBackground: () => (
-                    <LinearGradient
-                        colors={[leftHeaderColor, rightHeaderColor]}
-                        style={{ flex: 1 }}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                    />
-                ),
-                headerTitleStyle: { color: headerTitleColor },
-                headerBackImage: ({ size }) => (
-                    <Icon
-                        name="arrow-back-circle-outline"
-                        type="ionicon"
-                        size={size}
-                        color={backButtonColor}
-                    />
-                ),
+            screenOptions={() => {
+                return routeName == "Cart" || routeName == "Detail"
+                    ? {
+                          headerTitleStyle: { color: headerTitleColor },
+                          headerBackImage: ({ size }) => (
+                              <Icon
+                                  name="arrow-back-circle-outline"
+                                  type="ionicon"
+                                  size={size}
+                                  color={backButtonColor}
+                              />
+                          ),
+                      }
+                    : {
+                          headerBackground: () => (
+                              <LinearGradient
+                                  colors={[leftHeaderColor, rightHeaderColor]}
+                                  style={{ flex: 1 }}
+                                  start={{ x: 0, y: 0 }}
+                                  end={{ x: 1, y: 0 }}
+                              />
+                          ),
+                          headerTitleStyle: { color: headerTitleColor },
+                          headerBackImage: ({ size }) => (
+                              <Icon
+                                  name="arrow-back-circle-outline"
+                                  type="ionicon"
+                                  size={size}
+                                  color={backButtonColor}
+                              />
+                          ),
+                      };
             }}
         >
             <Stack.Screen
@@ -209,7 +209,7 @@ const homeScreenStack = ({ navigation, route }) => {
                 name="Detail"
                 component={DetailScreeen}
                 options={{
-                    // headerShown: false,
+                    headerShown: false,
                     title: "Chi tiết",
                     RightButton: () => (
                         <View>
@@ -233,6 +233,23 @@ const homeScreenStack = ({ navigation, route }) => {
                     ),
                 }}
                 screenOptions={{ headerTransparent: true }}
+            />
+            <Stack.Screen
+                name="Cart"
+                component={CartScreen}
+                options={{
+                    title: "Giỏ hàng",
+                    headerShown: false,
+                    // tabBarIcon: ({ color }) => (
+                    //     <Icon
+                    //         name="cart"
+                    //         type="ionicon"
+                    //         color={color}
+                    //         size={24}
+                    //     />
+                    // ),
+                    // tabBarBadge: cartNumber,
+                }}
             />
             <Stack.Screen
                 name="Setting"

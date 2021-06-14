@@ -71,7 +71,6 @@ if (Platform.OS === "android") {
         _clearTimeout(id);
     };
 }
-
 const App0 = () => {
     const dispatch = useDispatch();
     React.useEffect(() => {
