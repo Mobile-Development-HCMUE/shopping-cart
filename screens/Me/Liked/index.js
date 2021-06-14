@@ -19,7 +19,6 @@ const LikedScreen = () => {
     );
     const [isLoading, setIsLoading] = React.useState(false);
     const [refreshing, setRefreshing] = React.useState(false);
-
     const [dataSource, setDataSource] = useState([]);
     const userid = useSelector((state) => state.user.id);
     const user = db.collection("users").doc(userid);

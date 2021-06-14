@@ -130,7 +130,9 @@ const ListProduct = (props) => {
                                 }
                             ></Image>
                             <View style={{ height: "22%", width: "110%" }}>
-                                <Text>{item.name}</Text>
+                                <Text>
+                                    {item.name.substring(0, 70) + "..."}
+                                </Text>
                             </View>
 
                             <View
