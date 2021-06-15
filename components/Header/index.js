@@ -2,25 +2,26 @@ import React from "react";
 import { View } from "react-native";
 import { Icon, Text } from "react-native-elements";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
+import { useSelector } from "react-redux";
 interface HeaderProps {
     left: {
         name: string,
         type: string,
-        color: string,
         onPress: () => void,
     };
     title: string;
     right: {
         name: string,
         type: string,
-        color: string,
         onPress: () => void,
     };
 }
 
 const Header = ({ title, left, right }: HeaderProps) => {
     const insets = useSafeAreaInsets();
+    const headerTitleColor = useSelector(
+        (state) => state.theme.theme.HEADER_TITLE
+    );
     return (
         <View
             style={{
@@ -34,16 +35,23 @@ const Header = ({ title, left, right }: HeaderProps) => {
             <Icon
                 name={left.name}
                 type={left.type}
-                color={left.color}
+                color={headerTitleColor}
                 onPress={left.onPress}
             />
-            <Text style={{ fontSize: 12, lineHeight: 24, fontWeight: "bold" }}>
+            <Text
+                style={{
+                    fontSize: 12,
+                    lineHeight: 24,
+                    fontWeight: "bold",
+                    color: headerTitleColor,
+                }}
+            >
                 {title.toUpperCase()}
             </Text>
             <Icon
                 name={right.name}
                 type={right.type}
-                color={right.color}
+                color={headerTitleColor}
                 onPress={right.onPress}
             />
         </View>

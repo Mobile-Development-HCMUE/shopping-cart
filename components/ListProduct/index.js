@@ -114,7 +114,7 @@ const ListProduct = (props) => {
                     >
                         <View style={{ alignContent: "center" }}>
                             <Image
-                                style={{ width: "100%", minHeight: 150 }}
+                                style={{ height: 150, width: "100%" }}
                                 source={{
                                     uri:
                                         "https://cf.shopee.vn/file/" +
@@ -129,7 +129,7 @@ const ListProduct = (props) => {
                                     />
                                 }
                             ></Image>
-                            <View style={{ height: "22%", width: "110%" }}>
+                            <View style={{ height: 50, width: "110%" }}>
                                 <Text>
                                     {item.name.substring(0, 70) + "..."}
                                 </Text>
@@ -137,6 +137,7 @@ const ListProduct = (props) => {
 
                             <View
                                 style={{
+                                    marginTop: 30,
                                     flexDirection: "row",
                                     justifyContent: "space-around",
                                 }}
@@ -161,7 +162,6 @@ const ListProduct = (props) => {
                             <Text
                                 style={{ alignSelf: "flex-end", fontSize: 10 }}
                             >
-                                {" "}
                                 Đã bán {item.historical_sold}
                             </Text>
                         </View>
