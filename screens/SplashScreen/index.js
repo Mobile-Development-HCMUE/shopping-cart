@@ -4,7 +4,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector, useDispatch } from "react-redux";
 import { firebase, db } from "../../firebase/config"; // add this code to your project to reset all timeouts
 import { Platform, InteractionManager } from "react-native";
-import { change_id, change_name, change_avatar } from "../../redux/ducks";
+import {
+    change_id,
+    change_name,
+    change_avatar,
+    change_cart,
+} from "../../redux/ducks";
 import * as Font from "expo-font";
 import { isLoading } from "expo-font";
 
@@ -32,6 +37,13 @@ const SplashScreen = ({ navigation }) => {
                         setUser(userData);
                         dispatch(change_id(userData.id));
                         dispatch(change_name(userData.name));
+                        typeof userData.cartItem != "undefined"
+                            ? dispatch(
+                                  change_cart(
+                                      Object.keys(userData.cartItem).length
+                                  )
+                              )
+                            : null;
                         const local = "avatar/" + userData.id;
                         const ref = firebase.storage().ref(local);
                         ref.getDownloadURL().then((url) => {

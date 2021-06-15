@@ -17,7 +17,7 @@ import { Text } from "react-native-elements";
 import Button from "components/MainButton";
 import Loader from "components/Loader";
 import { firebase } from "../../../firebase/config";
-import { change_id, change_name, change_avatar } from "reduxs";
+import { change_id, change_name, change_avatar, change_cart } from "reduxs";
 import { useSelector, useDispatch } from "react-redux";
 
 const useInputState = (initialValue = "") => {
@@ -77,6 +77,13 @@ const LoginScreen = ({ navigation }) => {
                         const userData = firestoreDocument.data();
                         dispatch(change_id(userData.id));
                         dispatch(change_name(userData.name));
+                        typeof userData.cartItem != "undefined"
+                            ? dispatch(
+                                  change_cart(
+                                      Object.keys(userData.cartItem).length
+                                  )
+                              )
+                            : null;
                         const local = "avatar/" + userData.id;
                         const ref = firebase.storage().ref(local);
                         ref.getDownloadURL().then((url) => {
