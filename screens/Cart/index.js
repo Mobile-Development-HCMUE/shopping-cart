@@ -20,7 +20,7 @@ const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
 const ITEM_HEIGHT = height * 0.9;
 
-const RenderItem = (props) => {
+const RenderItem = ({ onDelete, item }) => {
     const leftBackgroundButton = useSelector(
         (state) => state.theme.theme.HEADER_LEFT
     );
@@ -29,7 +29,7 @@ const RenderItem = (props) => {
     );
     const [isPress, setIsPress] = React.useState(true);
     return (
-        <SwipeRow onDelete={() => {}}>
+        <SwipeRow onDelete={onDelete}>
             <Image
                 containerStyle={{
                     width: "30%",
@@ -67,28 +67,6 @@ const RenderItem = (props) => {
                 >
                     Miễn phí 30k phí ship đơn từ 100k
                 </Text>
-                <Button
-                    buttonStyle={
-                        isPress
-                            ? {
-                                  backgroundColor: leftBackgroundButton,
-                              }
-                            : {
-                                  backgroundColor: "#999",
-                              }
-                    }
-                    title={isPress ? "Lưu" : "Hết mã :("}
-                    onPress={() => {
-                        setIsPress(!isPress);
-                    }}
-                    containerStyle={{
-                        flex: 1,
-                        justifyContent: "flex-end",
-                        marginLeft: "20%",
-                        marginRight: "20%",
-                        marginBottom: "5%",
-                    }}
-                ></Button>
             </View>
         </SwipeRow>
     );
@@ -101,6 +79,12 @@ const Cart = ({ navigation }) => {
     const rightBackgroundButton = useSelector(
         (state) => state.theme.theme.HEADER_RIGHT
     );
+    const [dataSource, setDataSource] = React.useState([
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+    ]);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -143,13 +127,26 @@ const Cart = ({ navigation }) => {
                     </LinearGradient>
                 </View>
                 <FlatList
-                    data={data}
-                    keyExtractor={(item) => item}
+                    data={dataSource}
+                    keyExtractor={(item) => item.id}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     numColumns={1}
                     renderItem={({ item }) => {
-                        return <RenderItem item={item} key={item} />;
+                        return (
+                            <RenderItem
+                                item={item}
+                                key={item.id}
+                                onDelete={() => {
+                                    var array = [...dataSource]; // make a separate copy of the array
+                                    var index = array.indexOf(item);
+                                    if (index !== -1) {
+                                        array.splice(index, 1);
+                                        setDataSource(array);
+                                    }
+                                }}
+                            />
+                        );
                     }}
                 />
             </View>
