@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 const RightButton = () => {
     const navigation = useNavigation();
     const headercolor = useSelector((state) => state.theme.theme.HEADER_TITLE);
+    const stock = useSelector((state) => state.cart.stock);
     return (
         <View style={styles.rightbutton}>
             <Icon
@@ -32,7 +33,7 @@ const RightButton = () => {
                 ></Icon>
                 <Badge
                     status="success"
-                    value="0"
+                    value={stock}
                     containerStyle={styles.Badge}
                 />
             </View>
