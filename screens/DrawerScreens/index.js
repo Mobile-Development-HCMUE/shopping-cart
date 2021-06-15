@@ -157,7 +157,7 @@ const homeScreenStack = ({ navigation, route }) => {
         (state) => state.theme.theme.BACK_BUTTON
     );
     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
-    console.log(routeName);
+    // console.log(routeName);
     return (
         <Stack.Navigator
             screenOptions={() => {
