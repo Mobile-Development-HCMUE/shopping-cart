@@ -15,10 +15,7 @@ import {
     Rating,
     AirbnbRating,
 } from "react-native-elements";
-import BottomSheet, {
-    BottomSheetScrollView,
-    BottomSheetBackdropProps,
-} from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Text, Button } from "@ui-kitten/components";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import InputSpinner from "react-native-input-spinner";
@@ -30,7 +27,6 @@ import {
     SafeAreaView,
     useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import Animate, { Extrapolate, interpolate } from "react-native-reanimated";
 const { height, width } = Dimensions.get("screen");
 const ITEM_WIDTH = width;
 const ITEM_HEIGHT = height * 0.75;
@@ -38,33 +34,33 @@ const DOT_SIZE = 8;
 const DOT_SPACING = 8;
 const DOT_INDICATOR_SiZE = DOT_SIZE + DOT_SPACING;
 
-const CustomBackdrop = ({ animatedIndex, style }: BottomSheetBackdropProps) => {
-    // animated variables
-    const leftColor = useSelector((state) => state.theme.theme.HEADER_LEFT);
-    const animatedOpacity = useMemo(
-        () =>
-            interpolate(animatedIndex, {
-                inputRange: [0, 1],
-                outputRange: [0, 1],
-                extrapolate: Extrapolate.CLAMP,
-            }),
-        [animatedIndex]
-    );
+// const CustomBackdrop = ({ animatedIndex, style }: BottomSheetBackdropProps) => {
+//     // animated variables
+//     const leftColor = useSelector((state) => state.theme.theme.HEADER_LEFT);
+//     const animatedOpacity = useMemo(
+//         () =>
+//             interpolate(animatedIndex, {
+//                 inputRange: [0, 1],
+//                 outputRange: [0, 1],
+//                 extrapolate: Extrapolate.CLAMP,
+//             }),
+//         [animatedIndex]
+//     );
 
-    // styles
-    const containerStyle = useMemo(
-        () => [
-            style,
-            {
-                backgroundColor: leftColor,
-                opacity: animatedOpacity,
-            },
-        ],
-        [style, animatedOpacity]
-    );
+//     // styles
+//     const containerStyle = useMemo(
+//         () => [
+//             style,
+//             {
+//                 backgroundColor: leftColor,
+//                 opacity: animatedOpacity,
+//             },
+//         ],
+//         [style, animatedOpacity]
+//     );
 
-    return <Animate.View style={containerStyle} />;
-};
+//     return <Animate.View style={containerStyle} />;
+// };
 
 const DetailScreeen = ({ route, navigation }) => {
     const insets = useSafeAreaInsets();
@@ -222,7 +218,7 @@ const DetailScreeen = ({ route, navigation }) => {
                 }}
                 enableBottomClamp
                 initialSnapIndex={0}
-                backdropComponent={CustomBackdrop}
+                // backdropComponent={CustomBackdrop}
                 snapPoints={[height - ITEM_HEIGHT, height - 2 * insets.top]}
             >
                 <BottomSheetScrollView
