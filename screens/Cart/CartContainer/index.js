@@ -25,11 +25,11 @@ const data = ["Nhà", "Trường học", "Nơi làm việc", "Khác"];
 const { width } = Dimensions.get("window");
 
 const aspectRatio = width / 375;
-const height = 562 * aspectRatio;
+const height = 685 * aspectRatio;
 
 const minHeight = 150 * aspectRatio;
-const ITEM_WIDTH = width;
-const ITEM_HEIGHT = height * 0.9;
+// const ITEM_WIDTH = width;
+// const ITEM_HEIGHT = height * 0.9;
 
 interface CartContainerProps {
     children: React.ReactNode;
@@ -49,6 +49,7 @@ const CartContainer = ({ navigation, children }: CartContainerProps) => {
         { id: 4 },
     ]);
     const snapPoints = [-(height - minHeight), 0];
+    console.log(snapPoints);
     const translateY = useSharedValue(0);
     const onGestureEvent = useAnimatedGestureHandler({
         onStart: (event, ctx) => {
@@ -135,31 +136,9 @@ const styles = StyleSheet.create({
         minHeight: 40,
         borderRadius: 20,
     },
-    image: { width: ITEM_WIDTH, height: ITEM_HEIGHT },
-    pagination: {
-        position: "absolute",
-        top: ITEM_WIDTH / 2,
-        left: 20,
-    },
     row: {
         flex: 1,
         justifyContent: "space-around",
-    },
-
-    linearGradient: {
-        flex: 1,
-        paddingLeft: 15,
-        paddingRight: 15,
-        width: "100%",
-        borderBottomLeftRadius: 100,
-        borderTopRightRadius: 100,
-        marginTop: 1,
-    },
-    incard: {
-        width: "100%",
-        height: "15%",
-        backgroundColor: "#fff",
-        marginBottom: 20,
     },
 });
 

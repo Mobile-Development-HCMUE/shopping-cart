@@ -1,5 +1,5 @@
 import React from "react";
-import { view } from "react-native";
+import { View } from "react-native";
 import { Text, Button, Image } from "react-native-elements";
 import SwipeRow from "components/SwipeRow";
 import { useSelector } from "react-redux";
@@ -17,17 +17,15 @@ const Items = ({ onDelete, item }: ItemProps) => {
     );
     const [isPress, setIsPress] = React.useState(true);
     return (
-        <SwipeRow onDelete={onDelete}>
+        // <SwipeRow onDelete={onDelete}>
+        <View style={{ padding: 20, flexDirection: "row" }}>
+            {console.log("success")}
             <Image
                 containerStyle={{
-                    width: "30%",
                     backgroundColor: leftBackgroundButton,
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    alignContent: "center",
-                    borderRadius: 20,
-                    margin: 15,
+                    width: 120,
+                    height: 120,
+                    borderRadius: 10,
                 }}
                 source={{
                     uri: "https://firebasestorage.googleapis.com/v0/b/test-b067a.appspot.com/o/avatar%2Fy8VAjfhZQSh6kK2wJTSK3ES6M8A3?alt=media&token=3a76fb02-5fcd-4f14-b663-d6a0c202c511",
@@ -42,7 +40,7 @@ const Items = ({ onDelete, item }: ItemProps) => {
                     TEAM-IT
                 </Text>
             </Image>
-            <View style={{}}>
+            {/* <View style={{}}>
                 <Text
                     style={{
                         fontWeight: "bold",
@@ -55,8 +53,9 @@ const Items = ({ onDelete, item }: ItemProps) => {
                 >
                     Miễn phí 30k phí ship đơn từ 100k
                 </Text>
-            </View>
-        </SwipeRow>
+            </View> */}
+        </View>
+        // </SwipeRow>
     );
 };
 

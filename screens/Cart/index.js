@@ -80,8 +80,9 @@ const Cart = ({ navigation }) => {
                 }}
                 showsHorizontalScrollIndicator={false}
             >
-                {dataSource.map((u, i) => {
+                {dataSource.map((u, i) => (
                     <Items
+                        key={i}
                         item={u}
                         onDelete={() => {
                             var array = [...dataSource]; // make a separate copy of the array
@@ -91,8 +92,8 @@ const Cart = ({ navigation }) => {
                                 setDataSource(array);
                             }
                         }}
-                    />;
-                })}
+                    />
+                ))}
             </ScrollView>
         </CartContainer>
     );
