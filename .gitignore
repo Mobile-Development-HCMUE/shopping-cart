@@ -11,3 +11,6 @@ web-build/
 *.log
 # macOS
 .DS_Store
+.eslintrc.js
+
+GenerateData/

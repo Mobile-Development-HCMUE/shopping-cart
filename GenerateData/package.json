@@ -5,9 +5,12 @@
     "author": "Phong",
     "license": "MIT",
     "dependencies": {
+        "cheerio": "^1.0.0-rc.10",
         "faker": "^5.5.3",
         "firebase": "^8.6.5",
         "node-fetch": "^2.6.1",
+        "node-html-parser": "^4.1.5",
+        "objects-to-csv": "^1.3.6",
         "puppeteer-core": "^10.0.0"
     }
 }
